@@ -8,4 +8,5 @@ Web3로의 도전을 기록합니다.
 
 <p align="center">
 Backend Dev || JAVA, Spring, SQL, Javascript, Rust
+</p><br>
 This theme is licensed under the [MIT license](https://opensource.org/licenses/mit-license.php) © JeffreyTse.
