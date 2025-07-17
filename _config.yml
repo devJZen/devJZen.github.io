@@ -43,6 +43,7 @@ author: devJZen
 copyright: "Copyright (cleft) 2025-{currentYear} {author}"
 
 description: >- # this means to ignore newlines until "baseurl:"
+  devJZen의 개발 블로그입니다. 웹 개발, 블록체인, API 설계 등 다양한 기술 이야기를 다룹니다.
 
 baseurl: ""# the subpath of your site, e.g. /blog
 url: "https://devjzen.github.io/" # the base hostname & protocol for your site, e.g. https://example.com
@@ -67,7 +68,7 @@ yat:
 # enableDNT: "false"
 
 # If you want to generate website sitemap, you can set true
-# sitemap: false
+sitemap: true
 
 # If you want to change site language, you can set lang option
 # lang: "en"  # default lang is en

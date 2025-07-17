@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://devjzen.github.io/sitemap.xml
