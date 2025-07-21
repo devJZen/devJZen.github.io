@@ -58,7 +58,7 @@ yat:
 header_transparent: false
 
 # If you want to change the content width, you can set to another value
-content_width: "1020px"
+content_width: "920px"
 
 # Google analytics - GA4
 # google_analytics: [Measurement ID]
@@ -129,7 +129,7 @@ brand_color: greatgold
 # visit (session). Only the dark mode setting is"manual",
 # it will be always kept on every visit (i.e. no matter
 # the browser is closed or not)
-# night_mode: "auto"
+night_mode: "off"
 
 # Code badge setting
 # You can enable or disable the code badge and so on
@@ -172,7 +172,7 @@ defaults:
 # excerpt_size: 350
 
 # Pagination setting
-paginate: 5
+paginate: 30
 
 # Disqus comments
 # disqus:
