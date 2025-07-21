@@ -1,4 +1,4 @@
 home:
-  heading: "Your awesome heading"
-  subheading: "Your awesome subheading"
-  banner: "Your image url"
+  heading: "devJZen"
+  subheading: "Web3로의 여정을 기록합니다."
+  banner: "/assets/images/favicon2.jpg"  # 배너 이미지 경로
