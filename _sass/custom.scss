@@ -16,6 +16,10 @@ html[data-theme="dark"] .post-content a:hover {
     color: #fff;
 }
 
+html[data-theme="dark"] .post-header a:hover {
+    color: #fff;
+}
+
 /* 코드블럭 스타일 개선 */
 pre {
   background-color: #f8f9fa !important;

@@ -241,7 +241,18 @@ html {
     .post-tag {
       display: inline-block;
       margin: 0 12px 0 0;
+      text-decoration: none;
     }
+
+    a{
+      &:hover {
+       color: #000;
+       font-size: larger;
+      }
+      transition: background 0.3s, font-size 0.3s;
+
+    }
+
   }
 }
 
@@ -427,8 +438,6 @@ html {
 
     }
 
-
-
     h2 {
       @include relative-font-size(2);
 
@@ -478,50 +487,6 @@ html {
     }
   }
 
-  html[data-theme="dark"] .post-content a:hover {
-    color: #fff;
-  }
-
-
-  .post-related {
-    &>*:first-child {
-      @include relative-font-size(1.425);
-      color: #333;
-      margin-bottom: 14px;
-    }
-
-    ul {
-      margin-left: 15px;
-      .post-link {
-        @include relative-font-size(1.075);
-      }
-
-      a {
-        color: #666;
-
-        &:hover {
-          color: #333;
-        }
-
-        &:after {
-          content: 'NEW';
-          position: absolute;
-          margin-left: 8px;
-          margin-top: 3px;
-          padding: 0px 3px;
-          background-color: $brand-color;
-          color: #fff;
-          font-size: 10px;
-          font-weight: 600;
-          border-radius: 2px;
-        }
-
-        &:visited:after {
-          background-color: #fff;
-        }
-      }
-    }
-  }
 }
 
 .post-comments {
@@ -697,7 +662,7 @@ html {
         color: #fff;
 
         &:hover {
-          text-decoration: underline;
+          text-decoration: none;
         }
       }
     }
@@ -716,7 +681,7 @@ html {
     @extend %flex;
 
   .main {
-    @extend %flex-1;
+    @extend %flex;
   }
 
   .sidebar {

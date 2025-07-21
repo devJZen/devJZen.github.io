@@ -154,24 +154,6 @@ html[data-theme="dark"]  {
     }
   }
 
-  .post-related {
-    & > *:first-child {
-      color: #d7d7d7;
-    }
-
-    a:visited:after {
-      background-color: $dark-background-color;
-    }
-
-    a:after {
-      color: $dark-background-color;
-    }
-
-    a:hover {
-      color: #aaa;
-    }
-  }
-
   .common-list {
     li {
       border-bottom: solid 1px #40404088;
