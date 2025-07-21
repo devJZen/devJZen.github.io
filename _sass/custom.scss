@@ -1,14 +1,5 @@
 /* 커스텀 CSS 오버라이드 */
 
-/* 포스트 내용에서 H1 스타일 추가 */
-.post-content h1 {
-  font-size: 2.25rem;
-  font-weight: 600;
-  line-height: 1.2;
-  margin: 60px 0 19px;
-  color: #1d1d1f;
-}
-
 /* 반응형 대응 */
 @media screen and (max-width: 800px) {
   .post-content h1 {
@@ -20,3 +11,214 @@
 html[data-theme="dark"] .post-content h1 {
   color: #b0b0b0;
 }
+
+html[data-theme="dark"] .post-content a:hover {
+    color: #fff;
+}
+
+/* 코드블럭 스타일 개선 */
+pre {
+  background-color: #f8f9fa !important;
+  border: 1px solid #e9ecef !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  margin: 24px 0 !important;
+
+  > code {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Roboto Mono', monospace !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    padding: 20px !important;
+    color: #2d3748 !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+  }
+}
+
+/* 인라인 코드 스타일 개선 */
+*:not(pre) > code {
+  background-color: #f1f3f4 !important;
+  color: #d73a49 !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Roboto Mono', monospace !important;
+  font-size: 0.875em !important;
+  font-weight: 500 !important;
+  margin: 0 2px !important;
+  border: 1px solid #e1e4e8 !important;
+}
+
+/* 코드블럭 다크모드 대응 */
+html[data-theme="dark"] pre {
+  background-color: #161b22 !important;
+  border-color: #30363d !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+
+  > code {
+    color: #e6edf3 !important;
+  }
+}
+
+html[data-theme="dark"] *:not(pre) > code {
+  background-color: #21262d !important;
+  color: #ff7b72 !important;
+  border-color: #30363d !important;
+}
+
+/* 코드블럭 스크롤바 스타일 */
+pre::-webkit-scrollbar {
+  height: 8px;
+  background-color: transparent;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background-color: #cbd5e0;
+  border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+  background-color: #a0aec0;
+}
+
+html[data-theme="dark"] pre::-webkit-scrollbar-thumb {
+  background-color: #4a5568;
+}
+
+html[data-theme="dark"] pre::-webkit-scrollbar-thumb:hover {
+  background-color: #718096;
+}
+
+/* 인용구 스타일 개선 */
+blockquote {
+    background-color: #f8f9fc !important;
+    border-left: 4px solid #4f46e5 !important;
+    padding: 5px 14px !important;
+    margin: 10px 0 !important;
+    border-radius: 0 8px 8px 0 !important;
+    font-style: italic !important;
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+    color: #374151 !important;
+    letter-spacing: normal !important;
+    position: relative !important;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.08) !important;
+
+  &:before {
+    content: '"' !important;
+    font-size: 2.5rem !important;
+    color: #4f46e5 !important;
+    font-family: serif !important;
+    position: absolute !important;
+    top: 2px !important;
+    left: 24px !important;
+    line-height: 1 !important;
+    opacity: 0.3 !important;
+  }
+
+  p {
+    margin: 0 !important;
+    padding-left: 30px !important;
+  }
+
+  > :last-child {
+    margin-bottom: 0 !important;
+  }
+}
+
+/* 인용구 다크모드 대응 */
+html[data-theme="dark"] blockquote {
+  background-color: #1e1b4b !important;
+  border-left-color: #6366f1 !important;
+  color: #e2e8f0 !important;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.15) !important;
+
+  &:before {
+    color: #6366f1 !important;
+  }
+}
+
+/* callout이 적용된 blockquote에서 before 스타일 제거 */
+blockquote.callout {
+  &:before {
+    display: none !important;
+  }
+}
+
+/* footer 패딩 제거 */
+.site-footer .site-footer-inner {
+  padding: 0 !important;
+}
+/* 사이트 푸터 스타일 */
+.site-footer {
+  font-size: 10px !important;
+}
+
+/* callout 스타일 */
+.callout {
+  border-left: 4px solid #4f46e5 !important;
+  background: #f8f9fc !important;
+  padding: 10px 18px !important;
+  margin: 12px 0 !important;
+  border-radius: 0 8px 8px 0 !important;
+  position: relative !important;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.08) !important;
+  font-style: normal !important;
+}
+
+.callout-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #2563eb;
+  font-size: 1.05em;
+}
+.callout-info {
+  border-left-color: #2563eb !important;
+  background: #e0f2fe !important;
+}
+.callout-warning {
+  border-left-color: #f59e42 !important;
+  background: #fff7ed !important;
+}
+.callout-note {
+  border-left-color: #6366f1 !important;
+  background: #ede9fe !important;
+}
+.callout-tip {
+  border-left-color: #10b981 !important;
+  background: #ecfdf5 !important;
+}
+.callout-danger {
+  border-left-color: #ef4444 !important;
+  background: #fef2f2 !important;
+}
+html[data-theme="dark"] .callout {
+  background: #23234a !important;
+  color: #e2e8f0 !important;
+}
+html[data-theme="dark"] .callout-info {
+  background: #1e293b !important;
+  border-left-color: #2563eb !important;
+}
+html[data-theme="dark"] .callout-warning {
+  background: #78350f !important;
+  border-left-color: #f59e42 !important;
+}
+html[data-theme="dark"] .callout-note {
+  background: #312e81 !important;
+  border-left-color: #6366f1 !important;
+}
+html[data-theme="dark"] .callout-tip {
+  background: #064e3b !important;
+  border-left-color: #10b981 !important;
+}
+html[data-theme="dark"] .callout-danger {
+  background: #7f1d1d !important;
+  border-left-color: #ef4444 !important;
+}
+
+blockquote.callout p {
+  padding: 0 !important;
+  margin-bottom: 10px !important;
+}
+

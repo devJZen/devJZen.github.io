@@ -6,7 +6,7 @@ tags: [Solana, SolanaSchool7]
 ---
 이 포스팅은 [솔라나 스쿨 7기](https://youtu.be/vrO6cjdPUOs)에 대한 내용을 다룬다.
 
-[!image]()
+![솔라나 스쿨]({{ '/assets/images/posting/SolanaSchool(1).png' | relative_url }})
 
 ## Ackee
 

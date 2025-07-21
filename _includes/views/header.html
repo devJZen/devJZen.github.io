@@ -17,10 +17,6 @@
       {%- assign default_paths = site.pages | where: "dir", "/" | map: "path" -%}
       {%- assign page_paths = site.header_pages | default: default_paths -%}
 
-      <span class="site-brand">
-        {%- include views/site-brand.html -%}
-      </span>
-
       {%- if page_paths -%}
         <nav class="site-nav">
           <input type="checkbox" id="nav-trigger" class="nav-trigger" />
@@ -66,9 +62,6 @@
     function storeScrollData() {
       var y = getScrollPos().y;
 
-      {%- if banner and header_transparent -%}
-      documentElement.setAttribute("data-header-transparent", "");
-      {%- endif -%}
 
       var scrollStatus = "";
 

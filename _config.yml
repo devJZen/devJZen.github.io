@@ -40,12 +40,9 @@ author: devJZen
 #   "Copyright (c) 2017-{currentYear} <a href="https://example.com">{author}</a>"
 #   "Copyright © 2017-2021 Foobar"
 #
-copyright: "Copyright (cleft) 2025-{currentYear} {author}"
+copyright: "Copyright (cleft) {currentYear} {author}"
 
-description: >- # this means to ignore newlines until "baseurl:"
-  devJZen의 개발 블로그입니다. 웹 개발, 블록체인, API 설계 등 다양한 기술 이야기를 다룹니다.
-
-baseurl: ""# the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://devjzen.github.io/" # the base hostname & protocol for your site, e.g. https://example.com
 favicon: "" # the favicon for your site
 
@@ -58,10 +55,10 @@ yat:
 # debug: false
 
 # If you don't want transparent header, you can set false
-# header_transparent: true
+header_transparent: false
 
 # If you want to change the content width, you can set to another value
-# content_width: "920px"
+content_width: "1020px"
 
 # Google analytics - GA4
 # google_analytics: [Measurement ID]
@@ -106,7 +103,7 @@ sitemap: true
 # spacegrey: #353535
 # snowwhite: #ffffff
 #
-# theme_color: snowwhite
+theme_color: snowwhite
 #
 # Custom color as below:
 # theme_color: "#882250"
@@ -117,7 +114,7 @@ sitemap: true
 # greatgold: #f2cb05
 # greenblue: #389092
 #
-# brand_color: orangered
+brand_color: greatgold
 #
 # Custom color as below:
 # brand_color: "#1a8e42"
@@ -132,7 +129,6 @@ sitemap: true
 # visit (session). Only the dark mode setting is"manual",
 # it will be always kept on every visit (i.e. no matter
 # the browser is closed or not)
-#
 # night_mode: "auto"
 
 # Code badge setting
@@ -147,7 +143,7 @@ sitemap: true
 # this and add the path to the pages in order as they should show up
 header_pages:
   - index.html
-  - about.md
+  - about.html
   - archives.html
 #  - categories.html
   - tags.html
@@ -156,69 +152,47 @@ header_pages:
 defaults:
   home:
     heading: "devJZen"
-    subheading: "Get Your Present!"
-    banner: "assets/images/gif/bg.gif"
 
 # Banner default settings
 # These banner settings are for global banner default, but you can also
 # config it by the front matter for one specific post
-banner:
+# banner:
 # video: null             # Video banner source
   # loop: true              # Video loop
   #volume: 0               # Video volume (100% is 1.0)
   #start_at: 0             # Video start time
- image: assets/images/gif/bg.gif             # Image banner source
- opacity: 1.0            # Banner opacity (100% is 1.0)
-# background: "rgba(0, 0, 0, 0.8)"  # Banner background (Could be a image)
- height: "640px"         # Banner default height
- min_height: null        # Banner minimum height
-# heading_style: null     # Custom heading style (e.g. "font-weight: bold; text-decoration: underline")
-# subheading_style: null  # Custom subheading style (e.g. color: gold)
+#  opacity: 1.0            # Banner opacity (100% is 1.0)
+#  background: "rgba(0, 0, 0, 0.8)"  # Banner background (Could be a image)
+#  height: "240px"         # Banner default height
+#  min_height: null        # Banner minimum height
+#  heading_style: null     # Custom heading style (e.g. "font-weight: bold; text-decoration: underline")
+#  subheading_style: null  # Custom subheading style (e.g. color: gold)
 
 # Excerpt size setting
 # excerpt_size: 350
 
 # Pagination setting
-paginate: 3
+paginate: 5
 
 # Disqus comments
 # disqus:
 #   shortname: "Your Disqus username"
 
-# Gitment comments (비활성화)
-# gitment:
-#   username: "devJZen"
-#   repo: "devJZen Comments"
-#   client_id: "Ov23liG4jojgM2qndHkN"
-#   client_secret: "2a39ba96b53474a023c05aaa410d66d4300f9cc7"
-#   redirect_uri: "https://devjzen.github.io/"   # If you use a custom domain name
-
-# Giscus comments
+# Giscus comments (giscus 앱 설치 후 활성화)
 # GitHub Discussions 기반 댓글 시스템
 giscus:
   repo: "devJZen/devJZen.github.io"
   repo_id: "R_kgDOOhejIQ"
   category: "General"
-  category_id: ""  # https://giscus.app/ko 에서 설정 후 입력
+  category_id: "DIC_kwDOOhejIc4CtO1v"
   mapping: "pathname"
   strict: "0"
   reactions_enabled: "1"
   emit_metadata: "0"
   input_position: "bottom"
-  theme: "preferred_color_scheme"
+  theme: "light"
   lang: "ko"
   loading: "lazy"
-
-# Utterances comments
-# See https://utteranc.es/
-# set follow_site_theme true to make utterances' theme follow the site's
-
-# utterances:
-#   repo: "owner/repo"
-#   issue_term: "title"
-#   label: "utterances comment"
-#   theme: "github-light"
-#   follow_site_theme: true
 
 # Build settings
 # highlighter: none

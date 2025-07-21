@@ -71,7 +71,7 @@ html {
   z-index: 1000;
 
   & > .wrapper {
-    margin: 0 60px;
+    margin: 0 10px;
     padding: 0;
     max-width: 100%;
     transition: 0.2s margin;
@@ -116,9 +116,11 @@ html {
 .site-nav {
   @include relative-font-size(1.125);
   line-height: $header-height;
-  position: absolute;
+  position: relative;
+  margin: 0 auto;
+  left: 0;
   right: 0;
-  top: 0;
+  text-align: center;
 
   .nav-trigger {
     display: none;
@@ -137,7 +139,7 @@ html {
     &:not(:last-child) {
       margin-right: 24px;
       &:hover {
-        text-decoration: underline;
+        text-decoration: none;
       }
     }
   }
@@ -250,7 +252,6 @@ html {
   @extend %flex-1; /* <-- Keep footer on the bottom */
   -ms-flex: none; /* <-- Fix IE footer issue */
   padding: $spacing-unit * 2 0;
-  padding-top: 72px;
 }
 
 .page-heading {
@@ -270,11 +271,20 @@ html {
     list-style: none;
 
     > li {
-      margin-bottom: $spacing-unit * 1.5;
-      padding-bottom: 30px;
+      margin-bottom: $spacing-unit * 1;
+      padding-bottom: 10px;
 
       &:not(:last-child) {
-        border-bottom: 1px solid #e3e3e3;
+        border-bottom: none;
+      }
+
+      a{
+        text-decoration: none;
+        color: #333;
+        transition: background 0.2s;
+        &:hover {
+        background-color: mix($theme-color, #eaeaea, 20%);
+        }
       }
     }
   }
@@ -315,7 +325,9 @@ html {
     @include relative-font-size(1.65);
     font-weight: $base-font-weight * 1.5;
     color: #333;
+    text-decoration: none;
   }
+
 
   .post-excerpt {
     color: #777;
@@ -326,14 +338,12 @@ html {
   .post-tags .post-tag {
     display: inline-block;
     text-decoration: none;
-    border: 1px solid;
     padding: 2px 4px;
-    border-radius: 2px;
     transition: color 0.2s;
     margin-bottom: 8px;
 
     &:not(:last-child) {
-      margin-right: 8px;
+      margin-right: 0;
     }
 
     &:hover {
@@ -407,6 +417,18 @@ html {
     word-wrap: normal;
     word-break: normal;
 
+    a{
+      text-decoration: none;
+      &:hover {
+       color: #000;
+       font-size: larger;
+      }
+      transition: background 0.3s, font-size 0.3s;
+
+    }
+
+
+
     h2 {
       @include relative-font-size(2);
 
@@ -446,7 +468,7 @@ html {
     }
 
     p, hr {
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     hr {
@@ -455,6 +477,11 @@ html {
       border: none;
     }
   }
+
+  html[data-theme="dark"] .post-content a:hover {
+    color: #fff;
+  }
+
 
   .post-related {
     &>*:first-child {
@@ -498,7 +525,7 @@ html {
 }
 
 .post-comments {
-  padding-top: 25px;
+  padding-top: 5px;
 }
 
 
@@ -659,17 +686,14 @@ html {
 
     .post-tags {
       color: #999;
-      padding-right: 280px;
-
       @include media-query($on-palm) {
         padding-right: 0;
       }
 
       .post-tag {
-        @include relative-font-size(1.125);
+        @include relative-font-size(2.125);
         display: inline-block;
         text-decoration: none;
-        margin: 9px 12px 0 0;
         color: #fff;
 
         &:hover {
