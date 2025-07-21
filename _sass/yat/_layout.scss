@@ -116,11 +116,9 @@ html {
 .site-nav {
   @include relative-font-size(1.125);
   line-height: $header-height;
-  position: relative;
-  margin: 0 auto;
-  left: 0;
+  position: absolute;
   right: 0;
-  text-align: center;
+  top: 0;
 
   .nav-trigger {
     display: none;
