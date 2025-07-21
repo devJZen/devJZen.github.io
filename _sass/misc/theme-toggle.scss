@@ -6,10 +6,6 @@
   margin-left: auto;
   transition: .3s cubic-bezier(.4,.03,0,1);
 
-  label, .toggle {
-    border-radius: 100px;
-  }
-
   label {
     display: block;
     background-color: rgba(120,120,120,.15);
@@ -21,7 +17,6 @@
     width: 50%;
     height: 100%;
     background-color: #fff;
-    box-shadow: 0 2px 15px rgba(0,0,0,.15);
     transition: transform .2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 

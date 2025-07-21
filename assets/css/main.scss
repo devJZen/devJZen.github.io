@@ -33,6 +33,25 @@ $brand-color: map-get($brand-colors, "orangered");
   $brand-color: {{ site.brand_color | default: '#ff5100' }};
 }
 
-$content-width: {{ site.content_width | default: '920px' }};
+$content-width: {{ site.content_width | default: '1020px' }};
+
+// 모바일에서 테이블 가로 스크롤
+@media screen and (max-width: 800px) {
+  .post-content table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    table-layout: auto;
+  }
+  .post-content th, .post-content td {
+    white-space: nowrap;
+  }
+  .post-content th {
+    max-width: 80px;
+    white-space: normal !important;
+    word-break: break-all;
+  }
+}
 
 @import "yat";
