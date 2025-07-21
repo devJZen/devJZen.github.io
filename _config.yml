@@ -185,13 +185,29 @@ paginate: 3
 # disqus:
 #   shortname: "Your Disqus username"
 
-# Gitment comments
-gitment:
-  username: "devJZen"
-  repo: "devJZen Comments"
-  client_id: "Ov23liG4jojgM2qndHkN"
-  client_secret: "2a39ba96b53474a023c05aaa410d66d4300f9cc7"
-  redirect_uri: "https://devjzen.github.io/"   # If you use a custom domain name
+# Gitment comments (비활성화)
+# gitment:
+#   username: "devJZen"
+#   repo: "devJZen Comments"
+#   client_id: "Ov23liG4jojgM2qndHkN"
+#   client_secret: "2a39ba96b53474a023c05aaa410d66d4300f9cc7"
+#   redirect_uri: "https://devjzen.github.io/"   # If you use a custom domain name
+
+# Giscus comments
+# GitHub Discussions 기반 댓글 시스템
+giscus:
+  repo: "devJZen/devJZen.github.io"
+  repo_id: "R_kgDOOhejIQ"
+  category: "General"
+  category_id: ""  # https://giscus.app/ko 에서 설정 후 입력
+  mapping: "pathname"
+  strict: "0"
+  reactions_enabled: "1"
+  emit_metadata: "0"
+  input_position: "bottom"
+  theme: "preferred_color_scheme"
+  lang: "ko"
+  loading: "lazy"
 
 # Utterances comments
 # See https://utteranc.es/

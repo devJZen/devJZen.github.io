@@ -73,6 +73,10 @@ sidebar:
       {%- include extensions/comments/utterances.html -%}
       {%- endif -%}
 
+      {%- if site.giscus.repo -%}
+      {%- include extensions/comments/giscus.html -%}
+      {%- endif -%}
+
       {%- endif -%}
     </div>
     {%- endif -%}
