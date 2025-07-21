@@ -34,15 +34,6 @@ html {
         }
       }
     }
-
-    footer.site-footer {
-      color: unset;
-      background-color: transparent;
-
-      .site-footer-inner {
-        border-top: solid 1px #eee;
-      }
-    }
   }
 
   &[data-scroll-status='down'] {
@@ -263,7 +254,7 @@ html {
 .page-content {
   @extend %flex-1; /* <-- Keep footer on the bottom */
   -ms-flex: none; /* <-- Fix IE footer issue */
-  padding: $spacing-unit * 2 0;
+  padding: $spacing-unit;
 }
 
 .page-heading {
@@ -490,47 +481,6 @@ html {
   padding-top: 5px;
 }
 
-
-/**
- * Posts misc
- */
-.post-nav {
-  display: flex;
-  justify-content: space-between;
-  margin: 72px 0 59px;
-  padding: 31px 0 0;
-
-  a {
-    @include relative-font-size(1.125);
-    line-height: 15px;
-    color: #666;
-    max-width: 50%;
-  }
-
-  .previous:before {
-    content: ' ';
-    border: solid #787878;
-    border-width: 0 2px 2px 0;
-    display: inline-block;
-    padding: 4px;
-    margin-right: 8px;
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
-  }
-
-  .next:after {
-    content: ' ';
-    border: solid #787878;
-    border-width: 0 2px 2px 0;
-    display: inline-block;
-    padding: 4px;
-    margin-left: 8px;
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-  }
-}
-
-
 /**
  * Archives page
  */
@@ -559,30 +509,31 @@ html {
  * Layout and sidebar
  */
 .framework {
-    @extend %flex;
+  display: flex;
   width: 100%;
-  max-width: 100%; // wrapper와 동일하게, 꽉 차게
-  margin: 0;
+  max-width: 1020px;
+  margin: 0 auto;
   box-sizing: border-box;
+  flex-direction: row;
+
+  .sidebar {
+    flex: 0 0 220px;
+    order: 0;
+    padding-left: 0;
+    padding-right: 8px;
+    transition: top 0.2s, display 0.2s;
+    @include flex-sticky($header-height + 20px);
+    @include media-query($on-laptop) {
+      display: none !important;
+    }
+  }
 
   .main {
-    @extend %flex;
-    width: 100%;
+    flex: 1 1 0%;
     min-width: 0;
     margin: 0;
     padding: 0;
-  }
-
-  .sidebar {
-    padding-left: 8px;
-    transition: top 0.2s, display 0.2s;
-
-    @include flex-sticky($header-height + 20px);
-
-    @include media-query($on-laptop) {
-      display: none;
-    }
-
+    order: 1;
   }
 }
 

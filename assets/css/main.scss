@@ -33,7 +33,7 @@ $brand-color: map-get($brand-colors, "orangered");
   $brand-color: {{ site.brand_color | default: '#ff5100' }};
 }
 
-$content-width: {{ site.content_width | default: '1020px' }};
+$content-width: {{ site.content_width }};
 
 // 모바일에서 테이블 가로 스크롤
 @media screen and (max-width: 800px) {
