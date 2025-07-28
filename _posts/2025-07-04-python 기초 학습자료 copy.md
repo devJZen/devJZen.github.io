@@ -1,10 +1,9 @@
 ---
 layout: post
-title: Python 기초 학습자료 (1)
+title: Python 기초 학습자료
 categories: study
 tags: [CodingTest, Gemini, Python]
 ---
-
 ## Python을 정복하자
 
 만약 정복하진 못 하더라도 다시는 까먹지 않게 공부해보자.
@@ -23,7 +22,7 @@ tags: [CodingTest, Gemini, Python]
 
 ## 학습자료 생성
 
-```Gemini prompt
+```Gemini
 알고리즘 입문하려고 하는데 뭐부터 해야할지 모르겠어
 언어는 파이썬으로 선택했는데 프로그래머스 레벨0조차 풀기 어려워
 점프투파이썬 목차 가져와서 기본적인 것부터 알려줄래?

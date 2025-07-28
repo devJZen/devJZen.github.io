@@ -254,6 +254,7 @@ html {
 .page-content {
   @extend %flex-1; /* <-- Keep footer on the bottom */
   -ms-flex: none; /* <-- Fix IE footer issue */
+  flex: none; /* <-- Standard flex property for compatibility */
   padding: $spacing-unit;
 }
 
@@ -458,6 +459,11 @@ html {
     img:not(.emoji), svg, iframe {
       display: block;
       max-height: 50vh;
+    }
+
+    .mermaid > svg {
+    max-height: none !important;
+    height: 100vh !important; // 원본 높이 유지
     }
 
     h2, h3, h4, h5, h6 {
