@@ -35,6 +35,22 @@ $brand-color: map-get($brand-colors, "orangered");
 
 $content-width: {{ site.content_width }};
 
+//mermaid 설정
+.mermaid {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.mermaid > svg {
+  width: auto !important;      // 자동 축소 방지
+  min-width: 300px;
+  max-width: none;             // 원본 크기 유지
+  display: block;
+  height: auto !important;     // 높이 자동 조정
+
+}
+
 // 모바일에서 테이블 가로 스크롤
 @media screen and (max-width: 800px) {
   .post-content table {
