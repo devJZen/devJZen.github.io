@@ -1,13 +1,8 @@
-<div align="center">
-  <h1>devJZen</h1>
-</div>
+# devJZen's Blog
 
-<h4 align="center">
-Web3로의 도전을 기록합니다.
-</h4>
+Talk about Blockchain, Network, Cryptography.
 
-<p align="center">
-Backend Dev || JAVA, Spring, SQL, Javascript, Rust
-</p><br>
+Start to Backend Developer, Next step Full-Stack, Now want to be Blockchain Core Engineer
+  My skill: Java, Spring, SQL, JavaScript, TypeScript, Go, Rust
 
-<center>[Yat Theme](`https://github.com/jeffreytse/jekyll-theme-yat`)  을 사용하여 만들었습니다.</center>
+Made by [Yat Theme](`https://github.com/jeffreytse/jekyll-theme-yat`)
