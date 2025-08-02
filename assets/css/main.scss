@@ -1,5 +1,5 @@
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
+/* Only the main Sass file needs front matter (the dashes are enough) */
 ---
 
 // Default theme colors
@@ -30,10 +30,10 @@ $brand-color: map-get($brand-colors, "orangered");
 @if map-has-key($brand-colors, $brand-name) {
   $brand-color: map-get($brand-colors, $brand-name);
 } @else if str-index($brand-name, "#") == 1 {
-  $brand-color: {{ site.brand_color | default: '#ff5100' }};
+  $brand-color: $brand-name;
 }
 
-$content-width: {{ site.content_width }};
+$content-width: 920px !default;
 
 //mermaid 설정
 .mermaid {
