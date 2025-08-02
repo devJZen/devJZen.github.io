@@ -28,6 +28,14 @@
             </span>
           </label>
 
+          <div class="translate-toggle-container">
+            <label class="translate-switch">
+              <input type="checkbox" onclick="toggleLanguage(this)">
+              <span class="slider round"></span>
+            </label>
+            <span class="switch-label notranslate">KO</span>
+          </div>
+
           <div class="trigger">
             {%- for path in page_paths -%}
               {%- assign my_page = site.pages | where: "path", path | first -%}
@@ -35,7 +43,6 @@
               <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | upcase | escape }}</a>
               {%- endif -%}
             {%- endfor -%}
-
             {%- assign name = 'translate_langs' -%}
             {%- include functions.html func='get_value' -%}
             {%- assign translate_langs = return -%}
@@ -43,9 +50,9 @@
               {%- assign name = 'lang' -%}
               {%- include functions.html func='get_value' default='en' -%}
               {%- assign lang = return -%}
-              <span class="page-link">
+                <span class="page-link">
                   {%- include extensions/google-translate.html -%}
-              </span>
+                </span>
             {%- endif -%}
           </div>
         </nav>
@@ -55,6 +62,23 @@
 </header>
 
 <script>
+function toggleLanguage(toggle) {
+  var switchLabel = document.querySelector(".switch-label");
+
+  if (toggle.checked) {
+    switchLabel.textContent = "EN";
+  } else {
+    switchLabel.textContent = "KO";
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  if (googleCombo) {
+    googleCombo.value = toggle.checked ? "en" : "ko";
+    var event = new Event("change");
+    googleCombo.dispatchEvent(event);
+  }
+}
+
   function initHeader() {
     var lastScrollY = getScrollPos().y;
     var documentElement = document.documentElement;
