@@ -39,6 +39,7 @@ $content-width: 920px !default;
   max-width: 100%;
   overflow-x: auto;
   margin: 1.5em 0;
+  border: #f2cb05 1.5px solid;
 }
 
 .mermaid > svg {
@@ -52,6 +53,15 @@ $content-width: 920px !default;
 
 // 모바일에서 테이블 가로 스크롤
 @media screen and (max-width: 800px) {
+  .mermaid {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .mermaid > svg {
+    width: 80%;
+    min-width: 200px;
+    height: auto !important;
+  }
   .post-content table {
     display: block;
     width: 100%;
