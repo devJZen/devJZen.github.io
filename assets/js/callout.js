@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var html = first.innerHTML.trim();
     var firstLine = html.split('<br>')[0].trim();
     var match = firstLine.match(/^\[!(\w+)\](.*)$/);
-    console.log('bq:', bq, 'html:', html, 'firstLine:', firstLine, 'match:', match);
     if (match) {
       var type = match[1].toLowerCase();
       var title = match[2].trim();

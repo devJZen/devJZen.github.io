@@ -226,3 +226,28 @@ blockquote.callout p {
   margin-bottom: 10px !important;
 }
 
+/* 하이라이트 스타일 */
+mark, .highlight {
+  padding: 2px 4px !important;
+  border-radius: 3px !important;
+  font-weight: normal !important;
+}
+
+/* 기본 하이라이트 (노란색) */
+mark, .highlight-yellow {
+  background-color: #fef3c7 !important;
+  color: #78350f !important;
+}
+
+/* 핑크 하이라이트 */
+.highlight-pink {
+  background-color: #fce7f3 !important;
+  color: #831843 !important;
+}
+
+/* 초록 하이라이트 */
+.highlight-green {
+  background-color: #d1fae5 !important;
+  color: #064e3b !important;
+}
+
