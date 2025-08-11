@@ -3,10 +3,9 @@ layout: post
 title: "RESTful API vs GET/POST 요청만 사용한 프로젝트 비교"
 author: "devJZen"
 tags: [Architecture]
-categories: [web]
-excerpt: "RESTful API 설계와 GET/POST 요청만 사용한 프로젝트의 장단점을 상세히 비교분석"
+categories: [Web]
+excerpt: "RESTful API 설계와 GET/POST 요청만 사용한 프로젝트의 장단점에 대한 고찰"
 ---
-# RESTful API vs GET/POST 요청만 사용한 프로젝트 비교
 
 ## REST란 무엇인가?
 
