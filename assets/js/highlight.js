@@ -1,87 +1,60 @@
 document.addEventListener('DOMContentLoaded', function() {
-  function processHighlights() {
-    const contentArea = document.querySelector('.post-content.e-content, .post-content, .e-content, article.post');
-    if (!contentArea) return;
+      function processHighlights() {
+        const contentArea = document.querySelector('.post-content.e-content, .post-content, .e-content, article.post');
+        if (!contentArea) return;
 
-    const protectedBlocks = [];
-    let protectedIndex = 0;
+        const protectedBlocks = [];
+        // Protect code blocks, mermaid diagrams, and footnote superscript tags
+        contentArea.querySelectorAll('pre, code, div.mermaid, sup').forEach((block, index) => {
+          const placeholder = document.createComment(`HIGHLIGHT_PLACEHOLDER_${index}`);
+          protectedBlocks.push(block.cloneNode(true)); // Store a clone of the node
+          block.parentNode.replaceChild(placeholder, block);
+        });
 
-    // 1. 보호 대상 탐색 (mermaid div, pre, code 포함)
-    contentArea.querySelectorAll('pre, code, div.mermaid').forEach(block => {
-      if (block.dataset.highlightProtected) return;
+        let html = contentArea.innerHTML;
 
-      // Mermaid block 보호 조건
-      const isMermaidBlock =
-        (block.tagName.toLowerCase() === 'div' && block.classList.contains('mermaid')) ||
-        (block.tagName.toLowerCase() === 'pre' && block.dataset.lang === 'mermaid') ||
-        (block.tagName.toLowerCase() === 'code' && block.classList.contains('mermaid'));
+        // Replace ==...== with <mark> or <span class-highlight-color>
+        html = html.replace(/==(?:(pink|green):)?([\s\S]*?)==/g, (match, color, content) => {
+          if (color) {
+            return `<span class="highlight-${color}">${content}</span>`;
+          }
+          return `<mark>${content}</mark>`;
+        });
 
-      if (isMermaidBlock) {
-        const placeholder = document.createComment(`CODEBLOCK_PLACEHOLDER_${protectedIndex}`);
-        protectedBlocks.push(block);
-        block.dataset.highlightProtected = 'true';
-        block.parentNode.replaceChild(placeholder, block);
-        protectedIndex++;
-      }
-    });
+        contentArea.innerHTML = html;
 
-    // 2. 본문 하이라이트용 텍스트 치환 (예: ==highlight== 처리)
-    let html = contentArea.innerHTML;
-
-    html = html.replace(/==(?:(pink|green):)?([\s\S]*?)==/g, (match, color, content) => {
-      if (match.startsWith('<!--') && match.endsWith('-->')) return match;
-      if (color) return `<span class="highlight-${color}">${content}</span>`;
-      else return `<mark>${content}</mark>`;
-    });
-
-    contentArea.innerHTML = html;
-
-    // 3. placeholder 주석 노드 찾아서 복원
-    const walker = document.createTreeWalker(contentArea, NodeFilter.SHOW_COMMENT);
-    const commentsToReplace = [];
-
-    while(walker.nextNode()) {
-      if (walker.currentNode.nodeValue.startsWith('CODEBLOCK_PLACEHOLDER_')) {
-        commentsToReplace.push(walker.currentNode);
-      }
-    }
-
-    commentsToReplace.forEach(comment => {
-      const match = comment.nodeValue.match(/CODEBLOCK_PLACEHOLDER_(\d+)/);
-      if (match) {
-        const index = parseInt(match[1], 10);
-        if (protectedBlocks[index]) {
-          comment.parentNode.replaceChild(protectedBlocks[index], comment);
-          // Mermaid 렌더링 재실행
-          if (protectedBlocks[index].classList.contains('mermaid')) {
-            try {
-              mermaid.run({ nodes: [protectedBlocks[index]] });
-            } catch(e) {
-              console.error('Mermaid 렌더링 에러:', e);
-            }
+        // Restore protected blocks
+        const walker = document.createTreeWalker(contentArea, NodeFilter.SHOW_COMMENT);
+        const commentsToReplace = [];
+        while(walker.nextNode()) {
+          const node = walker.currentNode;
+          if (node.nodeValue.trim().startsWith('HIGHLIGHT_PLACEHOLDER_')) {
+            commentsToReplace.push(node);
           }
         }
-      }
-    });
-  }
 
-  // MutationObserver로 DOM 변경 감지하여 다시 처리
-  const observer = new MutationObserver((mutations) => {
-    let needsProcessing = false;
-    for (const mutation of mutations) {
-      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-        needsProcessing = true;
-        break;
+        commentsToReplace.forEach(comment => {
+          const match = comment.nodeValue.match(/HIGHLIGHT_PLACEHOLDER_(\d+)/);
+          if (match) {
+            const index = parseInt(match[1], 10);
+            if (protectedBlocks[index]) {
+              comment.parentNode.replaceChild(protectedBlocks[index], comment);
+            }
+          }
+        });
       }
-    }
-    if (needsProcessing) {
-      observer.disconnect();
+
+      const observer = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+          if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+            observer.disconnect();
+            processHighlights();
+            observer.observe(document.body, { childList: true, subtree: true });
+            return;
+          }
+        }
+      });
+
       processHighlights();
       observer.observe(document.body, { childList: true, subtree: true });
-    }
-  });
-
-  // 초기 실행 & 관찰 시작
-  processHighlights();
-  observer.observe(document.body, { childList: true, subtree: true });
-});
+    });
