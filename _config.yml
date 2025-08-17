@@ -185,7 +185,7 @@ giscus:
   repo_id: "R_kgDOOhejIQ"
   category: "General"
   category_id: "DIC_kwDOOhejIc4CtO1v"
-  mapping: "pathname"
+  mapping: "title"
   strict: "0"
   reactions_enabled: "1"
   emit_metadata: "0"
