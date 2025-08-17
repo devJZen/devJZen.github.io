@@ -2,7 +2,7 @@
 layout: post
 title: 솔라나, 러스트, 프로그램과 dApp 개발 실습
 categories: web3
-tags: [Solana, SolanaSchool7]
+tags: [SolanaSchool7]
 ---
 지금 포스팅은 SolanaSchool7에 대한 포스팅으로, 솔라나 스쿨 7기의 1강의 내용을 다룹니다.
 

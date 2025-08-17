@@ -2,7 +2,7 @@
 layout: post
 title: 솔라나 스쿨 7기
 categories: web3
-tags: [Solana, SolanaSchool7]
+tags: [SolanaSchool7]
 ---
 이 포스팅은 [솔라나 스쿨 7기](https://youtu.be/vrO6cjdPUOs)에 대한 내용을 다룬다.
 
