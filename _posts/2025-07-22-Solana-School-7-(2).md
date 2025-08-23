@@ -5,6 +5,9 @@ categories: web3
 tags: [SolanaSchool7]
 ---
 지금 포스팅은 SolanaSchool7에 대한 포스팅으로, 솔라나 스쿨 7기의 1강의 내용을 다룹니다.
+문서를 간결하게 작성하기 위하여 평어체로 작성됩니다.
+
+## 1강 솔라나, 러스트에 대한 개발
 
 솔라나 스쿨 7기 **[1강](http://www.youtube.com/watch?v=vrO6cjdPUOs)** 에서는 솔라나, 러스트, 솔라나의 스마트 컨트랙트, dApp 실습을 위주로 학습한다.
 
