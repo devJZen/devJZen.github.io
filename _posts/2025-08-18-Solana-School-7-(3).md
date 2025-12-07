@@ -1,17 +1,17 @@
 ---
 layout: post
-title: 솔라나 프로그래밍 모델
+title: 솔라나 프로그래밍 모델 (1)
 categories: web3
 tags: [SolanaSchool7]
 ---
 지금 포스팅은 SolanaSchool7에 대한 포스팅으로, 솔라나 스쿨 7기의 2강의 내용을 다룹니다.
 문서를 간결하게 작성하기 위하여 평어체로 작성됩니다.
 
-## 2강, 솔라나 프로그래밍 모델
+## 2강, 솔라나 프로그래밍 모델 (1)
 
 솔라나 스쿨 7기 **[2강](https://youtu.be/wSRviwBG3zo)** 에서는 프로그래밍 모델을 위주로 학습한다.
 
-## 프로그램 유래 주소 (Program Derived Addresses, PDA)
+## 프로그램 파생 주소 (Program Derived Addresses, PDA)
 
 프로그램이 특정 데이터 계정을 통제하고 서명할 수 있도록 해주는 솔라나의 고유한 기능이다.
 PDA가 무엇인지, 그리고 주소를 찾을 때 사용되는 범프(bump) 변수가 왜 중요한지에 대해 배운다.
