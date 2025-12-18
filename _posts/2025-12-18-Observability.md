@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Observability란 무엇인가?
-categories: Monitoring
+categories: Study
 tags: [Observability]
 ---
 
