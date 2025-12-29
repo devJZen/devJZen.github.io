@@ -27,6 +27,7 @@
 title: devJZen
 email: quasar.joo@google.com
 author: devJZen
+repository: devJZen/devJZen.github.io
 
 # Copyright setting
 # You can use any html code, currently below placeholders are available:
@@ -197,7 +198,8 @@ giscus:
 # Build settings
 highlighter: none
 # theme: owner/name --> Don't forget to remove/comment the gem-based theme option
-remote_theme: "jeffreytse/jekyll-theme-yat"
+# remote_theme: "jeffreytse/jekyll-theme-yat"
+# theme: jekyll-theme-yat (Using local theme files)
 markdown: kramdown
 kmarkdown:
   input: GFM
