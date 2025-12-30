@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="kor"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://devjzen.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://devjzen.github.io//" rel="alternate" type="text/html" hreflang="kor" /><updated>2025-12-30T20:56:25+00:00</updated><id>https://devjzen.github.io//feed.xml</id><title type="html">devJZen</title><author><name>devJZen</name></author><entry><title type="html">Google Studio로 번역봇 만들기</title><link href="https://devjzen.github.io//study/2025/12/30/Google-%EB%B2%88%EC%97%AD%EB%B4%87.html" rel="alternate" type="text/html" title="Google Studio로 번역봇 만들기" /><published>2025-12-30T00:00:00+00:00</published><updated>2025-12-30T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2025/12/30/Google%20%EB%B2%88%EC%97%AD%EB%B4%87</id><content type="html" xml:base="https://devjzen.github.io//study/2025/12/30/Google-%EB%B2%88%EC%97%AD%EB%B4%87.html"><![CDATA[<ol>
+  <li><a href="#프로젝트에-번역으로-기여하기">개요</a></li>
+  <li><a href="#우선-순위-리스트-설정">설정</a></li>
+  <li><a href="#자동화">자동화</a></li>
+</ol>
+
+<h2 id="프로젝트에-번역으로-기여하기">프로젝트에 번역으로 기여하기</h2>
+
+<blockquote>
+  <p>프로젝트에 번역으로 기여하고 싶은데 번역할 파일 수가 너무 많다.</p>
+</blockquote>
+
+<p><img src="/assets/images/posting/lingo.png" alt="Lingo" /></p>
+
+<ol>
+  <li>기여하고 싶은 프로젝트의 번역을 하려고 보니 mdx 파일이 많았다.</li>
+  <li>권장하는 것은 lingo 였으나 단어 수에 제한을 둬서 한국어로 번역하기에 어려움이 있었다.</li>
+</ol>
+
+<h2 id="우선-순위-리스트-설정">우선 순위 리스트 설정</h2>
+
+<ol>
+  <li>번역하고자 하는 파일들을 먼저 세팅한다. 나는 claude의 도움을 받았다.</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>요약
+  - 총 남은 파일: ~125개
+  - Challenge: 1개
+  - 우선순위 1 (입문): 23 레슨
+  - 우선순위 2 (중급): 38 레슨
+  - 우선순위 3 (고급): 31 레슨
+  - 우선순위 4 (도구): 27 레슨
+  - 우선순위 5 (연구): 3 레슨
+</code></pre></div></div>
+
+<p>lingo 무료티어로는 해결 못한다는 걸 깨달았고, 자동화 방안을 떠올렸다.</p>
+
+<h2 id="자동화">자동화</h2>
+
+<ul>
+  <li>영어로 된 en.mdx 파일들을</li>
+  <li>우선 순위 리스트의 순서대로 번역</li>
+  <li>이미 번역본이 있는 것은 스킵</li>
+  <li>진행 상황 로그</li>
+  <li>에러 핸들링 (API 실패시 재시도)</li>
+</ul>
+
+<p>Node.js/TypeScript 로 스크립트를 작성하고 번역은 배치 처리 스크립트로 해결했다.
+무료 티어인 Gemini 2.5 Flash 모델을 사용했다.</p>
+
+<pre><code class="language-TypeScript">// Gemini 2.5 Flash with thinking support
+const model = genAI.getGenerativeModel({
+  model: 'gemini-2.5-flash',
+});
+
+interface TranslationTask {
+  priority: number;
+  category: string;
+  sourcePath: string;
+  targetPath: string;
+  completed: boolean;
+}
+
+const PROGRESS_FILE = path.join(__dirname, 'translation-progress.json');
+
+// Translation task list based on priority
+const TRANSLATION_TASKS: TranslationTask[] = [
+  // Priority List
+  // ...
+</code></pre>
+
+<p>.env.example로 API 키를 설정해서 갖고와야된다.
+package.json에 스크립트를 추가할 수 있다.</p>
+
+<h2 id="google-studio-패키지">Google Studio 패키지</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> @google/generative-ai dotenv
+</code></pre></div></div>
+
+<blockquote>
+  <p>토큰이 소모 됐을 시 3번의 재확인 시도
+❌ Translation failed after 3 retries</p>
+</blockquote>
+
+<p>Claude, Gemini의 도움을 받기 전에 뭐부터 설정해야 좋을지 고민해보는 것 역시 좋다.
+위의 기준들이 정답은 아니다.</p>]]></content><author><name>devJZen</name></author><category term="study" /><category term="Automation" /><category term="Google" /><summary type="html"><![CDATA[개요 설정 자동화]]></summary></entry><entry><title type="html">Repository와 SSL 인증서 문제</title><link href="https://devjzen.github.io//study/2025/12/30/Jekyll-%EB%B9%8C%EB%93%9C-%EC%98%A4%EB%A5%98-%ED%95%B4%EA%B2%B0-study.html" rel="alternate" type="text/html" title="Repository와 SSL 인증서 문제" /><published>2025-12-30T00:00:00+00:00</published><updated>2025-12-30T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2025/12/30/Jekyll-%EB%B9%8C%EB%93%9C-%EC%98%A4%EB%A5%98-%ED%95%B4%EA%B2%B0-study</id><content type="html" xml:base="https://devjzen.github.io//study/2025/12/30/Jekyll-%EB%B9%8C%EB%93%9C-%EC%98%A4%EB%A5%98-%ED%95%B4%EA%B2%B0-study.html"><![CDATA[<h2 id="문제-상황">문제 상황</h2>
+
+<p>Jekyll 사이트를 로컬에서 빌드하던 중 두 가지 주요 오류가 발생했다.</p>
+
+<h3 id="1-github-metadata-오류">1. GitHub Metadata 오류</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GitHub Metadata: Error processing value 'description':
+Liquid Exception: No repo name found. Specify using PAGES_REPO_NWO environment variables,
+'repository' in your configuration, or set up an 'origin' git remote pointing to your
+github.com repository.
+</code></pre></div></div>
+
+<p>Jekyll의 <code class="language-plaintext highlighter-rouge">github-metadata</code> 플러그인이 저장소 정보를 찾지 못하는 오류였다.</p>
+
+<h3 id="2-ssl-인증서-검증-실패">2. SSL 인증서 검증 실패</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SSL_connect returned=1 errno=0 peeraddr=20.200.245.246:443 state=error:
+certificate verify failed (unable to get certificate CRL)
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">remote_theme</code>을 사용할 때 GitHub에서 테마를 다운로드하는 과정에서 OpenSSL 인증서 검증 오류가 발생했다.</p>
+
+<h2 id="원인-분석">원인 분석</h2>
+
+<h3 id="1-repository-정보-누락">1. Repository 정보 누락</h3>
+<p><code class="language-plaintext highlighter-rouge">_config.yml</code>에 <code class="language-plaintext highlighter-rouge">repository</code> 필드가 명시되지 않아 GitHub Metadata 플러그인이 저장소 정보에 접근할 수 없었다.</p>
+
+<h3 id="2-macos-openssl-인증서-경로-문제">2. macOS OpenSSL 인증서 경로 문제</h3>
+<ul>
+  <li>Ruby가 사용하는 OpenSSL 인증서 경로가 제대로 설정되지 않음</li>
+  <li>Homebrew로 설치한 OpenSSL의 인증서 경로: <code class="language-plaintext highlighter-rouge">/opt/homebrew/etc/ca-certificates/cert.pem</code></li>
+  <li>Ruby 기본 설정에서 이 경로를 찾지 못함</li>
+</ul>
+
+<h2 id="해결-방법">해결 방법</h2>
+
+<h3 id="1-repository-필드-추가">1. Repository 필드 추가</h3>
+
+<p><code class="language-plaintext highlighter-rouge">_config.yml</code> 파일에 저장소 정보 추가:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">repository</span><span class="pi">:</span> <span class="s">devJZen/devJZen.github.io</span>
+</code></pre></div></div>
+
+<h3 id="2-ssl-인증서-경로-설정">2. SSL 인증서 경로 설정</h3>
+
+<h4 id="방법-a-bundle-설정-파일-생성">방법 A: Bundle 설정 파일 생성</h4>
+
+<p><code class="language-plaintext highlighter-rouge">~/.bundle/config</code> 파일에 SSL 인증서 경로 설정:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">BUNDLE_SSL_CERT_FILE</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/opt/homebrew/etc/ca-certificates/cert.pem"</span>
+</code></pre></div></div>
+
+<h4 id="방법-b-환경-변수-설정">방법 B: 환경 변수 설정</h4>
+
+<p><code class="language-plaintext highlighter-rouge">.zshrc</code> 또는 <code class="language-plaintext highlighter-rouge">.bash_profile</code>에 추가:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">SSL_CERT_FILE</span><span class="o">=</span>/opt/homebrew/etc/ca-certificates/cert.pem
+</code></pre></div></div>
+
+<p>임시로 현재 세션에만 적용:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">SSL_CERT_FILE</span><span class="o">=</span>/opt/homebrew/etc/ca-certificates/cert.pem
+bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+
+<h3 id="3-remote-theme-문제-해결">3. Remote Theme 문제 해결</h3>
+
+<p>프로젝트가 테마 소스 자체인 경우, <code class="language-plaintext highlighter-rouge">_config.yml</code>에서 테마 설정 제거:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Before</span>
+<span class="na">remote_theme</span><span class="pi">:</span> <span class="s2">"</span><span class="s">jeffreytse/jekyll-theme-yat"</span>
+
+<span class="c1"># After</span>
+<span class="c1"># remote_theme: "jeffreytse/jekyll-theme-yat"</span>
+<span class="c1"># theme: jekyll-theme-yat (Using local theme files)</span>
+</code></pre></div></div>
+
+<p>로컬의 <code class="language-plaintext highlighter-rouge">_layouts</code>, <code class="language-plaintext highlighter-rouge">_includes</code>, <code class="language-plaintext highlighter-rouge">_sass</code> 디렉토리를 직접 사용하므로 원격 테마 다운로드가 불필요하다.</p>
+
+<h2 id="보안-고려사항">보안 고려사항</h2>
+
+<h3 id="ssl-검증-비활성화는-피할-것">SSL 검증 비활성화는 피할 것</h3>
+
+<p>일부 가이드에서 제안하는 다음 방법은 <strong>절대 사용하지 말 것</strong>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ❌ 위험: SSL 검증 완전 비활성화</span>
+<span class="nb">export </span><span class="nv">SSL_VERIFY_MODE</span><span class="o">=</span>0
+<span class="nb">export </span><span class="nv">BUNDLE_SSL_VERIFY</span><span class="o">=</span><span class="nb">false</span>
+</code></pre></div></div>
+
+<p>이 방법은 중간자 공격(MITM)에 취약하며, 악의적인 패키지를 다운로드할 위험이 있다.</p>
+
+<h3 id="권장하는-안전한-방법">권장하는 안전한 방법</h3>
+
+<ol>
+  <li><strong>인증서 경로 명시</strong>: 신뢰할 수 있는 CA 인증서 번들 사용</li>
+  <li><strong>로컬 테마 사용</strong>: 원격 다운로드를 피하고 검증된 로컬 파일 사용</li>
+  <li><strong>정기적인 인증서 업데이트</strong>: Homebrew를 통한 ca-certificates 패키지 업데이트</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew upgrade ca-certificates
+</code></pre></div></div>
+
+<h2 id="검증">검증</h2>
+
+<p>최종적으로 다음 명령어로 정상 작동 확인:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">SSL_CERT_FILE</span><span class="o">=</span>/opt/homebrew/etc/ca-certificates/cert.pem
+bundle <span class="nb">install
+</span>bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+
+<p>서버가 정상적으로 시작되면 <code class="language-plaintext highlighter-rouge">http://localhost:4000</code>에서 사이트 확인 가능하다.</p>
+
+<h2 id="참고-자료">참고 자료</h2>
+
+<ul>
+  <li><a href="https://github.com/jekyll/github-metadata">Jekyll GitHub Metadata Plugin</a></li>
+  <li><a href="https://www.openssl.org/docs/">OpenSSL Certificate Verification</a></li>
+  <li><a href="https://bundler.io/v2.0/man/bundle-config.1.html">Bundler Configuration</a></li>
+</ul>
+
+<h2 id="확인할-것">확인할 것</h2>
+
+<ol>
+  <li>Jekyll GitHub Pages 플러그인은 저장소 메타데이터에 의존한다</li>
+  <li>macOS에서 Homebrew Ruby를 사용할 때 OpenSSL 경로 설정이 중요하다</li>
+  <li>보안을 위해 SSL 검증을 비활성화하는 대신 올바른 인증서 경로를 설정해야 한다</li>
+  <li>로컬 테마 개발 시 <code class="language-plaintext highlighter-rouge">remote_theme</code> 대신 로컬 파일을 직접 사용하는 것이 효율적이다</li>
+</ol>]]></content><author><name>devJZen</name></author><category term="study" /><category term="Jekyll" /><category term="OpenSSL" /><category term="Troubleshooting" /><summary type="html"><![CDATA[문제 상황]]></summary></entry><entry><title type="html">git의 cherry pick</title><link href="https://devjzen.github.io//study/2025/12/30/cherry-pick.html" rel="alternate" type="text/html" title="git의 cherry pick" /><published>2025-12-30T00:00:00+00:00</published><updated>2025-12-30T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2025/12/30/cherry%20pick</id><content type="html" xml:base="https://devjzen.github.io//study/2025/12/30/cherry-pick.html"><![CDATA[<h2 id="cherry-pick">cherry pick</h2>
+
+<blockquote>
+  <p>커밋을 하다가 브랜치를 날려버림</p>
+</blockquote>
+
+<ol>
+  <li>커밋은 성공 했으나</li>
+  <li>
+    <p>브랜치를 체크아웃해서 확인을 해야 됐음</p>
+  </li>
+  <li>
+    <p>현재 상태 확인
+  git status
+  git log –oneline -5</p>
+  </li>
+  <li>
+    <p>reflog로 사라진 커밋 찾기
+  git reflog -10</p>
+  </li>
+  <li>
+    <p>체리픽으로 커밋 가져오기
+  git cherry-pick 커밋해시</p>
+  </li>
+  <li>
+    <p>변경사항 확인
+  git log –oneline -3
+  git diff HEAD~1 파일명</p>
+  </li>
+  <li>원격 저장소에 푸시
+  git push origin main</li>
+</ol>
+
+<h2 id="내가-몰랐던-내용">내가 몰랐던 내용</h2>
+
+<ul>
+  <li>git reflog - HEAD의 이동 기록 확인 (체크아웃, 커밋 등 모든 히스토리)</li>
+  <li>git cherry-pick <commit-hash> - 특정 커밋만 현재 브랜치에 가져오기</commit-hash></li>
+  <li>git diff HEAD~1 <file> - 이전 커밋과 현재 커밋의 차이 확인</file></li>
+</ul>]]></content><author><name>devJZen</name></author><category term="study" /><category term="web" /><summary type="html"><![CDATA[cherry pick]]></summary></entry><entry><title type="html">git action의 종속성 업데이트</title><link href="https://devjzen.github.io//study/2025/12/30/git-action-v1,v2.html" rel="alternate" type="text/html" title="git action의 종속성 업데이트" /><published>2025-12-30T00:00:00+00:00</published><updated>2025-12-30T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2025/12/30/git%20action%20v1,v2</id><content type="html" xml:base="https://devjzen.github.io//study/2025/12/30/git-action-v1,v2.html"><![CDATA[<h2 id="블로그-글이-계속-보이지-않았다">블로그 글이 계속 보이지 않았다.</h2>
+
+<p>빌드가 실패했는데, 내가 사용하던 actions가 버전이 낮다는 것을 확인함.
+<a href="https://github.blog/changelog/2024-12-05-notice-of-upcoming-releases-and-breaking-changes-for-github-actions/#actions-cache-v1-v2-and-actions-toolkit-cache-package-closing-down">공식문서</a> 참고</p>
+
+<p><strong>actions-cache-v1-v2-and-actions-toolkit-cache-package-closing-down</strong></p>
+
+<p>업데이트: 우분투 20 이미지 지원 종료일이 4월 15일로 변경되었습니다. 아래 게시글은 해당 변경 사항을 반영하여 수정되었습니다.</p>
+
+<p>Ubuntu 최신 버전에서 예정된 주요 변경 사항
+2024년 12월 5일부터 2025년 1월 17일 ubuntu-latest까지 레이블 을 새로운 이미지로 이전할 예정입니다 . 새 이미지는 기존 이미지와 다른 도구 및 패키지 세트를 포함하고 있습니다 . 디스크 공간 확보를 위한 서비스 수준 계약(SLA)을 유지하기 위해 일부 패키지 목록을 삭제했습니다. 삭제된 패키지에 의존하는 워크플로우를 사용하는 경우 문제가 발생할 수 있습니다. 영향을 받는 패키지를 사용하고 있는지 확인하려면 아래 목록을 검토해 주세요.ubuntu 24ubuntu 24ubuntu 22</p>
+
+<p>우분투 20 이미지 서비스가 종료됩니다
+저희는 N-1 OS 지원 정책 에 따라 Ubuntu 20 호스팅 러너 이미지 지원을 단계적으로 종료할 예정입니다 . 이 이미지는 2025년 4월 15일까지 완전히 지원이 중단됩니다. 이후에는 워크플로우를 업데이트하여 ubuntu-22.04또는 를 사용하시기를 권장합니다 ubuntu-24.04.</p>
+
+<p>…</p>]]></content><author><name>devJZen</name></author><category term="study" /><category term="web" /><summary type="html"><![CDATA[블로그 글이 계속 보이지 않았다.]]></summary></entry><entry><title type="html">Supabase의 RLS</title><link href="https://devjzen.github.io//study/2025/12/20/supabase-RLS.html" rel="alternate" type="text/html" title="Supabase의 RLS" /><published>2025-12-20T00:00:00+00:00</published><updated>2025-12-20T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2025/12/20/supabase-RLS</id><content type="html" xml:base="https://devjzen.github.io//study/2025/12/20/supabase-RLS.html"><![CDATA[<h2 id="supabase-rls-row-level-security-정책">Supabase RLS (Row Level Security) 정책</h2>
+
+<blockquote>
+  <p>CRUD 생성 중에 Delete가 안되고 있음</p>
+</blockquote>
+
+<p>Supabase로 개발하다가 삭제가 구현이 안될 때가 있다. RLS 정책 때문인데 아래와 같이 해결하면 된다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 기존 정책 삭제                                                   </span>
+  <span class="k">DROP</span> <span class="n">POLICY</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="nv">"Creators and admins can update projects"</span> <span class="k">ON</span>  
+  <span class="n">projects</span><span class="p">;</span>                                                           
+  <span class="k">DROP</span> <span class="n">POLICY</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="nv">"Creators can delete projects"</span> <span class="k">ON</span> <span class="n">projects</span><span class="p">;</span>   
+                                                                      
+<span class="c1">-- 새로운 정책 생성 (개발용)                                        </span>
+  <span class="k">CREATE</span> <span class="n">POLICY</span> <span class="nv">"Anyone can update projects"</span>                          
+    <span class="k">ON</span> <span class="n">projects</span> <span class="k">FOR</span> <span class="k">UPDATE</span>                                            
+    <span class="k">USING</span> <span class="p">(</span><span class="k">true</span><span class="p">);</span>                                                     
+                                                                      
+  <span class="k">CREATE</span> <span class="n">POLICY</span> <span class="nv">"Anyone can delete projects"</span>                          
+    <span class="k">ON</span> <span class="n">projects</span> <span class="k">FOR</span> <span class="k">DELETE</span>                                            
+    <span class="k">USING</span> <span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>개발용 정책을 만들어서 해결</p>
+
+<h2 id="rls가-무엇인가">RLS가 무엇인가?</h2>
+
+<p>정책은 PostgreSQL의 규칙 엔진이다. 정책은 익숙해지면 쉽게 이해할 수 있다. 각 정책은 테이블에 연결되어 있으며, 해당 테이블에 접근할 때마다 정책이 실행된다.</p>
+
+<p>==RLS를 활성화하면 정책을 생성하기 전까지는 공개 키를 사용하여 API를 통해 데이터에 액세스할 수 없습니다. [1^]==</p>
+
+<blockquote>
+  <p>[!note] 언제 발생되는 것인가?</p>
+  <ul>
+    <li>Supabase 인증은 하지 않음</li>
+    <li>따라서 삭제 권한이 없었음</li>
+  </ul>
+</blockquote>
+
+<p>[1^] : <a href="https://supabase.com/docs/guides/database/postgres/row-level-security">Supabase 공식 홈페이지</a></p>]]></content><author><name>devJZen</name></author><category term="study" /><category term="web" /><summary type="html"><![CDATA[Supabase RLS (Row Level Security) 정책]]></summary></entry><entry><title type="html">Observability란 무엇인가?</title><link href="https://devjzen.github.io//study/2025/12/18/Observability.html" rel="alternate" type="text/html" title="Observability란 무엇인가?" /><published>2025-12-18T00:00:00+00:00</published><updated>2025-12-18T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2025/12/18/Observability</id><content type="html" xml:base="https://devjzen.github.io//study/2025/12/18/Observability.html"><![CDATA[<h2 id="관찰-가능성-observability">관찰 가능성, Observability</h2>
+
+<blockquote>
+  <p>시스템의 외부 출력(Output)만으로 시스템의 내부 상태(Internal State)를 얼마나 잘 이해할 수 있는가?</p>
+</blockquote>
+
+<p>현대적인 분산 시스템과 MSA(Microservices Architecture) 환경에서 필수적인 개념으로 사용된다.
+단순히 로그나 매트릭을 수집하는 행위가 아니라, 데이터를 통해 문제를 파악할 수 있는 능력을 의미한다.</p>
+
+<blockquote>
+  <p>[!info] 모니터링(Monitoring)과 같은 선상이 아닌가?<br />
+모니터링은 이미 알고 있는 문제를 감지하는 것에 초점을 맞춘다. (Ex.선형 데이터를 보여주는 것) 
+관찰가능성은 시스템이 예측하지 못한 문제의 원인을 파악하고 디버깅하는 능력이다.</p>
+</blockquote>
+
+<h2 id="왜-사용하는가">왜 사용하는가?</h2>
+
+<ol>
+  <li>과거 모놀리틱 아키텍처와 다르게 세부적으로 상호작용하는 환경을 구축하는게 현대의 개발이다.</li>
+  <li>개발자가 상상할 수 없는 에러 케이스를 추적할 수 있다.</li>
+  <li>MTTR(복구 시간)을 단축하여 근본 원인을 빠르게 찾아내어 비즈니스 손실을 줄여준다.</li>
+</ol>
+
+<h2 id="어떤-서적을-참고해야할까">어떤 서적을 참고해야할까?</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td>순위</td>
+      <td>책 제목</td>
+      <td>설명</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Observability Engineering (Charity Majors 외)</td>
+      <td>Observability의 개념을 정립한 저자들이 쓴 ‘바이블’입니다. 개념부터 실무 적용까지 다룬다.</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Site Reliability Engineering (Google)</td>
+      <td>구글 SRE 팀의 노하우가 담긴 책으로, 모니터링과 Observability의 기반이 되는 철학을 배울 수 있다.</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Distributed Systems Observability (Cindy Sridharan)</td>
+      <td>분산 시스템 환경에서의 관찰 가능성에 대해 간결하게 잘 정리된 책입니다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="자격증">자격증</h2>
+
+<p>방법론에 가깝기 때문에 단일 표준 자격증이 존재하지 않는다. 클라우드 제공사의 자격증을 참고하는 것이 좋다.</p>
+
+<ol>
+  <li>PCA (Prometheus Certified Associate)</li>
+  <li>SaaS Service (Datadoc, Splunk, Dynatrace)</li>
+  <li>AWS/Azure/GCP DevOps Professional Certificated</li>
+</ol>
+
+<h2 id="문제를-정의하는-방법">문제를 정의하는 방법</h2>
+
+<p>비즈니스 목표에서 시작하여 기술지표로 내려가는 방식이어야 한다.</p>
+
+<ol>
+  <li>사용자 목표 파악</li>
+  <li>SLI((Service Level Indicator)) 선정</li>
+  <li>SLO((Service Level Objective)) 설정</li>
+  <li>질문 중심의 데이터 구성</li>
+</ol>
+
+<h2 id="the-four-golden-signals-외의-다른-기준">The Four Golden Signals 외의 다른 기준</h2>
+
+<p>구글 SRE북의 Four Golden Signals (Latency, Traffic, Errors, Saturation)가 가장 유명하지만, 시스템의 성격에 따라 다른 프레임워크를 사용하기도 한다.</p>
+
+<p>A. USE Method (인프라 중심)
+Brendan Gregg가 제안한 방법으로, 주로 하드웨어 리소스나 인프라 상태를 파악할 때 유용합니다.</p>
+
+<ul>
+  <li>U (Utilization): 자원이 얼마나 사용되고 있는가? (예: CPU 90% 사용)</li>
+  <li>S (Saturation): 자원이 포화되어 대기열(Queue)이 발생하고 있는가?</li>
+  <li>E (Errors): 자원 레벨에서 에러가 발생하고 있는가? (예: 디스크 I/O 에러)</li>
+</ul>
+
+<p>B. RED Method (마이크로서비스 중심)
+Tom Wilkie가 제안한 방법으로, 서비스(Request) 관점에서 사용자가 겪는 경험을 측정하기 좋습니다. Prometheus 커뮤니티에서 널리 쓰입니다.</p>
+
+<ul>
+  <li>R (Rate): 초당 요청 수 (Request per second).</li>
+  <li>E (Errors): 실패한 요청 수.</li>
+  <li>D (Duration): 요청을 처리하는 데 걸린 시간 (Latency와 유사).</li>
+</ul>
+
+<p>C. The Three Pillars (데이터 유형 기준)
+기준이라기보다는 Observability를 구성하는 3대 요소입니다.</p>
+
+<ul>
+  <li>Metrics (메트릭): “무엇”이 일어났는가? (시계열 데이터, 수치)</li>
+  <li>Logs (로그): “왜” 일어났는가? (이벤트의 구체적 기록)</li>
+  <li>Traces (트레이스): “어디서” 일어났는가? (서비스 간의 요청 흐름 추적)</li>
+</ul>]]></content><author><name>devJZen</name></author><category term="study" /><category term="Observability" /><summary type="html"><![CDATA[관찰 가능성, Observability]]></summary></entry><entry><title type="html">Rust - problem solving</title><link href="https://devjzen.github.io//study/2025/12/18/Rust.html" rel="alternate" type="text/html" title="Rust - problem solving" /><published>2025-12-18T00:00:00+00:00</published><updated>2025-12-18T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2025/12/18/Rust</id><content type="html" xml:base="https://devjzen.github.io//study/2025/12/18/Rust.html"><![CDATA[<h2 id="rust">Rust</h2>
+
+<blockquote>
+  <p>가장 척박한 환경에서도 살아남는 강인한 생명력</p>
+</blockquote>
+
+<p>창시자인 그레이던 호어(Graydon Hoare)에 따르면 이 이름은 녹병균(Rust fungi)이라는 생물학적 용어에서 파생됐다.
+녹병균은 강인하고 끈질긴 생명력을 가지고 있다.
+C/C++ 같이 저수준 코드는 다양한 종류의 버그가 발생하기 쉽지만 러스트는 엄격한 기준으로 찾기 어려운 버그가 있는 코드를 거부한다. 개발팀이 디버깅보다 프로그램 로직 개발에 집중할 수 있다는 장점이 있다.</p>
+<ul>
+  <li>카고(Cargo)는 의존성 관리자, 컴파일, 빌드 도구다.</li>
+  <li>Rustfmt은 포맷팅 도구로서 코딩 스타일을 같게 만든다.</li>
+  <li>Rust Language Server는 자동완성과 인라인 에러 메시지를 결합했다.
+아직 Rust Language Server가 뭔지 모르겠다. 위의 세가지 아키텍쳐가 생산성을 극대화 시켜준다고 한다.</li>
+</ul>
+
+<blockquote>
+  <p>[!info] 어디에 쓰일까?<br />
+운영체제 개발에 관심 있는 사람, 커맨드 라인 도구, 임베디드, 오디오 및 비디오 분석, 암호화폐, 생물정보학, 검색 엔진, IoT 애플리케이션, 머신 러닝, 파이어폭스 같은 웹 브라우저의 주요 모듈에 쓰였다.</p>
+</blockquote>
+
+<h2 id="언어-배우기">언어 배우기</h2>
+
+<p>원래는 프로그래머스를 하려고 했는데 러스트에 대한 다양한 문제를 접하고 싶어서 리트코드를 선택했다.
+러스트에서의 변수는 기본적으로 불변이라고 하는데 당황스럽다. let을 상수 취급한다.
+Java, Dart, Python, C#을 다뤄왔는데 주로 가비지 컬렉터가 있어서 메모리 할당에 크게 신경 안 쓰고 코딩 했던게 생각난다.
+특히 웬만한 데이터는 stream, filter, HashMap&lt;&gt;, if 문과 case문으로 분기처리 하고 웹 개발자라면 좋아하는
+try-catch로 최소한의 에러를 발생시키지 않도록 노력했다.</p>]]></content><author><name>devJZen</name></author><category term="study" /><category term="leetcode" /><summary type="html"><![CDATA[Rust]]></summary></entry><entry><title type="html">Chapter 1. Solana 소개</title><link href="https://devjzen.github.io//web3/2025/12/10/Solana-%EC%86%8C%EA%B0%9C.html" rel="alternate" type="text/html" title="Chapter 1. Solana 소개" /><published>2025-12-10T00:00:00+00:00</published><updated>2025-12-10T00:00:00+00:00</updated><id>https://devjzen.github.io//web3/2025/12/10/Solana%20%EC%86%8C%EA%B0%9C</id><content type="html" xml:base="https://devjzen.github.io//web3/2025/12/10/Solana-%EC%86%8C%EA%B0%9C.html"><![CDATA[<h2 id="목차">목차</h2>
+
+<ol>
+  <li><a href="#solana는-무엇인가">정의</a></li>
+  <li><a href="#솔라나의-트랜잭션-수수료">솔라나의 트랜잭션 수수료</a></li>
+  <li><a href="#솔라나-토큰의-주요-특징">솔라나 토큰의 주요 특징</a></li>
+  <li><a href="#솔라나에서-할-수-있는-것">솔라나에서 할 수 있는 것</a></li>
+  <li><a href="#rust로-작성된-합의">Rust로 작성된 합의</a></li>
+</ol>
+
+<h2 id="solana는-무엇인가">Solana는 무엇인가?</h2>
+
+<p>솔라나는 빠르고 안전하며 저렴한 디지털 거래를 가능하게 하는 고성능 네트워크다.
+다른 체인과 다르게 속도와 다수의 트랜잭션에 강하다. 고품질 고성능을 지향한다.</p>
+
+<h2 id="솔라나의-트랜잭션-수수료">솔라나의 트랜잭션 수수료</h2>
+
+<p>이더리움에서는 가스비라고 부르는 것이다. 솔라나는 다른 체인과 다르게 수수료가 낮게 책정되어있다.
+예측 가능하고 저렴하게 설계되어 센트의 일부로 비용을 지불하게 된다. 트랜잭션 수수료는 검증자 보상, 스팸 방지, 트랜잭션 우선순위를 위해서 필요하다.
+알펜글로우 업데이트 이전인 지금은 처리량이 많을 경우에 더 많은 수수료를 지불하면 우선 처리된다.</p>
+
+<h2 id="솔라나-토큰의-주요-특징">솔라나 토큰의 주요 특징</h2>
+
+<p>SOL은 솔라나의 기본 통화 단위다. 거래와 수수료에 사용된다.
+솔라나는 토큰 계정으로 용도에 맞춰서 사용할 수 있다. 계정을 사용하기 위해선 예치금이 필요하다.
+계정의 rent가 끝나면 반환된다.</p>
+
+<h2 id="솔라나에서-할-수-있는-것">솔라나에서 할 수 있는 것</h2>
+
+<ul>
+  <li>Depin, Defi, DApp</li>
+  <li>Staking</li>
+  <li>NFT 민팅과 구매, 리스팅, 전송</li>
+</ul>
+
+<h2 id="rust로-작성된-합의">Rust로 작성된 합의</h2>]]></content><author><name>devJZen</name></author><category term="web3" /><category term="Blockchain" /><category term="Solana" /><summary type="html"><![CDATA[목차]]></summary></entry><entry><title type="html">Part 3. Solana</title><link href="https://devjzen.github.io//web3/2025/12/08/%EC%99%9C-Solana%EC%97%AC%EC%95%BC-%EB%90%A0%EA%B9%8C.html" rel="alternate" type="text/html" title="Part 3. Solana" /><published>2025-12-08T00:00:00+00:00</published><updated>2025-12-08T00:00:00+00:00</updated><id>https://devjzen.github.io//web3/2025/12/08/%EC%99%9C%20Solana%EC%97%AC%EC%95%BC%20%EB%90%A0%EA%B9%8C</id><content type="html" xml:base="https://devjzen.github.io//web3/2025/12/08/%EC%99%9C-Solana%EC%97%AC%EC%95%BC-%EB%90%A0%EA%B9%8C.html"><![CDATA[<h2 id="연관-문서">연관 문서</h2>
+
+<p><a href="https://devjzen.github.io/web3/2025/07/31/%EC%B5%9C%EC%8B%A0-BFT-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C.html#h-1-%EC%B5%9C%EC%8B%A0-bft-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C-%EC%A7%84%ED%99%94-%ED%83%80%EC%9E%84%EB%9D%BC%EC%9D%B8">BFT 발전 타임라인</a></p>
+
+<h2 id="목차">목차</h2>
+
+<ol>
+  <li><a href="#분산형-네트워크">분산형 네트워크</a></li>
+  <li><a href="#물리적인-한계">분산형 네트워크의 물리적인 한계</a></li>
+  <li><a href="#수식적인-한계">분산형 네트워크의 수식적인 한계</a></li>
+  <li><a href="#솔라나와-이더리움의-교차점">솔라나와 이더리움의 교차점</a></li>
+  <li><a href="#그럼-왜-솔라나여야만-되는-것일까">솔라나를 선택하는 이유</a></li>
+</ol>
+
+<hr />
+
+<h2 id="분산형-네트워크">분산형 네트워크</h2>
+
+<blockquote>
+  <p>솔라나만이 할 수 있는 것</p>
+</blockquote>
+
+<p>솔라나의 창립자인 아나톨리는 퀄컴 출신 엔지니어다. 통신의 운영체제를 이해하고 물리적인 한계를 극복하기 위한 Firedancer라는 검증자 클라이언트를 만드는 것, 탈중앙화를 어느정도 포기하고 고품질의 서비스를 준비하는 그의 전략은 차세대 분산 네트워크가 필요로하는 통찰력과 실행력이다. 솔라나를 Distributed OS라고 부르는 이유이기도 하다.</p>
+
+<p>다른 알트코인들과 달리 유동성과 볼륨이 크다. 솔라나가 할 수 있는 기술적인 한계 극복은 최대한 많은 트랜잭션을 안전하고 빠르게 전송하는 것이다. 이더리움과 솔라나는 분명 안전하다. 그렇지만 설계적인 의도가 다르기 때문에 쓰임새가 다르게 자리잡을 것이고 내가 말하고 싶은 부분은 바로 솔라나만이 할 수 있는 것들이다.</p>
+
+<ul>
+  <li>많은 사용자와 거래 수</li>
+  <li>빠른 속도와 안정적인 네트워크</li>
+</ul>
+
+<p>화폐 가치 그 이상의 일이다. 분산형 네트워크가 단순히 ‘화폐’가치로 쓰인다는 것을 넘어서서 기계와 결합하게 된다면 또 다른 패러다임을 가져다 줄 것이다. 내가 구현하고자 했던 것은 지도 서비스의 정밀도를 높이는 것이다. 지금 우리가 사용하고 있는 GPS는 부족하다. 구글지도 또는 네이버 지도 만으로는 근사한 값은 나오지만 정확한 값은 나오지 않는다. 그런데 정확한 값을 계산하게 된다면 우리는 예측 변수를 줄일 수 있고, 자율 주행이나 드론 주행에 접목시킨다면 안전한 시스템을 구현할 수 있게 된다.</p>
+
+<p>이 모든 것들을 가능하게 하려면 우선 최종성의 속도가 빨라야된다. 많은 트랜잭션 처리량에도 끄떡 없어야되며, 노드들의 물리적인 한계를 극복할 수 있어야 된다. 다른 네트워크는 할 수 없는 조건들이지만 솔라나는 할 수 있다. 검증자가 되기 까다로운 조건을 갖춘 것은 물론이며 노드들의 성능을 최적화하기 위해 Firedancer라는 모듈까지 개발해냈던 체인 네트워크다.</p>
+
+<p>솔라나의 기술 철학으로 인하여 리눅스에도 스폰서십을 해오고 있으며 고품질 고성능의 빠르고 정확한 네트워크로 자리매김될 것이다.
+비트코인은 디지털 금광, 이더리움이 안전한 디지털 금고라고 한다면 솔라나는 빠르고 분산형 OS에 걸맞는 프로토콜이다.</p>
+
+<h2 id="물리적인-한계">물리적인 한계</h2>
+
+<h2 id="수식적인-한계">수식적인 한계</h2>
+
+<h2 id="솔라나와-이더리움의-교차점">솔라나와 이더리움의 교차점</h2>
+
+<h2 id="그럼-왜-솔라나여야만-되는-것일까">그럼 왜 솔라나여야만 되는 것일까?</h2>
+
+<p>답은 스타링크와 데이터 저장센터에 있다. 진정한 분산을 이루기 위해서는 데이터 저장소를 내륙적인 한계에서 벗어나게 해야되며 국가에 국한되지 않은 저장소와 네트워크 공급망이 생긴다면 분산형 네트워크는 결합하여 빛을 발한다.</p>]]></content><author><name>devJZen</name></author><category term="web3" /><category term="Blockchain" /><category term="Solana" /><summary type="html"><![CDATA[연관 문서]]></summary></entry><entry><title type="html">솔라나 프로그래밍 모델 (2)</title><link href="https://devjzen.github.io//web3/2025/12/07/Solana-School-7-(4).html" rel="alternate" type="text/html" title="솔라나 프로그래밍 모델 (2)" /><published>2025-12-07T00:00:00+00:00</published><updated>2025-12-07T00:00:00+00:00</updated><id>https://devjzen.github.io//web3/2025/12/07/Solana-School-7-(4)</id><content type="html" xml:base="https://devjzen.github.io//web3/2025/12/07/Solana-School-7-(4).html"><![CDATA[<p>지금 포스팅은 SolanaSchool7에 대한 포스팅으로, 솔라나 스쿨 7기의 3강의 내용을 다룹니다.
+문서를 간결하게 작성하기 위하여 평어체로 작성됩니다.</p>
+
+<h2 id="3강-솔라나-프로그래밍-모델-2">3강, 솔라나 프로그래밍 모델 (2)</h2>
+
+<p>솔라나 스쿨 7기 <strong><a href="https://youtu.be/wSRviwBG3zo">3강</a></strong> 에서는 프로그래밍 모델을 위주로 학습한다.</p>
+
+<p>앞선 2강에 이어서 PDA와 CPI에 대해서 심화 내용을 다룬다. 솔라나 국내 홈페이지에 올라온 <a href="https://solana.com/ko/docs/core/pda">PDA</a>에 대한 자료를 우선 첨부한다.</p>
+
+<h2 id="프로그램-파생-주소-program-derived-addresses-pda">프로그램 파생 주소 (Program Derived Addresses, PDA)</h2>
+
+<blockquote>
+  <p>서명할 수 없는 주소</p>
+</blockquote>
+
+<ul>
+  <li>PDA는 일반 계정 주소(Publick Key)와 다르게 프로그램과 시드(Seed) 조합으로 생성되는 주소다.</li>
+  <li>Seed는 여러개 생성할 수 있다. Bump는 충돌 방지를 위해 존재한다.</li>
+  <li>deterministic 주소를 생성할 수 있다.</li>
+  <li>권한 관리 없이 안전하게 프로그램 전용 데이터를 저장할 수 있다.</li>
+</ul>
+
+<p>PDA는 Public Key이지만 ed25519 방식의 개인키가 존재하지 않는 주소다.
+서명할 수 없는 주소이며 개인키가 없기 때문에 악의적인 사용자가 탈취할 수 없다는 점이 장점이다.</p>
+
+<p>프로그램의 상태(State)를 저장하기 위해서 필수적인 요소다.
+프로그램 외에는 접근할 수 없어서 보안이 우수하다.</p>
+
+<h2 id="크로스-프로그램-호출-cross-program-invocation-cpi">크로스 프로그램 호출 (Cross Program Invocation, CPI)</h2>
+
+<blockquote>
+  <p>유지보수를 쉽게 하도록 설계되었다.</p>
+</blockquote>
+
+<p>PDA와 마찬가지로 솔라나 국내 홈페이지에 올라온 <a href="https://solana.com/ko/docs/core/cpi">CPI</a>에 대한 자료를 첨부한다.</p>
+
+<ul>
+  <li>CPI는 하나의 Solana의 프로그램(스마트 컨트랙트)가 다른 프로그램의 기능을 호출할 수 있게 해준다.</li>
+  <li>프로그램 과의 상호작용을 가능하게 하며, 모듈화된 설계와 코드 재사용, 복잡한 로직을 구현할 수 있다.</li>
+  <li>쉽게 말해서 프로그램 하나에 모든 기능을 넣을 필요가 없다. 프로그램을 모듈화 할 수 있다.</li>
+  <li>너무 많은 구현이나 반복적인 CPI는 성능을 저하시켜서 설계가 중요하다.</li>
+</ul>
+
+<h2 id="hands-on-example">Hands-on example</h2>
+
+<blockquote>
+  <p>Token Program 호출</p>
+</blockquote>
+
+<p>주소에 첨부된 저장소에 들어가서 직접 예제를 구현해보는 것이 좋다.</p>
+
+<ul>
+  <li>PDA를 mint authority로 갖는 token mint를 만든다.</li>
+  <li>invocke_signed를 상요해서 mint를 실행한다.</li>
+  <li>seed와 bump로 서명 검증을 대체한다.</li>
+  <li>mint instruction 실행 시에 invoke_signed가 필요하다.</li>
+</ul>]]></content><author><name>devJZen</name></author><category term="web3" /><category term="SolanaSchool7" /><summary type="html"><![CDATA[지금 포스팅은 SolanaSchool7에 대한 포스팅으로, 솔라나 스쿨 7기의 3강의 내용을 다룹니다. 문서를 간결하게 작성하기 위하여 평어체로 작성됩니다.]]></summary></entry></feed>

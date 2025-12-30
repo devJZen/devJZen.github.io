@@ -1,0 +1,15 @@
+# Google만 허용
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
+# 다른 모든 봇 차단
+User-agent: *
+Disallow: /
+
+Sitemap: https://devjzen.github.io/sitemap.xml
