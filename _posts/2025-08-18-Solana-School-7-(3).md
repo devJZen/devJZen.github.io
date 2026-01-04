@@ -4,12 +4,12 @@ title: 솔라나 프로그래밍 모델 (1)
 categories: web3
 tags: [SolanaSchool7]
 ---
-지금 포스팅은 SolanaSchool7에 대한 포스팅으로, 솔라나 스쿨 7기의 2강의 내용을 다룹니다.
+지금 포스팅은 SolanaSchool7에 대한 포스팅으로, 솔라나 스쿨 7기의 3강의 내용을 다룹니다.
 문서를 간결하게 작성하기 위하여 평어체로 작성됩니다.
 
-## 2강, 솔라나 프로그래밍 모델 (1)
+## 3강, 솔라나 프로그래밍 모델 (1)
 
-솔라나 스쿨 7기 **[2강](https://youtu.be/wSRviwBG3zo)** 에서는 프로그래밍 모델을 위주로 학습한다.
+솔라나 스쿨 7기 **[3강](https://youtu.be/NNz9PzWBFDc)** 에서는 프로그래밍 모델을 위주로 학습한다.
 
 ## 프로그램 파생 주소 (Program Derived Addresses, PDA)
 
