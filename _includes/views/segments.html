@@ -9,13 +9,45 @@
 <div class="page-segments">
   <ul class="page-segments-list">
     {% for key in keys %}
-    <h2 id="{{ key }}" class="segment-name">{{ key }}</h2>
-      {% assign items = site.posts | where: field, key %}
-      {% for item in items %}
-        {% if item != nil %}
-        <li> {% include views/post-item.html %} </li>
+      {% assign post_count = 0 %}
+      {% for post in site.posts %}
+        {% assign post_date = post.date | date: filter %}
+        {% if post_date == key %}
+          {% assign post_count = post_count | plus: 1 %}
         {% endif %}
       {% endfor %}
+
+      <h2 id="{{ key }}" class="segment-name">
+        {{ key }} ({{ post_count }})
+        {% if post_count > 5 %}
+          <span class="segment-toggle" onclick="toggleSegment('{{ key }}')">►</span>
+        {% endif %}
+      </h2>
+
+      <div class="segment-items" id="segment-{{ key }}" {% if post_count > 5 %}style="display: none;"{% endif %}>
+        {% for post in site.posts %}
+          {% assign post_date = post.date | date: filter %}
+          {% if post_date == key %}
+            {% assign item = post %}
+          <li> {% include views/post-item.html %} </li>
+          {% endif %}
+        {% endfor %}
+      </div>
     {% endfor %}
   </ul>
 </div>
+
+<script>
+function toggleSegment(key) {
+  const segment = document.getElementById('segment-' + key);
+  const toggle = event.target;
+
+  if (segment.style.display === 'none') {
+    segment.style.display = 'block';
+    toggle.textContent = '▼';
+  } else {
+    segment.style.display = 'none';
+    toggle.textContent = '►';
+  }
+}
+</script>

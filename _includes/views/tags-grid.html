@@ -1,0 +1,78 @@
+{%- if include.keys -%}
+  {%- assign keys = include.keys -%}
+{%- endif -%}
+
+<div class="tags-grid-container">
+  <!-- Tags Grid -->
+  <div class="tags-grid">
+    {% for tag in keys %}
+      {% assign post_count = site.tags[tag] | size %}
+      <div class="tag-item" onclick="showTagPosts('{{ tag | slugify }}')">
+        <span class="tag-name">{{ tag }}</span>
+        <span class="tag-count">({{ post_count }})</span>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Tag Posts Section -->
+  <div class="tag-posts-container">
+    {% for tag in keys %}
+      {% assign tag_posts = site.tags[tag] %}
+      {% assign post_count = tag_posts | size %}
+
+      <div class="tag-posts-section" id="tag-{{ tag | slugify }}" style="display: none;">
+        <h2 class="tag-section-title">
+          {{ tag }} ({{ post_count }})
+          <span class="close-tag" onclick="closeTagPosts()">✕</span>
+        </h2>
+        <ul class="tag-posts-list">
+          {% for post in tag_posts %}
+            <li>{% assign item = post %}{% include views/post-item.html %}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+let currentOpenTag = null;
+
+function showTagPosts(tagSlug) {
+  const tagSection = document.getElementById('tag-' + tagSlug);
+  const container = document.querySelector('.tag-posts-container');
+
+  // Close previously open tag
+  if (currentOpenTag && currentOpenTag !== tagSlug) {
+    document.getElementById('tag-' + currentOpenTag).style.display = 'none';
+  }
+
+  // Toggle current tag
+  if (tagSection.style.display === 'none') {
+    tagSection.style.display = 'block';
+    container.style.display = 'block';
+    currentOpenTag = tagSlug;
+
+    // Scroll to the tag section
+    tagSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  } else {
+    tagSection.style.display = 'none';
+    if (!document.querySelector('.tag-posts-section[style*="display: block"]')) {
+      container.style.display = 'none';
+    }
+    currentOpenTag = null;
+  }
+}
+
+function closeTagPosts() {
+  if (currentOpenTag) {
+    document.getElementById('tag-' + currentOpenTag).style.display = 'none';
+    currentOpenTag = null;
+
+    const container = document.querySelector('.tag-posts-container');
+    if (!document.querySelector('.tag-posts-section[style*="display: block"]')) {
+      container.style.display = 'none';
+    }
+  }
+}
+</script>

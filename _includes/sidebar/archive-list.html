@@ -1,10 +1,31 @@
 {%- include functions.html func='log' level='debug' msg='Get datetimes value' -%}
 
-{% assign filter = '%Y' %}
+{% assign filter = '%Y-%m' %}
 {% include functions.html func='get_datetimes' %}
 {% assign datetimes = return %}
 
-{% assign keys = datetimes %}
-{% assign field = 'date' %}
-{% assign url = '/archives.html' | relative_url %}
-{% include sidebar/common-list.html %}
+<div class="common-list">
+  <ul>
+    <li>
+      <a href="{{ '/index.html' | relative_url }}">
+        All<span>{{ site.posts.size }}</span>
+      </a>
+    </li>
+
+    {% for key in datetimes %}
+      {% assign post_count = 0 %}
+      {% for post in site.posts %}
+        {% assign post_date = post.date | date: filter %}
+        {% if post_date == key %}
+          {% assign post_count = post_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+
+      <li>
+        <a href="{{ '/archives.html' | relative_url }}#{{ key }}">
+          {{ key }} <span>{{ post_count }}</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
