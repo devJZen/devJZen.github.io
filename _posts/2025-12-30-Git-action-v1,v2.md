@@ -1,8 +1,8 @@
 ---
 layout: post
-title: git action의 종속성 업데이트
+title: Git action의 종속성 업데이트
 categories: study
-tags: [web]
+tags: [Git]
 ---
 
 ## 블로그 글이 계속 보이지 않았다.

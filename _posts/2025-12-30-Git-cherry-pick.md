@@ -1,8 +1,8 @@
 ---
 layout: post
-title: git의 cherry pick
+title: Git의 cherry pick
 categories: study
-tags: [web]
+tags: [Git]
 ---
 
 ## cherry pick

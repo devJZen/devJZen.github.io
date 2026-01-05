@@ -2,7 +2,7 @@
 layout: post
 title: Repository와 SSL 인증서 문제
 categories: study
-tags: [Jekyll, OpenSSL, Troubleshooting]
+tags: [Jekyll, OpenSSL]
 ---
 
 ## 문제 상황
