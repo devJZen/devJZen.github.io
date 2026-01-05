@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="kor"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://devjzen.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://devjzen.github.io//" rel="alternate" type="text/html" hreflang="kor" /><updated>2026-01-05T10:01:33+00:00</updated><id>https://devjzen.github.io//feed.xml</id><title type="html">devJZen</title><author><name>devJZen</name></author><entry><title type="html">3. SSH? GPG?</title><link href="https://devjzen.github.io//study/2026/01/05/Git-GPG.html" rel="alternate" type="text/html" title="3. SSH? GPG?" /><published>2026-01-05T00:00:00+00:00</published><updated>2026-01-05T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2026/01/05/Git-GPG</id><content type="html" xml:base="https://devjzen.github.io//study/2026/01/05/Git-GPG.html"><![CDATA[<blockquote>
+  <p>커밋에 서명하고 싶다.</p>
+</blockquote>
+
+<p>학습을 하다보니 계정 도용 사례가 있는 걸 보고 커밋에 서명을 직접 해보기로 했다.
+그래서 찾아본 SSH와 GPG의 차이점을 설명해보려고 한다.</p>
+
+<h2 id="ssh란">SSH란?</h2>
+
+<p>SSH (Secure Shell)</p>
+
+<p>용도: 인증 (Authentication) - “나는 이 사람이 맞다”</p>
+
+<ul>
+  <li>Git 원격 저장소 접근 시 사용</li>
+  <li>GitHub/GitLab에 push/pull 할 권한 확인</li>
+  <li>비밀번호 없이 자동 로그인</li>
+</ul>
+
+<p>### SSH 사용 예시
+  git clone git@github.com:username/repo.git
+  git push origin main</p>
+
+<h2 id="gpg란">GPG란?</h2>
+<p>GPG (GNU Privacy Guard)</p>
+
+<p>용도: 서명 (Signing) - “이 커밋은 내가 작성한 게 맞다”</p>
+
+<ul>
+  <li>커밋/태그에 디지털 서명</li>
+  <li>커밋 위조 방지</li>
+  <li>GitHub에서 “Verified” 배지 표시</li>
+</ul>
+
+<p>### GPG 사용 예시
+  git commit -S -m “message”  # 서명된 커밋
+  git tag -s v1.0.0           # 서명된 태그</p>
+
+<p>핵심 차이</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>SSH</th>
+      <th>GPG</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>목적</td>
+      <td>접근 권한 확인</td>
+      <td>작성자 신원 확인</td>
+    </tr>
+    <tr>
+      <td>언제</td>
+      <td>push/pull/clone 시</td>
+      <td>commit/tag 시</td>
+    </tr>
+    <tr>
+      <td>보장</td>
+      <td>“이 사람이 접근 권한 있음”</td>
+      <td>“이 코드를 정말 이 사람이 썼음”</td>
+    </tr>
+    <tr>
+      <td>필수?</td>
+      <td>HTTPS 대신 사용 가능</td>
+      <td>선택사항 (보안 강화용)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>실무 사용</p>
+
+<ul>
+  <li>SSH: 거의 모든 개발자가 사용 (편의성)</li>
+  <li>GPG: 오픈소스 메인테이너, 보안 중요한 프로젝트에서 사용</li>
+</ul>
+
+<p>요약: SSH는 “로그인”, GPG는 “도장/인장”</p>
+
+<h2 id="워크-플로우">워크 플로우</h2>
+
+<blockquote>
+  <p>설치 - generate gpg - github에 등록</p>
+</blockquote>
+
+<ol>
+  <li>설치</li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># mac 기준 brew로 설치</span>
+brew <span class="nb">install </span>gpg
+
+<span class="c"># gpg 키 생성</span>
+gpg <span class="nt">--full-generate-key</span>
+
+<span class="c"># default로 설정 따라가기</span>
+<span class="c"># 만료 날짜 원하는 만큼...나는 최소 3개월에서 최대 1년 갱신한다.</span>
+<span class="c"># 생성 후에 keyid 확인</span>
+gpg <span class="nt">--list-secret-keys</span> <span class="nt">--keyid-format</span><span class="o">=</span>long
+<span class="c"># gpg --list-keys는 가지고 있는 공개키를 다 볼 때 사용한다.</span>
+<span class="c"># pub ed25519 뒤에 오는 id 확인</span>
+
+gpg <span class="nt">--armor</span> <span class="nt">--export</span> &lt;키_ID&gt;
+<span class="c"># Git에서 등록</span>
+</code></pre></div></div>
+
+<h3 id="암호화-서명-차이">암호화 서명 차이</h3>
+
+<ul>
+  <li>RSA : 오래된 시스템에서 사용된다.</li>
+  <li>ECC (타원 곡선 함수)로 권장한다. Git에서도 사용하고 있다.</li>
+</ul>]]></content><author><name>devJZen</name></author><category term="study" /><category term="web" /><summary type="html"><![CDATA[커밋에 서명하고 싶다.]]></summary></entry><entry><title type="html">Jekyll</title><link href="https://devjzen.github.io//study/2026/01/05/Jekyll-%EB%AA%85%EB%A0%B9%EC%96%B4.html" rel="alternate" type="text/html" title="Jekyll" /><published>2026-01-05T00:00:00+00:00</published><updated>2026-01-05T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2026/01/05/Jekyll-%EB%AA%85%EB%A0%B9%EC%96%B4</id><content type="html" xml:base="https://devjzen.github.io//study/2026/01/05/Jekyll-%EB%AA%85%EB%A0%B9%EC%96%B4.html"><![CDATA[<h2 id="jekyll-이란">Jekyll 이란?</h2>
+
+<p>정적 웹사이트 프레임워크, <a href="https://jekyllrb.com/">Jekyll</a> 이다.
+html, css, md 관리에 편하다.
+이걸 썼던 이유는 나는 옵시디언을 사용하고 있었고 굳이 다른 프론트에 fast API를 붙여서 관리하고 싶지 않았다. 
+재밌는 지점은 학술 블로그는 전부 Jekyll 테마 또는 html 하나로 유지되고 있는 걸 확인했다. 
+운명같은 프레임워크다.</p>
+
+<h2 id="jekyll-테마">Jekyll 테마</h2>
+
+<p><a href="https://github.com/jeffreytse/jekyll-theme-yat">jekyll-theme-yat</a>을 커스텀해서 사용하고 있다. 시간이 괜찮을 때 테마 생성자에게 소정의 금액을 지원하고 나만의 테마로 바꿀 예정인데 내가 이 테마에서 가장 좋아했던 것은 커스텀 자유도다. 
+테마를 커스텀 한다고 하여도 저장소에 출처를 남기도록 하자.</p>
+
+<h2 id="자주-사용하는-명령어-모음">자주 사용하는 명령어 모음</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#기본 명령어</span>
+
+  <span class="c"># 로컬 개발 서버 실행 (가장 많이 사용)</span>
+  bundle <span class="nb">exec </span>jekyll serve
+
+  <span class="c"># 개발 서버 + 자동 새로고침 + draft 포함</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--livereload</span> <span class="nt">--drafts</span>
+
+  <span class="c"># 특정 포트로 실행</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--port</span> 4001
+
+  <span class="c"># 빌드만 실행 (배포용)</span>
+  bundle <span class="nb">exec </span>jekyll build
+
+  <span class="c"># 빌드 + 상세 로그</span>
+  bundle <span class="nb">exec </span>jekyll build <span class="nt">--verbose</span>
+
+<span class="c">#새 프로젝트/포스트 생성</span>
+
+  <span class="c"># 새 Jekyll 사이트 생성</span>
+  jekyll new my-site
+
+  <span class="c"># 특정 테마로 생성</span>
+  jekyll new my-site <span class="nt">--blank</span>
+
+  <span class="c"># 새 포스트 생성 (플러그인 필요)</span>
+  bundle <span class="nb">exec </span>jekyll post <span class="s2">"My New Post"</span>
+
+  <span class="c"># 새 draft 생성</span>
+  bundle <span class="nb">exec </span>jekyll draft <span class="s2">"My Draft Post"</span>
+
+<span class="c">#개발 시 유용한 옵션</span>
+
+  <span class="c"># 증분 빌드 (변경된 파일만 빌드 - 속도 향상)</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--incremental</span>
+
+  <span class="c"># future 날짜 포스트도 표시</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--future</span>
+
+  <span class="c"># 모든 옵션 조합 (개발 시 추천)</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--livereload</span> <span class="nt">--drafts</span> <span class="nt">--future</span> <span class="nt">--incremental</span>
+
+  <span class="c"># 특정 환경으로 실행</span>
+  <span class="nv">JEKYLL_ENV</span><span class="o">=</span>production bundle <span class="nb">exec </span>jekyll build
+
+<span class="c">#클린/초기화</span>
+
+  <span class="c"># 빌드 캐시 삭제 후 재빌드</span>
+  bundle <span class="nb">exec </span>jekyll clean
+  bundle <span class="nb">exec </span>jekyll build
+
+  <span class="c"># 의존성 설치/업데이트</span>
+  bundle <span class="nb">install
+  </span>bundle update
+
+  <span class="c"># 특정 gem 업데이트</span>
+  bundle update jekyll
+
+<span class="c">#디버깅</span>
+
+  <span class="c"># 상세 로그 출력</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--verbose</span>
+
+  <span class="c"># 추적 모드 (매우 상세한 로그)</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--trace</span>
+
+  <span class="c"># 설정 확인</span>
+  bundle <span class="nb">exec </span>jekyll doctor
+
+  <span class="c"># 버전 확인</span>
+  bundle <span class="nb">exec </span>jekyll <span class="nt">--version</span>
+
+<span class="c">#자주 쓰는 단축 명령어</span>
+
+  <span class="c"># 가장 기본 (개발 시)</span>
+  bundle <span class="nb">exec </span>jekyll s
+
+  <span class="c"># livereload 포함</span>
+  bundle <span class="nb">exec </span>jekyll s <span class="nt">-l</span>
+
+  <span class="c"># 빌드</span>
+  bundle <span class="nb">exec </span>jekyll b
+
+  <span class="c"># 도움말</span>
+  bundle <span class="nb">exec </span>jekyll <span class="nb">help
+  </span>bundle <span class="nb">exec </span>jekyll serve <span class="nt">--help</span>
+
+<span class="c">#실전 팁</span>
+
+  <span class="c"># 1. 일반 개발 시</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--livereload</span>
+
+  <span class="c"># 2. draft 작성 중</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--livereload</span> <span class="nt">--drafts</span>
+
+  <span class="c"># 3. 문제 발생 시 클린 후 재시작</span>
+  bundle <span class="nb">exec </span>jekyll clean <span class="o">&amp;&amp;</span> bundle <span class="nb">exec </span>jekyll serve
+
+  <span class="c"># 4. 프로덕션 빌드 (GitHub Pages 배포 전 확인)</span>
+  <span class="nv">JEKYLL_ENV</span><span class="o">=</span>production bundle <span class="nb">exec </span>jekyll build
+
+  <span class="c"># 5. 빌드 속도 느릴 때</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--incremental</span> <span class="nt">--livereload</span>
+</code></pre></div></div>]]></content><author><name>devJZen</name></author><category term="study" /><category term="Jekyll" /><summary type="html"><![CDATA[Jekyll 이란?]]></summary></entry><entry><title type="html">3. Shell? Bash? Zsh?</title><link href="https://devjzen.github.io//study/2026/01/05/Shell.html" rel="alternate" type="text/html" title="3. Shell? Bash? Zsh?" /><published>2026-01-05T00:00:00+00:00</published><updated>2026-01-05T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2026/01/05/Shell</id><content type="html" xml:base="https://devjzen.github.io//study/2026/01/05/Shell.html"><![CDATA[<p>용어 정리</p>
+
+<ol>
+  <li>
+    <p>Shell (셸) - 일반적인 용어
+    - 명령줄 인터페이스를 제공하는 프로그램 전체를 지칭
+    - bash, zsh, fish 등을 모두 포함하는 개념
+    - “터미널에서 shell을 사용한다”</p>
+  </li>
+  <li>
+    <p>zsh (Z Shell) - 구체적인 shell 종류
+    - 현재 macOS 기본 shell (Catalina 10.15 이후)
+    - bash의 기능 + 추가 편의 기능
+    - “zsh을 사용한다”</p>
+  </li>
+  <li>
+    <p>bash (Bourne Again Shell)
+    - 예전 macOS 기본 shell (Catalina 이전)
+    - Linux에서 가장 많이 사용
+    - “bash를 사용한다”</p>
+  </li>
+  <li>
+    <p>터미널 (Terminal)
+    - shell을 실행하는 GUI 애플리케이션
+    - macOS의 Terminal.app, iTerm2 등</p>
+  </li>
+</ol>
+
+<p>표현 방법</p>
+
+<p># 모두 맞는 표현
+  “터미널에서 명령어 실행했어”
+  “shell에서 jekyll 실행했어”
+  “zsh에서 bundle exec 명령어 쳤어”
+  “커맨드라인에서 작업했어”
+  “CLI에서 실행했어”</p>]]></content><author><name>devJZen</name></author><category term="study" /><category term="web" /><summary type="html"><![CDATA[용어 정리]]></summary></entry><entry><title type="html">내 dApp이 악성이라니</title><link href="https://devjzen.github.io//phantom/2026/01/05/phantom-issue.html" rel="alternate" type="text/html" title="내 dApp이 악성이라니" /><published>2026-01-05T00:00:00+00:00</published><updated>2026-01-05T00:00:00+00:00</updated><id>https://devjzen.github.io//phantom/2026/01/05/phantom%20issue</id><content type="html" xml:base="https://devjzen.github.io//phantom/2026/01/05/phantom-issue.html"><![CDATA[<blockquote>
+  <p>dApp개발 첫 트러블슈팅</p>
+</blockquote>
+
+<h2 id="this-dapp-could-be-malicious">This dApp could be malicious</h2>
+
+<p>Supabase의 개발 정책을 바꿨다가 갑자기 Request blocked 이슈를 경험했다.</p>
+
+<p><a href="https://docs.phantom.com/developer-powertools/domain-and-transaction-warnings#domain-and-transaction-warnings">Domain and transaction warnings</a>을 참고하여 해결하면 된다.</p>
+
+<p>나의 경우에는 거래 시뮬레이션 경고였고, Supabase의 정책으로 해결했다.</p>]]></content><author><name>devJZen</name></author><category term="phantom" /><category term="web3" /><summary type="html"><![CDATA[dApp개발 첫 트러블슈팅]]></summary></entry><entry><title type="html">Git Action 403 문제</title><link href="https://devjzen.github.io//study/2025/12/31/Git-Action-403.html" rel="alternate" type="text/html" title="Git Action 403 문제" /><published>2025-12-31T00:00:00+00:00</published><updated>2025-12-31T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2025/12/31/Git-Action-403</id><content type="html" xml:base="https://devjzen.github.io//study/2025/12/31/Git-Action-403.html"><![CDATA[<h2 id="problems">Problems</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Jremote: Permission to [블로그 주소] denied to github-actions[bot].
+(...생략)
+Update cache key...
+</code></pre></div></div>
+
+<h2 id="solution">Solution</h2>
+
+<blockquote>
+  <p>설정 후에 git push 또는 워크플로우 재실행 필요</p>
+</blockquote>
+
+<p>Workflow 권한 변경</p>
+
+<p>GitHub 저장소 설정에서 workflow 권한을 변경:</p>
+
+<ol>
+  <li>GitHub 저장소로 이동</li>
+  <li>Settings → Actions → General</li>
+  <li>페이지 맨 아래 Workflow permissions 섹션에서</li>
+  <li>“Read and write permissions” 선택</li>
+  <li>Save 클릭</li>
+</ol>]]></content><author><name>devJZen</name></author><category term="study" /><category term="Git" /><summary type="html"><![CDATA[Problems]]></summary></entry><entry><title type="html">Git action의 종속성 업데이트</title><link href="https://devjzen.github.io//study/2025/12/30/Git-action-v1,v2.html" rel="alternate" type="text/html" title="Git action의 종속성 업데이트" /><published>2025-12-30T00:00:00+00:00</published><updated>2025-12-30T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2025/12/30/Git-action-v1,v2</id><content type="html" xml:base="https://devjzen.github.io//study/2025/12/30/Git-action-v1,v2.html"><![CDATA[<h2 id="블로그-글이-계속-보이지-않았다">블로그 글이 계속 보이지 않았다.</h2>
+
+<p>빌드가 실패했는데, 내가 사용하던 actions가 버전이 낮다는 것을 확인함.
+<a href="https://github.blog/changelog/2024-12-05-notice-of-upcoming-releases-and-breaking-changes-for-github-actions/#actions-cache-v1-v2-and-actions-toolkit-cache-package-closing-down">공식문서</a> 참고</p>
+
+<p><strong>actions-cache-v1-v2-and-actions-toolkit-cache-package-closing-down</strong></p>
+
+<p>업데이트: 우분투 20 이미지 지원 종료일이 4월 15일로 변경되었습니다. 아래 게시글은 해당 변경 사항을 반영하여 수정되었습니다.</p>
+
+<p>Ubuntu 최신 버전에서 예정된 주요 변경 사항
+2024년 12월 5일부터 2025년 1월 17일 ubuntu-latest까지 레이블 을 새로운 이미지로 이전할 예정입니다 . 새 이미지는 기존 이미지와 다른 도구 및 패키지 세트를 포함하고 있습니다 . 디스크 공간 확보를 위한 서비스 수준 계약(SLA)을 유지하기 위해 일부 패키지 목록을 삭제했습니다. 삭제된 패키지에 의존하는 워크플로우를 사용하는 경우 문제가 발생할 수 있습니다. 영향을 받는 패키지를 사용하고 있는지 확인하려면 아래 목록을 검토해 주세요.ubuntu 24ubuntu 24ubuntu 22</p>
+
+<p>우분투 20 이미지 서비스가 종료됩니다
+저희는 N-1 OS 지원 정책 에 따라 Ubuntu 20 호스팅 러너 이미지 지원을 단계적으로 종료할 예정입니다 . 이 이미지는 2025년 4월 15일까지 완전히 지원이 중단됩니다. 이후에는 워크플로우를 업데이트하여 ubuntu-22.04또는 를 사용하시기를 권장합니다 ubuntu-24.04.</p>
+
+<p>…</p>]]></content><author><name>devJZen</name></author><category term="study" /><category term="Git" /><summary type="html"><![CDATA[블로그 글이 계속 보이지 않았다.]]></summary></entry><entry><title type="html">Git의 cherry pick</title><link href="https://devjzen.github.io//study/2025/12/30/Git-cherry-pick.html" rel="alternate" type="text/html" title="Git의 cherry pick" /><published>2025-12-30T00:00:00+00:00</published><updated>2025-12-30T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2025/12/30/Git-cherry-pick</id><content type="html" xml:base="https://devjzen.github.io//study/2025/12/30/Git-cherry-pick.html"><![CDATA[<h2 id="cherry-pick">cherry pick</h2>
+
+<blockquote>
+  <p>커밋을 하다가 브랜치를 날려버림</p>
+</blockquote>
+
+<ol>
+  <li>커밋은 성공 했으나</li>
+  <li>
+    <p>브랜치를 체크아웃해서 확인을 해야 됐음</p>
+  </li>
+  <li>
+    <p>현재 상태 확인
+  git status
+  git log –oneline -5</p>
+  </li>
+  <li>
+    <p>reflog로 사라진 커밋 찾기
+  git reflog -10</p>
+  </li>
+  <li>
+    <p>체리픽으로 커밋 가져오기
+  git cherry-pick 커밋해시</p>
+  </li>
+  <li>
+    <p>변경사항 확인
+  git log –oneline -3
+  git diff HEAD~1 파일명</p>
+  </li>
+  <li>원격 저장소에 푸시
+  git push origin main</li>
+</ol>
+
+<h2 id="내가-몰랐던-내용">내가 몰랐던 내용</h2>
+
+<ul>
+  <li>git reflog - HEAD의 이동 기록 확인 (체크아웃, 커밋 등 모든 히스토리)</li>
+  <li>git cherry-pick <commit-hash> - 특정 커밋만 현재 브랜치에 가져오기</commit-hash></li>
+  <li>git diff HEAD~1 <file> - 이전 커밋과 현재 커밋의 차이 확인</file></li>
+</ul>]]></content><author><name>devJZen</name></author><category term="study" /><category term="Git" /><summary type="html"><![CDATA[cherry pick]]></summary></entry><entry><title type="html">Google Studio로 번역봇 만들기</title><link href="https://devjzen.github.io//study/2025/12/30/Google-%EB%B2%88%EC%97%AD%EB%B4%87.html" rel="alternate" type="text/html" title="Google Studio로 번역봇 만들기" /><published>2025-12-30T00:00:00+00:00</published><updated>2025-12-30T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2025/12/30/Google-%EB%B2%88%EC%97%AD%EB%B4%87</id><content type="html" xml:base="https://devjzen.github.io//study/2025/12/30/Google-%EB%B2%88%EC%97%AD%EB%B4%87.html"><![CDATA[<ol>
+  <li><a href="#프로젝트에-번역으로-기여하기">개요</a></li>
+  <li><a href="#우선-순위-리스트-설정">설정</a></li>
+  <li><a href="#자동화">자동화</a></li>
+</ol>
+
+<h2 id="프로젝트에-번역으로-기여하기">프로젝트에 번역으로 기여하기</h2>
+
+<blockquote>
+  <p>프로젝트에 번역으로 기여하고 싶은데 번역할 파일 수가 너무 많다.</p>
+</blockquote>
+
+<p><img src="/assets/images/posting/lingo.png" alt="Lingo" /></p>
+
+<ol>
+  <li>기여하고 싶은 프로젝트의 번역을 하려고 보니 mdx 파일이 많았다.</li>
+  <li>권장하는 것은 lingo 였으나 단어 수에 제한을 둬서 한국어로 번역하기에 어려움이 있었다.</li>
+</ol>
+
+<h2 id="우선-순위-리스트-설정">우선 순위 리스트 설정</h2>
+
+<ol>
+  <li>번역하고자 하는 파일들을 먼저 세팅한다. 나는 claude의 도움을 받았다.</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>요약
+  - 총 남은 파일: ~125개
+  - Challenge: 1개
+  - 우선순위 1 (입문): 23 레슨
+  - 우선순위 2 (중급): 38 레슨
+  - 우선순위 3 (고급): 31 레슨
+  - 우선순위 4 (도구): 27 레슨
+  - 우선순위 5 (연구): 3 레슨
+</code></pre></div></div>
+
+<p>lingo 무료티어로는 해결 못한다는 걸 깨달았고, 자동화 방안을 떠올렸다.</p>
+
+<h2 id="자동화">자동화</h2>
+
+<ul>
+  <li>영어로 된 en.mdx 파일들을</li>
+  <li>우선 순위 리스트의 순서대로 번역</li>
+  <li>이미 번역본이 있는 것은 스킵</li>
+  <li>진행 상황 로그</li>
+  <li>에러 핸들링 (API 실패시 재시도)</li>
+</ul>
+
+<p>Node.js/TypeScript 로 스크립트를 작성하고 번역은 배치 처리 스크립트로 해결했다.
+무료 티어인 Gemini 2.5 Flash 모델을 사용했다.</p>
+
+<pre><code class="language-TypeScript">// Gemini 2.5 Flash with thinking support
+const model = genAI.getGenerativeModel({
+  model: 'gemini-2.5-flash',
+});
+
+interface TranslationTask {
+  priority: number;
+  category: string;
+  sourcePath: string;
+  targetPath: string;
+  completed: boolean;
+}
+
+const PROGRESS_FILE = path.join(__dirname, 'translation-progress.json');
+
+// Translation task list based on priority
+const TRANSLATION_TASKS: TranslationTask[] = [
+  // Priority List
+  // ...
+</code></pre>
+
+<p>.env.example로 API 키를 설정해서 갖고와야된다.
+package.json에 스크립트를 추가할 수 있다.</p>
+
+<h2 id="google-studio-패키지">Google Studio 패키지</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> @google/generative-ai dotenv
+</code></pre></div></div>
+
+<blockquote>
+  <p>토큰이 소모 됐을 시 3번의 재확인 시도
+❌ Translation failed after 3 retries</p>
+</blockquote>
+
+<p>Claude, Gemini의 도움을 받기 전에 뭐부터 설정해야 좋을지 고민해보는 것 역시 좋다.
+위의 기준들이 정답은 아니다.</p>]]></content><author><name>devJZen</name></author><category term="study" /><category term="Automation" /><category term="Google" /><summary type="html"><![CDATA[개요 설정 자동화]]></summary></entry><entry><title type="html">Repository와 SSL 인증서 문제</title><link href="https://devjzen.github.io//study/2025/12/30/Jekyll-%EB%B9%8C%EB%93%9C-%EC%98%A4%EB%A5%98-%ED%95%B4%EA%B2%B0-study.html" rel="alternate" type="text/html" title="Repository와 SSL 인증서 문제" /><published>2025-12-30T00:00:00+00:00</published><updated>2025-12-30T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2025/12/30/Jekyll-%EB%B9%8C%EB%93%9C-%EC%98%A4%EB%A5%98-%ED%95%B4%EA%B2%B0-study</id><content type="html" xml:base="https://devjzen.github.io//study/2025/12/30/Jekyll-%EB%B9%8C%EB%93%9C-%EC%98%A4%EB%A5%98-%ED%95%B4%EA%B2%B0-study.html"><![CDATA[<h2 id="문제-상황">문제 상황</h2>
+
+<p>Jekyll 사이트를 로컬에서 빌드하던 중 두 가지 주요 오류가 발생했다.</p>
+
+<h3 id="1-github-metadata-오류">1. GitHub Metadata 오류</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GitHub Metadata: Error processing value 'description':
+Liquid Exception: No repo name found. Specify using PAGES_REPO_NWO environment variables,
+'repository' in your configuration, or set up an 'origin' git remote pointing to your
+github.com repository.
+</code></pre></div></div>
+
+<p>Jekyll의 <code class="language-plaintext highlighter-rouge">github-metadata</code> 플러그인이 저장소 정보를 찾지 못하는 오류였다.</p>
+
+<h3 id="2-ssl-인증서-검증-실패">2. SSL 인증서 검증 실패</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SSL_connect returned=1 errno=0 peeraddr=20.200.245.246:443 state=error:
+certificate verify failed (unable to get certificate CRL)
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">remote_theme</code>을 사용할 때 GitHub에서 테마를 다운로드하는 과정에서 OpenSSL 인증서 검증 오류가 발생했다.</p>
+
+<h2 id="원인-분석">원인 분석</h2>
+
+<h3 id="1-repository-정보-누락">1. Repository 정보 누락</h3>
+<p><code class="language-plaintext highlighter-rouge">_config.yml</code>에 <code class="language-plaintext highlighter-rouge">repository</code> 필드가 명시되지 않아 GitHub Metadata 플러그인이 저장소 정보에 접근할 수 없었다.</p>
+
+<h3 id="2-macos-openssl-인증서-경로-문제">2. macOS OpenSSL 인증서 경로 문제</h3>
+<ul>
+  <li>Ruby가 사용하는 OpenSSL 인증서 경로가 제대로 설정되지 않음</li>
+  <li>Homebrew로 설치한 OpenSSL의 인증서 경로: <code class="language-plaintext highlighter-rouge">/opt/homebrew/etc/ca-certificates/cert.pem</code></li>
+  <li>Ruby 기본 설정에서 이 경로를 찾지 못함</li>
+</ul>
+
+<h2 id="해결-방법">해결 방법</h2>
+
+<h3 id="1-repository-필드-추가">1. Repository 필드 추가</h3>
+
+<p><code class="language-plaintext highlighter-rouge">_config.yml</code> 파일에 저장소 정보 추가:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">repository</span><span class="pi">:</span> <span class="s">devJZen/devJZen.github.io</span>
+</code></pre></div></div>
+
+<h3 id="2-ssl-인증서-경로-설정">2. SSL 인증서 경로 설정</h3>
+
+<h4 id="방법-a-bundle-설정-파일-생성">방법 A: Bundle 설정 파일 생성</h4>
+
+<p><code class="language-plaintext highlighter-rouge">~/.bundle/config</code> 파일에 SSL 인증서 경로 설정:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">BUNDLE_SSL_CERT_FILE</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/opt/homebrew/etc/ca-certificates/cert.pem"</span>
+</code></pre></div></div>
+
+<h4 id="방법-b-환경-변수-설정">방법 B: 환경 변수 설정</h4>
+
+<p><code class="language-plaintext highlighter-rouge">.zshrc</code> 또는 <code class="language-plaintext highlighter-rouge">.bash_profile</code>에 추가:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">SSL_CERT_FILE</span><span class="o">=</span>/opt/homebrew/etc/ca-certificates/cert.pem
+</code></pre></div></div>
+
+<p>임시로 현재 세션에만 적용:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">SSL_CERT_FILE</span><span class="o">=</span>/opt/homebrew/etc/ca-certificates/cert.pem
+bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+
+<h3 id="3-remote-theme-문제-해결">3. Remote Theme 문제 해결</h3>
+
+<p>프로젝트가 테마 소스 자체인 경우, <code class="language-plaintext highlighter-rouge">_config.yml</code>에서 테마 설정 제거:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Before</span>
+<span class="na">remote_theme</span><span class="pi">:</span> <span class="s2">"</span><span class="s">jeffreytse/jekyll-theme-yat"</span>
+
+<span class="c1"># After</span>
+<span class="c1"># remote_theme: "jeffreytse/jekyll-theme-yat"</span>
+<span class="c1"># theme: jekyll-theme-yat (Using local theme files)</span>
+</code></pre></div></div>
+
+<p>로컬의 <code class="language-plaintext highlighter-rouge">_layouts</code>, <code class="language-plaintext highlighter-rouge">_includes</code>, <code class="language-plaintext highlighter-rouge">_sass</code> 디렉토리를 직접 사용하므로 원격 테마 다운로드가 불필요하다.</p>
+
+<h2 id="보안-고려사항">보안 고려사항</h2>
+
+<h3 id="ssl-검증-비활성화는-피할-것">SSL 검증 비활성화는 피할 것</h3>
+
+<p>일부 가이드에서 제안하는 다음 방법은 <strong>절대 사용하지 말 것</strong>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ❌ 위험: SSL 검증 완전 비활성화</span>
+<span class="nb">export </span><span class="nv">SSL_VERIFY_MODE</span><span class="o">=</span>0
+<span class="nb">export </span><span class="nv">BUNDLE_SSL_VERIFY</span><span class="o">=</span><span class="nb">false</span>
+</code></pre></div></div>
+
+<p>이 방법은 중간자 공격(MITM)에 취약하며, 악의적인 패키지를 다운로드할 위험이 있다.</p>
+
+<h3 id="권장하는-안전한-방법">권장하는 안전한 방법</h3>
+
+<ol>
+  <li><strong>인증서 경로 명시</strong>: 신뢰할 수 있는 CA 인증서 번들 사용</li>
+  <li><strong>로컬 테마 사용</strong>: 원격 다운로드를 피하고 검증된 로컬 파일 사용</li>
+  <li><strong>정기적인 인증서 업데이트</strong>: Homebrew를 통한 ca-certificates 패키지 업데이트</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew upgrade ca-certificates
+</code></pre></div></div>
+
+<h2 id="검증">검증</h2>
+
+<p>최종적으로 다음 명령어로 정상 작동 확인:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">SSL_CERT_FILE</span><span class="o">=</span>/opt/homebrew/etc/ca-certificates/cert.pem
+bundle <span class="nb">install
+</span>bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+
+<p>서버가 정상적으로 시작되면 <code class="language-plaintext highlighter-rouge">http://localhost:4000</code>에서 사이트 확인 가능하다.</p>
+
+<h2 id="참고-자료">참고 자료</h2>
+
+<ul>
+  <li><a href="https://github.com/jekyll/github-metadata">Jekyll GitHub Metadata Plugin</a></li>
+  <li><a href="https://www.openssl.org/docs/">OpenSSL Certificate Verification</a></li>
+  <li><a href="https://bundler.io/v2.0/man/bundle-config.1.html">Bundler Configuration</a></li>
+</ul>
+
+<h2 id="확인할-것">확인할 것</h2>
+
+<ol>
+  <li>Jekyll GitHub Pages 플러그인은 저장소 메타데이터에 의존한다</li>
+  <li>macOS에서 Homebrew Ruby를 사용할 때 OpenSSL 경로 설정이 중요하다</li>
+  <li>보안을 위해 SSL 검증을 비활성화하는 대신 올바른 인증서 경로를 설정해야 한다</li>
+  <li>로컬 테마 개발 시 <code class="language-plaintext highlighter-rouge">remote_theme</code> 대신 로컬 파일을 직접 사용하는 것이 효율적이다</li>
+</ol>]]></content><author><name>devJZen</name></author><category term="study" /><category term="Jekyll" /><category term="OpenSSL" /><summary type="html"><![CDATA[문제 상황]]></summary></entry><entry><title type="html">Supabase의 RLS</title><link href="https://devjzen.github.io//study/2025/12/20/supabase-RLS.html" rel="alternate" type="text/html" title="Supabase의 RLS" /><published>2025-12-20T00:00:00+00:00</published><updated>2025-12-20T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2025/12/20/supabase-RLS</id><content type="html" xml:base="https://devjzen.github.io//study/2025/12/20/supabase-RLS.html"><![CDATA[<h2 id="supabase-rls-row-level-security-정책">Supabase RLS (Row Level Security) 정책</h2>
+
+<blockquote>
+  <p>CRUD 생성 중에 Delete가 안되고 있음</p>
+</blockquote>
+
+<p>Supabase로 개발하다가 삭제가 구현이 안될 때가 있다. RLS 정책 때문인데 아래와 같이 해결하면 된다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 기존 정책 삭제                                                   </span>
+  <span class="k">DROP</span> <span class="n">POLICY</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="nv">"Creators and admins can update projects"</span> <span class="k">ON</span>  
+  <span class="n">projects</span><span class="p">;</span>                                                           
+  <span class="k">DROP</span> <span class="n">POLICY</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="nv">"Creators can delete projects"</span> <span class="k">ON</span> <span class="n">projects</span><span class="p">;</span>   
+                                                                      
+<span class="c1">-- 새로운 정책 생성 (개발용)                                        </span>
+  <span class="k">CREATE</span> <span class="n">POLICY</span> <span class="nv">"Anyone can update projects"</span>                          
+    <span class="k">ON</span> <span class="n">projects</span> <span class="k">FOR</span> <span class="k">UPDATE</span>                                            
+    <span class="k">USING</span> <span class="p">(</span><span class="k">true</span><span class="p">);</span>                                                     
+                                                                      
+  <span class="k">CREATE</span> <span class="n">POLICY</span> <span class="nv">"Anyone can delete projects"</span>                          
+    <span class="k">ON</span> <span class="n">projects</span> <span class="k">FOR</span> <span class="k">DELETE</span>                                            
+    <span class="k">USING</span> <span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>개발용 정책을 만들어서 해결</p>
+
+<h2 id="rls가-무엇인가">RLS가 무엇인가?</h2>
+
+<p>정책은 PostgreSQL의 규칙 엔진이다. 정책은 익숙해지면 쉽게 이해할 수 있다. 각 정책은 테이블에 연결되어 있으며, 해당 테이블에 접근할 때마다 정책이 실행된다.</p>
+
+<p>==RLS를 활성화하면 정책을 생성하기 전까지는 공개 키를 사용하여 API를 통해 데이터에 액세스할 수 없습니다. [1^]==</p>
+
+<blockquote>
+  <p>[!note] 언제 발생되는 것인가?</p>
+  <ul>
+    <li>Supabase 인증은 하지 않음</li>
+    <li>따라서 삭제 권한이 없었음</li>
+  </ul>
+</blockquote>
+
+<p>[1^] : <a href="https://supabase.com/docs/guides/database/postgres/row-level-security">Supabase 공식 홈페이지</a></p>]]></content><author><name>devJZen</name></author><category term="study" /><category term="web" /><summary type="html"><![CDATA[Supabase RLS (Row Level Security) 정책]]></summary></entry></feed>
