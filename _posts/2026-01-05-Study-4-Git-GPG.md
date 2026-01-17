@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 3. SSH? GPG?
+title: 4. SSH? GPG?
 categories: study
-tags: [web]
+tags: [study]
 ---
 
 > 커밋에 서명하고 싶다.

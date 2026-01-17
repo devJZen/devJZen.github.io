@@ -2,7 +2,7 @@
 layout: post
 title: 2. URI와 URL의 차이점
 categories: web
-tags: [web]
+tags: [study]
 ---
 ## 목차
 

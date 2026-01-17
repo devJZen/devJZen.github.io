@@ -5,9 +5,14 @@ categories: study
 tags: [Git]
 ---
 
-## 블로그 글이 계속 보이지 않았다.
+## Problem
+
+> 블로그 글이 계속 보이지 않았다.
 
 빌드가 실패했는데, 내가 사용하던 actions가 버전이 낮다는 것을 확인함.
+
+## Solution
+
 [공식문서](https://github.blog/changelog/2024-12-05-notice-of-upcoming-releases-and-breaking-changes-for-github-actions/#actions-cache-v1-v2-and-actions-toolkit-cache-package-closing-down) 참고
 
 **actions-cache-v1-v2-and-actions-toolkit-cache-package-closing-down**

@@ -42,8 +42,8 @@ tags: [Observability]
 비즈니스 목표에서 시작하여 기술지표로 내려가는 방식이어야 한다.
 
 1. 사용자 목표 파악
-2. SLI((Service Level Indicator)) 선정
-3. SLO((Service Level Objective)) 설정
+2. SLI(Service Level Indicator) 선정
+3. SLO(Service Level Objective) 설정
 4. 질문 중심의 데이터 구성
 
 ## The Four Golden Signals 외의 다른 기준

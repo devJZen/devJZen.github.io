@@ -1,15 +1,21 @@
 ---
 layout: post
-title: Supabase의 RLS
+title: 4.Supabase의 RLS
 categories: study
-tags: [web]
+tags: [study]
 ---
 
-## Supabase RLS (Row Level Security) 정책
+## Problem
+
+Supabase RLS (Row Level Security) 정책
 
 > CRUD 생성 중에 Delete가 안되고 있음
 
 Supabase로 개발하다가 삭제가 구현이 안될 때가 있다. RLS 정책 때문인데 아래와 같이 해결하면 된다.
+
+## Solution
+
+> 개발용 정책을 만들어서 해결
 
 ```sql
 -- 기존 정책 삭제                                                   
@@ -27,9 +33,7 @@ Supabase로 개발하다가 삭제가 구현이 안될 때가 있다. RLS 정책
     USING (true);
 ```
 
-개발용 정책을 만들어서 해결
-
-## RLS가 무엇인가?
+## Q.RLS가 무엇인가?
 
 정책은 PostgreSQL의 규칙 엔진이다. 정책은 익숙해지면 쉽게 이해할 수 있다. 각 정책은 테이블에 연결되어 있으며, 해당 테이블에 접근할 때마다 정책이 실행된다.
 

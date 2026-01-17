@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 3. Shell? Bash? Zsh?
+title: 5. Shell? Bash? Zsh?
 categories: study
-tags: [web]
+tags: [study]
 ---
 
 용어 정리
