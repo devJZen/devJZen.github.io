@@ -196,6 +196,7 @@ giscus:
   loading: "lazy"
 
 # Build settings
+future: true  # UTC 시간대 차이로 인한 포스트 누락 방지
 highlighter: none
 # theme: owner/name --> Don't forget to remove/comment the gem-based theme option
 # remote_theme: "jeffreytse/jekyll-theme-yat"
