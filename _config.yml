@@ -30,12 +30,7 @@ author: devJZen
 description: "Research interests: Byzantine Fault Tolerance, consensus protocols, and low-level systems security."
 repository: devJZen/devJZen.github.io
 
-# Open Graph default image
 image: /assets/images/post-image.png
-
-# Twitter Card
-twitter:
-  card: /assets/images/post-image.png
 
 # Copyright setting
 # You can use any html code, currently below placeholders are available:
