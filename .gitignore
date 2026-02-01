@@ -3,3 +3,43 @@
 .sass-cache
 _site
 Gemfile.lock
+
+# OS 생성 파일
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# IDE/에디터
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# 환경 변수 및 민감 정보
+.env
+.env.*
+*.pem
+*.key
+secrets.yml
+credentials.yml
+
+# 로그 및 임시 파일
+*.log
+tmp/
+temp/
+*.tmp
+
+# Node.js (Jekyll 플러그인이 사용할 수 있음)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Ruby 관련
+vendor/
+.ruby-gemset
