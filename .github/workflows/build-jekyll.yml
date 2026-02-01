@@ -27,7 +27,7 @@ jobs:
 
       # Use GitHub Deploy Action to build and deploy to Github
       # 특정 버전 태그 사용으로 공급망 공격 방지
-      - uses: jeffreytse/jekyll-deploy-action@v0.6.0
+      - uses: jeffreytse/jekyll-deploy-action@v0.7.0
         with:
           provider: 'github'
           token: ${{ secrets.GITHUB_TOKEN }} # It's your Personal Access Token(PAT)
