@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="kor"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+  <meta name="google-site-verification" content="9coAqf--ldpIW5wOy4TGR8WIqx2wl3ljvBBqvVubB48" />
+
+  <!-- Security Headers -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  <title>devJZen</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>왜 POST와 GET 요청만 사용할까? | devJZen</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="왜 POST와 GET 요청만 사용할까?" />
+<meta name="author" content="devJZen" />
+<meta property="og:locale" content="kor" />
+<meta name="description" content="도대체 왜 POST와 GET 요청만 할까?" />
+<meta property="og:description" content="도대체 왜 POST와 GET 요청만 할까?" />
+<link rel="canonical" href="https://devjzen.github.io//web/2025/07/04/API-%EC%84%A4%EA%B3%84-%EA%B3%A0%EC%B0%B0.html" />
+<meta property="og:url" content="https://devjzen.github.io//web/2025/07/04/API-%EC%84%A4%EA%B3%84-%EA%B3%A0%EC%B0%B0.html" />
+<meta property="og:site_name" content="devJZen" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-07-04T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="왜 POST와 GET 요청만 사용할까?" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"devJZen"},"dateModified":"2025-07-04T00:00:00+00:00","datePublished":"2025-07-04T00:00:00+00:00","description":"도대체 왜 POST와 GET 요청만 할까?","headline":"왜 POST와 GET 요청만 사용할까?","mainEntityOfPage":{"@type":"WebPage","@id":"https://devjzen.github.io//web/2025/07/04/API-%EC%84%A4%EA%B3%84-%EA%B3%A0%EC%B0%B0.html"},"url":"https://devjzen.github.io//web/2025/07/04/API-%EC%84%A4%EA%B3%84-%EA%B3%A0%EC%B0%B0.html"}</script>
+<!-- End Jekyll SEO tag -->
+<!-- Open Graph -->
+  
+  
+  <meta property="og:image" content="https://devjzen.github.io//assets/images/post-image.png" />
+  <meta name="twitter:image" content="https://devjzen.github.io//assets/images/post-image.png" />
+  
+  <meta property="og:logo" content="https://devjzen.github.io//assets/images/favicon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://devjzen.github.io//feed.xml" title="devJZen" /><link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8"
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Init highlight js
+document.addEventListener('DOMContentLoaded', function(event) {
+  var els = document.querySelectorAll('pre code')
+
+  function addLangData(block) {
+    var outer = block.parentElement.parentElement.parentElement;
+    var lang = block.getAttribute('data-lang');
+    for (var i = 0; i < outer.classList.length; i++) {
+      var cls = outer.classList[i];
+      if (cls.startsWith('language-')) {
+        lang = cls;
+        break;
+      }
+    }
+    if (!lang) {
+      cls = block.getAttribute('class');
+      lang = cls ? cls.replace('hljs ', '') : '';
+    }
+    if (lang.startsWith('language-')) {
+      lang = lang.substr(9);
+    }
+    block.setAttribute('class', 'hljs ' + lang);
+    block.parentNode.setAttribute('data-lang', lang);
+  }
+
+  function addBadge(block) {
+    var enabled = ('true' || 'true').toLowerCase();
+    if (enabled == 'true') {
+      var pre = block.parentElement;
+      pre.classList.add('badge');
+    }
+  }
+
+  function handle(block) {
+    addLangData(block);
+    addBadge(block)
+    hljs.highlightBlock(block);
+  }
+
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    handle(el);
+  }
+});
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #000;
+    background-color: #f2cb05;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  code > table pre::before {
+    display: none;
+  }
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.css"
+  rel="stylesheet"
+/>
+<style>
+  .pswp .pswp__container .pswp__img {
+    background-color: white;
+  }
+</style>
+
+<script>
+  function initPhotoSwipe() {
+    var mainEl = document.querySelector("section.main");
+
+    var imgEls = mainEl.querySelectorAll("img:not(.emoji)");
+    imgEls.forEach((imgEl) => {
+      imgEl.outerHTML = `
+    <a class="photo-swipe"
+      href="${imgEl.src}"
+      data-width="${imgEl.getAttribute("width") || imgEl.width * 2}"
+      data-height="${imgEl.getAttribute("height") || imgEl.height * 2}"
+      data-caption="${imgEl.getAttribute("caption") || imgEl.alt}"
+      target="_blank">
+      ${imgEl.outerHTML}
+    </a>`;
+    });
+
+    // Init empty gallery array
+    var container = [];
+
+    // Loop over gallery items and push it to the array
+    var linkEls = mainEl.querySelectorAll("a.photo-swipe");
+    linkEls.forEach((link) => {
+      var item = {
+        src: link.getAttribute("href"),
+        w: link.dataset.width,
+        h: link.dataset.height,
+        title: link.dataset.caption || "",
+      };
+      container.push(item);
+    });
+
+    // Define click event on gallery item
+    linkEls.forEach((link, index) => {
+      link.addEventListener("click", (event) => {
+        // Prevent location change
+        event.preventDefault();
+
+        // Define object and gallery options
+        var pswp = document.querySelector(".pswp");
+
+        var zoomLevel = 1;
+
+        // Define object and gallery options
+        var options = {
+          index: index,
+          bgOpacity: 0.85,
+          showHideOpacity: true,
+          closeOnScroll: true,
+          maxSpreadZoom: 1,
+          getDoubleTapZoom: (isMouseClick, item) => {
+            if (item.detail) {
+              zoomLevel += item.detail.origEvent.shiftKey ? -1 : 1;
+              item.detail = undefined;
+            } else {
+              zoomLevel = zoomLevel === 1 ? 2 : 1;
+            }
+            if (zoomLevel <= 1) {
+              zoomLevel = 1;
+              setTimeout(() => pswp.classList.remove("pswp--zoomed-in"), 0);
+            }
+            return item.initialZoomLevel * zoomLevel;
+          },
+        };
+
+        // Initialize PhotoSwipe
+        var gallery = new PhotoSwipe(
+          pswp,
+          PhotoSwipeUI_Default,
+          container,
+          options
+        );
+
+        gallery.init();
+
+        // Custom zoom event
+        gallery.container.addEventListener("pswpTap", (e) => {
+          gallery.currItem.detail = e.detail;
+        });
+      });
+    });
+  }
+
+  window.addEventListener("load", initPhotoSwipe);
+</script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe.
+           It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg"></div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides.
+              PhotoSwipe keeps only 3 of them in the DOM to save memory.
+              Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter"></div>
+        <button
+          class="pswp__button pswp__button--close"
+          title="Close (Esc)"
+        ></button>
+        <button class="pswp__button pswp__button--share" title="Share"></button>
+        <button
+          class="pswp__button pswp__button--fs"
+          title="Toggle fullscreen"
+        ></button>
+        <button
+          class="pswp__button pswp__button--zoom"
+          title="Zoom in/out"
+        ></button>
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip"></div>
+      </div>
+      <button
+        class="pswp__button pswp__button--arrow--left"
+        title="Previous (arrow left)"
+      ></button>
+      <button
+        class="pswp__button pswp__button--arrow--right"
+        title="Next (arrow right)"
+      ></button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/js/callout.js"></script>
+<script src="/assets/js/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.9.0/dist/mermaid.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header ">
+
+  <div class="wrapper">
+    <div class="site-header-inner"><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+              </svg>
+            </span>
+          </label>
+
+          <div class="translate-toggle-container">
+            <label class="translate-switch">
+              <input type="checkbox" onclick="toggleLanguage(this)">
+              <span class="slider round"></span>
+            </label>
+            <span class="switch-label notranslate">KO</span>
+          </div>
+
+          <div class="trigger"><a class="page-link" href="/">HOME</a><a class="page-link" href="/about.html">ABOUT</a><a class="page-link" href="/archives.html">ARCHIVES</a><a class="page-link" href="/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<span class="page-link">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<span class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</span>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'kor',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</span></div>
+        </nav></div>
+  </div>
+</header>
+
+<script>
+function toggleLanguage(toggle) {
+  var switchLabel = document.querySelector(".switch-label");
+
+  if (toggle.checked) {
+    switchLabel.textContent = "EN";
+  } else {
+    switchLabel.textContent = "KO";
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  if (googleCombo) {
+    googleCombo.value = toggle.checked ? "en" : "ko";
+    var event = new Event("change");
+    googleCombo.dispatchEvent(event);
+  }
+}
+
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;
+
+
+      var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+<script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div id="click-to-top" class="click-to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+<script>
+  (function () {
+    const clickToTop = document.getElementById('click-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        clickToTop.classList.add('show')
+      }else {
+        clickToTop.classList.remove('show')
+      }
+    });
+    clickToTop.addEventListener('click', () => {
+      window.smoothScrollTo(0);
+    });
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">왜 POST와 GET 요청만 사용할까?</h1>
+  <h2 class="post-subtitle"></h2>
+
+  <p class="post-meta">
+    <time class="dt-published" datetime="2025-07-04T00:00:00+00:00" itemprop="datePublished"><i class="fa fa-calendar"></i> 2025 Jul 04 
+    </time>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 24 mins</span>
+  </p><div class="post-tags"><a class="post-tag" href="/tags.html#Architecture">#Architecture</a></div></header>
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <h2 id="도대체-왜-post와-get-요청만-할까">도대체 왜 POST와 GET 요청만 할까?</h2>
+
+<blockquote>
+  <p>ajax 요청을 하는데 왜 GET과 POST만 쓰지?</p>
+</blockquote>
+
+<p>개발 공부를 하다보면 프로젝트에 의문이 생기는 경우가 많다. 특히, 이런 의문을 풀기 위해 질문을 하다보면 가끔은 납득할 수 없는 대답이 돌아오기도 한다. 시니어 개발자가 신입이라고 단정짓고 쉬운 방식을 알려준 것인가 아니면 일부러 잘못된 지식을 알려주는 것일까, 그것도 아니라면 개발자로서 처음 공부했던 내용만 알고 요즘의 개발 지식과 트렌드를 몰라서 이런 방법을 알려주는 것일까? 알고있던 지식과의 괴리가 생기며 고민이 생긴다. 내 궁금증을 해결하고자 상대방을 귀찮게 하기엔 다들 일이 너무 많다. 그럼 퇴근하고 공부하면 된다.</p>
+
+<p>하드코딩은 DB 설계를 담당하는 사람에 따라 달라지거나 프로젝트 특성상 프로토타입이 개발에 들어간 후에 정리되는 경우도 있다. 그래서 고작 이제 2년차가 되어가는 나의 경험으로 함부로 단정짓기 어렵다. 예를 들어 문자열을 “이렇게 쓸 것이냐” 아니면 전역변수로 객체화 하여서 String this = “이렇게 쓸 것이냐”; 로 정의 내리고 쓸 때마다 this를 사용하는 차이가 있다. 납기일이 촉박하다면 “우선은 이렇게 사용하고 유지보수할 때 공통화 하자” 할수도 있는 것이고, 시간이 넉넉하다면 자주 사용하는 변수일 경우에 공통으로 관리해서 this를 사용하자고 개발 표준을 잡기도 한다. 리더의 성향에 따라 달라지는 문제여서 판단을 내리기 어렵다.
+그리고 이건 API 설계에도 마찬가지로 적용된다. 이유가 있어서 GET과 POST 요청 두가지를 사용했을텐데 도대체 왜 그랬을까?</p>
+
+<h2 id="선배님-왜-우리-프로젝트는-get과-post-요청-두가지만-사용하는-건가요">선배님! 왜 우리 프로젝트는 GET과 POST 요청 두가지만 사용하는 건가요?</h2>
+
+<blockquote>
+  <p>내 후배가 이렇게 질문한다면 난 뭐라고 대답해야할까?</p>
+</blockquote>
+
+<p>왜 GET과 POST만 사용할까? 나름의 가설을 세워보았다.</p>
+
+<ol>
+  <li>html 웹 폼은 GET과 POST를 지원하므로 (개발자가 편해서 생산성에 도움이 된다고 생각하여)</li>
+  <li>사용자 입력을 통해 PUT과 DELETE 요청이 발생할 경우에 대응하는 프로세스가 없어서</li>
+  <li>ajax 통신으로 인한 http 요청 시에 개발 표준에 대한 지식이 없어서</li>
+  <li>예전부터 그렇게 사용했으므로 (익숙함의 문제로)</li>
+  <li>데이터 삭제 요청시 물리삭제 보다는 flag 변경을 주로한다는 이유로(데이터 수정에 가까워서, 그렇다면 PUT이나 PATCH 요청은 왜 사용하지 않았던 것인가?)</li>
+  <li>신입 개발자가 다수 포함된 프로젝트여서 신입들의 수준에서 이런 고민을 할 필요가 없다고 생각했으므로 (리더의 가치판단 개입)</li>
+</ol>
+
+<p>이러다간 고민을 하다가 끝이 나지 않을 것 같아서 GET과 POST 요청만 사용했을 시에 얻는 이득과 RESTful API 표준을 정확히 지켜서 진행한 프로젝트는 어떤 차이가 있을지 생각해보자.</p>
+
+<hr />
+
+<h2 id="get-과-post-요청만-사용한-프로젝트">GET 과 POST 요청만 사용한 프로젝트</h2>
+
+<blockquote>
+  <p>장점: 초기 설계 복잡도가 낮다.</p>
+</blockquote>
+
+<blockquote>
+  <p>단점: 가독성이 떨어지고 API 일관성이 낮다.</p>
+</blockquote>
+
+<p>GET 과 POST 요청만 하는 것에 그치지 않고 DB 컬럼명과 같은 데이터를 JSON으로 준다고 할 때, 보안에 매우 취약하다.</p>
+
+<p>CRUD 연산을 PUT, DELETE에 매핑하는 RESSTful API 디자인이 보편화된 최근 트렌드에 부응하지 못 한다.</p>
+
+<p>다른 메서드 요청을 사용하지 않고 POST 만을 사용할 경우에 오버헤드가 증가할 가능성이 많다.</p>
+
+<p>기능을 추가할 경우에 엔드포인트가 늘어난다.</p>
+
+<h2 id="restful-api-설계-표준을-정확히-준수하는-프로젝트">RESTful API 설계 표준을 정확히 준수하는 프로젝트</h2>
+
+<blockquote>
+  <p>장점: 초기 설계 복잡도가 높다.을 정확히 준수하는 프로젝트</p>
+</blockquote>
+
+<blockquote>
+  <p>단점: 딱히 없다.복잡도가 높다.</p>
+</blockquote>
+
+<h2 id="장단점-비교">장단점 비교</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>RESTful API 설계 프로젝트</th>
+      <th>GET/POST 요청만 사용한 프로젝트</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>설계 원칙</strong></td>
+      <td>• 자원(Resource) 중심: 모든 것을 자원으로 간주하고 URI로 표현 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• Stateless: 서버는 클라이언트의 상태를 저장하지 않음 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• 균일한 인터페이스: HTTP 메서드(GET, POST, PUT, DELETE 등)를 이용해 자원 조작 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• HATEOAS: 애플리케이션 상태 전이의 엔진으로서 하이퍼미디어</td>
+      <td>• 기능/액션 중심: 특정 기능을 수행하는 엔드포인트에 초점 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• 상대적으로 덜 엄격한 Stateless: 경우에 따라 서버가 클라이언트 상태를 유지하는 방식도 사용될 수 있음 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• 제한된 HTTP 메서드: GET과 POST만 주로 사용하며, 때로는 URL 쿼리 파라미터나 요청 바디를 통해 ‘액션’을 명시</td>
+    </tr>
+    <tr>
+      <td><strong>명확성 및 가독성</strong></td>
+      <td><strong>높음</strong>: URI와 HTTP 메서드 조합만으로 어떤 자원에 어떤 작업을 하는지 직관적으로 파악 가능 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• 예: <code class="language-plaintext highlighter-rouge">GET /users/123</code> (123번 사용자 조회)<code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• 예: <code class="language-plaintext highlighter-rouge">DELETE /products/456</code> (456번 제품 삭제)</td>
+      <td><strong>낮음/혼란스러울 수 있음</strong>: 모든 작업을 GET/POST로 처리하므로 URI나 바디 내용을 확인해야 정확한 작업 파악 가능 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• 예: <code class="language-plaintext highlighter-rouge">POST /api/userAction?action=delete&amp;id=123&lt;br&gt;</code>• 예: <code class="language-plaintext highlighter-rouge">POST /deleteUser</code></td>
+    </tr>
+    <tr>
+      <td><strong>API 일관성</strong></td>
+      <td><strong>높음</strong>: HTTP 표준에 따라 일관된 방식으로 자원을 다루므로, 다양한 개발자들이 쉽게 이해하고 사용 가능 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• API 문서화 및 유지보수가 용이</td>
+      <td><strong>낮음</strong>: 각 기능마다 엔드포인트명이나 파라미터 구조가 다를 수 있어 일관성이 부족할 수 있음 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• API 문서화 및 유지보수에 더 많은 노력 필요</td>
+    </tr>
+    <tr>
+      <td><strong>캐싱</strong></td>
+      <td><strong>효율적</strong>: GET 요청에 대한 응답은 캐싱이 가능하여 네트워크 트래픽 및 서버 부하 감소에 유리 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• HTTP 캐싱 메커니즘을 적극 활용 가능</td>
+      <td><strong>제한적</strong>: GET 요청만 캐싱 가능하고, POST 요청은 기본적으로 캐싱되지 않음 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• GET 요청도 URL에 따라 캐싱 효율이 떨어질 수 있음</td>
+    </tr>
+    <tr>
+      <td><strong>확장성 및 유지보수</strong></td>
+      <td><strong>용이</strong>: 새로운 자원이나 기능 추가 시 기존 구조에 영향을 덜 주면서 확장 가능 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• 모듈화 및 재사용성이 높음 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• API 버전 관리에 유리</td>
+      <td><strong>어려움</strong>: 기능 추가 시 기존 엔드포인트의 변경이 필요하거나, 새로운 엔드포인트가 계속 추가되어 복잡해질 수 있음 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• 특정 기능에 종속적인 구조가 될 수 있음</td>
+    </tr>
+    <tr>
+      <td><strong>보안</strong></td>
+      <td>• GET 요청은 URL에 노출되므로 민감 정보 전송에 부적합 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• POST, PUT, DELETE는 HTTP Body를 사용하므로 URL 노출 위험 적음 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• HTTPS 적용은 필수</td>
+      <td>• GET 요청은 URL에 노출되므로 민감 정보 전송에 부적합 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• POST는 HTTP Body를 사용하므로 URL 노출 위험 적음 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• HTTPS 적용은 필수</td>
+    </tr>
+    <tr>
+      <td><strong>개발 복잡도</strong></td>
+      <td>•<strong>초기 설계 복잡도 높음</strong>: REST 원칙에 대한 이해와 자원 설계에 대한 고민 필요 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• <strong>장기적 복잡도 낮음</strong>: 일단 설계되면 개발 및 관리가 용이</td>
+      <td>•<strong>초기 설계 복잡도 낮음</strong>: 간단하게 필요한 기능별로 엔드포인트 생성 가능 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• <strong>장기적 복잡도 높음</strong>: API가 많아지고 복잡해질수록 관리 및 이해가 어려워짐</td>
+    </tr>
+    <tr>
+      <td><strong>브라우저/프레임워크 호환성</strong></td>
+      <td><strong>최신 브라우저 및 대부분의 프레임워크에서 완벽 지원</strong>: Ajax(fetch, Axios 등) 라이브러리를 통해 PUT, DELETE 요청 용이</td>
+      <td><strong>거의 모든 환경에서 완벽 지원</strong>: 가장 기본적인 HTTP 메서드이므로 호환성 문제 거의 없음 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• 레거시 환경에서도 무리 없이 사용 가능</td>
+    </tr>
+    <tr>
+      <td><strong>성능</strong></td>
+      <td><strong>효율적</strong>: 캐싱, HTTP 상태 코드 활용 등으로 전반적인 성능 개선에 유리 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• PUT/DELETE 자체의 오버헤드는 미미</td>
+      <td><strong>상대적으로 비효율적일 수 있음</strong>: 캐싱 활용이 제한적이며, 모든 요청을 POST로 처리할 경우 오버헤드 증가 가능성</td>
+    </tr>
+    <tr>
+      <td><strong>주요 사용 사례</strong></td>
+      <td>•<strong>최신 웹/모바일 애플리케이션 백엔드</strong>: 클라이언트-서버 간 데이터 통신 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• <strong>마이크로서비스 아키텍처</strong>: 서비스 간 통신 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• <strong>오픈 API</strong>: 외부 개발자에게 API 제공</td>
+      <td>•<strong>레거시 시스템 마이그레이션</strong>: 기존 시스템의 비즈니스 로직을 유지하면서 웹 인터페이스 추가 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• <strong>단순한 웹폼 제출</strong>: 특정 페이지에서의 특정 액션 수행 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• <strong>RESTful 개념이 도입되기 전/덜 중요시되던 시기의 프로젝트</strong></td>
+    </tr>
+    <tr>
+      <td><strong>성능</strong></td>
+      <td><strong>효율적</strong>: 캐싱, HTTP 상태 코드 활용 등으로 전반적인 성능 개선에 유리 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code>• PUT/DELETE 자체의 오버헤드는 미미</td>
+      <td><strong>상대적으로 비효율적일 수 있음</strong>: 캐싱 활용이 제한적이며, 모든 요청을 POST로 처리할 경우 오버헤드 증가 가능성</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="결론">결론</h2>
+
+<blockquote>
+  <p>RESTful API 설계를 하도록 하자</p>
+</blockquote>
+
+<p>RESTful API는 <strong>웹 아키텍처 스타일</strong>로, 자원(Resource) 중심의 설계와 HTTP 표준을 최대한 활용하여 클라이언트-서버 간 상호작용을 표준화하는 방법론이다.</p>
+
+<p><strong>http 메서드만 RESTful 규칙에 맞춰 나눈다고 RESTful이 되는 것은 아니다.</strong></p>
+
+<h2 id="restful-api-설계를-위한-http-메서드">RESTful API 설계를 위한 http 메서드</h2>
+
+<blockquote>
+  <p>GET</p>
+</blockquote>
+
+<p>특정 리소스의 표현을 요청한다. GET 요청은 데이터를 검색하는 데 사용되며, 서버의 상태를 변경하지 않아야 된다(즉, 안전합니다). 또한, 여러 번 반복해서 요청해도 동일한 결과를 반환하므로 멱등성을 가진다.</p>
+
+<ul>
+  <li>데이터 조회에 사용된다.</li>
+  <li><strong>요청 본문(body) 사용 가능하지만 권장하지 않음</strong>: RFC 7231에 따르면 GET 요청도 body를 가질 수 있으나, 대부분의 서버와 클라이언트에서 무시하므로 사용하지 않는 것이 좋다.</li>
+  <li>쿼리 파라미터(URL에 ?key=value&amp;… 형태로 추가)를 통해 데이터를 전달한다.</li>
+  <li>브라우저에서 직접 URL을 입력하거나 링크를 클릭할 때 사용되는 기본 메서드다.</li>
+  <li>캐싱이 가능하다.</li>
+</ul>
+
+<blockquote>
+  <p>POST</p>
+</blockquote>
+
+<p>서버에 데이터를 제출하여 새로운 리소스를 생성하거나, 기존 리소스에 데이터를 추가하거나, 특정 작업을 수행하도록 요청한다. POST 요청은 서버의 상태를 변경할 수 있으며, 여러 번 반복해서 요청할 경우 매번 다른 결과(예: 새로운 리소스 생성)를 가져올 수 있으므로 안전하지 않고 멱등성도 없다.</p>
+
+<ul>
+  <li>주로 새로운 리소스 생성에 사용된다.</li>
+  <li>데이터를 요청 본문(body)에 담아 전송한다.</li>
+  <li>파일 업로드, 웹 폼 데이터 제출 등에 사용된다.</li>
+  <li>캐싱이 안된다.</li>
+</ul>
+
+<blockquote>
+  <p>PUT</p>
+</blockquote>
+
+<p>요청 본문에 포함된 데이터로 대상 리소스 전체를 대체하거나, 해당 리소스가 존재하지 않으면 새로 생성한다. PUT 요청은 동일한 요청을 여러 번 보내도 결과가 동일하므로 멱등성을 가진다.</p>
+
+<ul>
+  <li>리소스의 완전한 갱신 또는 생성을 목적으로 한다.</li>
+  <li>클라이언트는 리소스의 URI를 명확하게 지정해야 한다.</li>
+  <li>부분적인 업데이트가 아닌 리소스 전체를 대체한다.</li>
+</ul>
+
+<blockquote>
+  <p>DELETE</p>
+</blockquote>
+
+<p>특정 리소스를 삭제하도록 요청한다. DELETE 요청은 여러 번 반복해도 동일하게 리소스가 삭제된 상태를 유지하므로 멱등성을 가진다.</p>
+
+<ul>
+  <li>리소스 제거에 사용된다.</li>
+  <li>요청 본문(body)은 일반적으로 사용되지 않는다.</li>
+  <li>성공적인 삭제는 200 (OK), 202 (Accepted), 204 (No Content) 등의 상태 코드로 응답한다.</li>
+  <li>요청 본문(body)은 일반적으로 사용되지 않는다.</li>
+</ul>
+
+<blockquote>
+  <p>HEAD</p>
+</blockquote>
+
+<p>GET 요청과 동일한 응답 헤더를 요청하지만, 응답 본문(body)은 포함하지 않는다.</p>
+
+<ul>
+  <li>리소스의 메타데이터(크기, 마지막 수정일, 콘텐츠 타입 등)만 확인하고자 할 때 사용된다.</li>
+  <li>실제로 리소스를 다운로드하지 않고도 리소스의 존재 여부나 변경 여부를 확인할 수 있어 대역폭 절약에 유용하다.</li>
+  <li>안전하고 멱등성을 가진다.</li>
+</ul>
+
+<blockquote>
+  <p>OPTIONS</p>
+</blockquote>
+
+<p>대상 리소스에 대해 클라이언트가 수행할 수 있는 HTTP 메서드(허용되는 메서드)나 다른 통신 옵션에 대한 정보를 요청한다.</p>
+
+<ul>
+  <li>주로 웹 애플리케이션에서 CORS(Cross-Origin Resource Sharing) 요청을 보내기 전, 실제 요청을 보낼지 여부를 결정하기 위한 “사전 요청(Preflight Request)”으로 사용된다.</li>
+  <li>서버는 Allow 헤더에 해당 리소스에 대해 허용되는 메서드 목록을 포함하여 응답한다.</li>
+  <li>안전하고 멱등성을 가진다.</li>
+</ul>
+
+<blockquote>
+  <p>PATCH</p>
+</blockquote>
+
+<p>대상 리소스의 일부를 수정하는 데 사용된다. PUT이 리소스 전체를 대체하는 반면, PATCH는 리소스의 특정 필드만 수정할 수 있다. <strong>PATCH는 구현 방식에 따라 멱등성을 가질 수도, 가지지 않을 수도 있다.</strong></p>
+
+<ul>
+  <li><strong>멱등성 여부</strong>
+    <ul>
+      <li>멱등적 PATCH: <code class="language-plaintext highlighter-rouge">{"name": "홍길동"}</code> (절대값 설정)</li>
+      <li>비멱등적 PATCH: <code class="language-plaintext highlighter-rouge">{"increment": 1}</code> (상대값 변경)</li>
+    </ul>
+  </li>
+  <li>리소스의 부분적인 업데이트에 사용됩니다.</li>
+</ul>
+
+<blockquote>
+  <p>CONNECT</p>
+</blockquote>
+
+<p>대상 리소스로의 터널 연결을 설정합니다. 주로 프록시 서버를 통해 SSL/TLS 암호화된 통신(HTTPS)을 설정할 때 사용됩니다.</p>
+
+<p>참고: <a href="https://www.rfc-editor.org/rfc/rfc9110.html">HTTP1</a> <a href="https://http2.github.io/">HTTP2</a> <a href="https://httpwg.org/specs/rfc9114.html">HTTP3</a></p>
+
+<hr />
+
+<h2 id="내가-궁금했던-내용">내가 궁금했던 내용</h2>
+
+<blockquote>
+  <p>멱등성이란</p>
+</blockquote>
+
+<p>여러 개의 동일한 요청이 동일한 효과를 반환한다. <strong>정확히는 첫 번째 요청 이후의 요청들이 시스템 상태를 변경하지 않는다는 의미이다.</strong> <a href="https://developer.mozilla.org/en-US/docs/Glossary/Idempotent">참조</a></p>
+
+<ul>
+  <li><strong>멱등적 메서드</strong>: GET, PUT, DELETE, HEAD, OPTIONS 요청들이 시스템 상태를 변경하지 않는다는 의미입니다.</li>
+  <li><strong>비멱등적 메서드</strong>: POST, PATCH (구현에 따라 다름), CONNECT</li>
+  <li><strong>Safe 메서드</strong>: GET, HEAD, OPTIONS (서버 상태를 변경하지 않음)</li>
+  <li>Safe 메서드는 항상 멱등적이지만, 멱등적 메서드가 항상 Safe한 것은 아니다.</li>
+</ul>
+
+<blockquote>
+  <p>GET과 PUT의 차이</p>
+</blockquote>
+
+<p>GET은 여러번의 요청이 있어도 서버의 상태가 변하지 않는다. PUT은 데이터가 없으면 생성할 수 있고 이미 있다면, 수정할 수 있다. 여러번의 요청이 있다면 우리가 요청한 데이터로 서버는 같은 상태를 유지한다. <a href="https://velog.io/@dion/HTTP-%EB%A9%94%EC%86%8C%EB%93%9C%EC%9D%98-%EB%A9%B1%EB%93%B1%EC%84%B1-%EA%B7%B8%EA%B2%8C-%EB%AD%94%EB%8D%B0">참조</a></p>
+
+<blockquote>
+  <p>GET과 POST가 아닌 다른 메서드는 오버헤드를 발생시킨다?</p>
+</blockquote>
+
+<p>HTTP 통신의 오버헤드는 메서드 요청에 의해 발생되는 것이 아니다. 네트워크 왕복 시간, 데이터의 크기, 헤더 정보, 연결 설정/해제 등의 문제로 발생되기 때문에 메서드의 사용만으로 판단하기엔 어렵다.</p>
+
+<p><strong>실제로는 RESTful API 설계가 오버헤드를 줄이는 데 도움이 된다</strong></p>
+
+<ul>
+  <li>GET 요청의 캐싱 활용으로 네트워크 트래픽 감소줄이는 데 도움된다</li>
+  <li>명확한 메서드 구분으로 불필요한 데이터 전송 방지</li>
+  <li>HTTP 상태 코드 활용으로 클라이언트-서버 간 효율적인 통신</li>
+</ul>
+
+<blockquote>
+  <p>보안의 관점에서 RESTful API란?</p>
+</blockquote>
+
+<p>원칙에 따라 올바르게 사용한다면 멱등성 활용 측면에서 네트워크 오류로 인한 요청이 재시도될 때 안전하게 처리될 수 있다.</p>
+
+
+    </div>
+
+</article>
+<div class="post-comments"><div class="post-comments" style="margin-top: 30px;">
+  <script src="https://giscus.app/client.js"
+          data-repo="devJZen/devJZen.github.io"
+          data-repo-id="R_kgDOOhejIQ"
+          data-category="General"
+          data-category-id="DIC_kwDOOhejIc4CtO1v"
+          data-mapping="title"data-strict="0"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="light"
+          data-lang="ko"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div></div></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --><style type="text/css" media="screen">
+.post-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+
+<div class="post-menu">
+  <div class="post-menu-title">Contents</div>
+  <div class="post-menu-content"></div>
+</div>
+
+<script>
+  function generateContent() {
+    var menu = document.querySelector(".post-menu");
+    var menuContent =  menu.querySelector(".post-menu-content");
+    var headings = document.querySelector(".post-content").querySelectorAll("h2, h3, h4, h5, h6");
+
+    // Hide menu when no headings
+    if (headings.length === 0) {
+      return menu.style.display = "none";
+    }
+
+    // Generate post menu
+    var menuHTML = '';
+    for (var i = 0; i < headings.length; i++) {
+      var h = headings[i];
+      menuHTML += (
+        '<li class="h-' + h.tagName.toLowerCase() + '">'
+        + '<a href="#h-' + h.getAttribute('id') + '">' + h.textContent + '</a></li>');
+    }
+
+    menuContent.innerHTML = '<ul>' + menuHTML + '</ul>';
+
+    // The header element
+    var header = document.querySelector('header.site-header');
+
+    function doMenuCollapse(index, over_items) {
+      var items = menuContent.firstChild.children;
+
+      if (over_items == undefined) {
+        over_items = 20;
+      }
+
+      if (items.length < over_items) {
+        return;
+      }
+
+      var activeItem = items[index];
+      var beginItem = activeItem
+      var endItem = activeItem
+      var beginIndex = index;
+      var endIndex = index + 1;
+      while (beginIndex >= 0
+        && !items[beginIndex].classList.contains('h-h2')) {
+        beginIndex -= 1;
+      }
+      while (endIndex < items.length
+        && !items[endIndex].classList.contains('h-h2')) {
+        endIndex += 1;
+      }
+      for (var i = 0; i < beginIndex; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+      for (var i = beginIndex + 1; i < endIndex; i++) {
+        item = items[i]
+        // if (!item.classList.contains('h-h2')) {
+          item.style.display = '';
+        // }
+      }
+      for (var i = endIndex; i < items.length; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+    }
+
+    // Init menu collapsed
+    doMenuCollapse(-1);
+
+    // Active the menu item
+    window.addEventListener('scroll', function (event) {
+      var lastActive = menuContent.querySelector('.active');
+      var changed = true;
+      var activeIndex = -1;
+      for (var i = headings.length - 1; i >= 0; i--) {
+        var h = headings[i];
+        var headingRect = h.getBoundingClientRect();
+        var headerRect = header.getBoundingClientRect();
+        var headerTop = Math.floor(headerRect.top);
+        var headerHeight = Math.floor(headerRect.height);
+        var headerHeight = headerTop + headerHeight + 20;
+        if (headingRect.top <= headerHeight) {
+          var id = 'h-' + h.getAttribute('id');
+          var a = menuContent.querySelector('a[href="#' + id  + '"]');
+          var curActive = a.parentNode;
+          if (curActive) {
+            curActive.classList.add('active');
+            activeIndex = i;
+          }
+          if (lastActive == curActive) {
+            changed = false;
+          }
+          break;
+        }
+      }
+      if (changed) {
+        if (lastActive) {
+          lastActive.classList.remove('active');
+        }
+        doMenuCollapse(activeIndex);
+      }
+      event.preventDefault();
+    });
+  }
+  generateContent();
+</script>
+</section>
+</div>
+
+      </div>
+    </main>
+
+  </body>
+</html>

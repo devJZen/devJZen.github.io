@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="kor"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+  <meta name="google-site-verification" content="9coAqf--ldpIW5wOy4TGR8WIqx2wl3ljvBBqvVubB48" />
+
+  <!-- Security Headers -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  <title>devJZen</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Chapter 4-1. CAP 정리와 블록체인 | devJZen</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Chapter 4-1. CAP 정리와 블록체인" />
+<meta name="author" content="devJZen" />
+<meta property="og:locale" content="kor" />
+<meta name="description" content="초기 분산 네트워크의 등장" />
+<meta property="og:description" content="초기 분산 네트워크의 등장" />
+<link rel="canonical" href="https://devjzen.github.io//web3/2025/07/29/4-CAP%EC%A0%95%EB%A6%AC%EC%99%80-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8.html" />
+<meta property="og:url" content="https://devjzen.github.io//web3/2025/07/29/4-CAP%EC%A0%95%EB%A6%AC%EC%99%80-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8.html" />
+<meta property="og:site_name" content="devJZen" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-07-29T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Chapter 4-1. CAP 정리와 블록체인" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"devJZen"},"dateModified":"2025-07-29T00:00:00+00:00","datePublished":"2025-07-29T00:00:00+00:00","description":"초기 분산 네트워크의 등장","headline":"Chapter 4-1. CAP 정리와 블록체인","mainEntityOfPage":{"@type":"WebPage","@id":"https://devjzen.github.io//web3/2025/07/29/4-CAP%EC%A0%95%EB%A6%AC%EC%99%80-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8.html"},"url":"https://devjzen.github.io//web3/2025/07/29/4-CAP%EC%A0%95%EB%A6%AC%EC%99%80-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8.html"}</script>
+<!-- End Jekyll SEO tag -->
+<!-- Open Graph -->
+  
+  
+  <meta property="og:image" content="https://devjzen.github.io//assets/images/post-image.png" />
+  <meta name="twitter:image" content="https://devjzen.github.io//assets/images/post-image.png" />
+  
+  <meta property="og:logo" content="https://devjzen.github.io//assets/images/favicon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://devjzen.github.io//feed.xml" title="devJZen" /><link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8"
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Init highlight js
+document.addEventListener('DOMContentLoaded', function(event) {
+  var els = document.querySelectorAll('pre code')
+
+  function addLangData(block) {
+    var outer = block.parentElement.parentElement.parentElement;
+    var lang = block.getAttribute('data-lang');
+    for (var i = 0; i < outer.classList.length; i++) {
+      var cls = outer.classList[i];
+      if (cls.startsWith('language-')) {
+        lang = cls;
+        break;
+      }
+    }
+    if (!lang) {
+      cls = block.getAttribute('class');
+      lang = cls ? cls.replace('hljs ', '') : '';
+    }
+    if (lang.startsWith('language-')) {
+      lang = lang.substr(9);
+    }
+    block.setAttribute('class', 'hljs ' + lang);
+    block.parentNode.setAttribute('data-lang', lang);
+  }
+
+  function addBadge(block) {
+    var enabled = ('true' || 'true').toLowerCase();
+    if (enabled == 'true') {
+      var pre = block.parentElement;
+      pre.classList.add('badge');
+    }
+  }
+
+  function handle(block) {
+    addLangData(block);
+    addBadge(block)
+    hljs.highlightBlock(block);
+  }
+
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    handle(el);
+  }
+});
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #000;
+    background-color: #f2cb05;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  code > table pre::before {
+    display: none;
+  }
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.css"
+  rel="stylesheet"
+/>
+<style>
+  .pswp .pswp__container .pswp__img {
+    background-color: white;
+  }
+</style>
+
+<script>
+  function initPhotoSwipe() {
+    var mainEl = document.querySelector("section.main");
+
+    var imgEls = mainEl.querySelectorAll("img:not(.emoji)");
+    imgEls.forEach((imgEl) => {
+      imgEl.outerHTML = `
+    <a class="photo-swipe"
+      href="${imgEl.src}"
+      data-width="${imgEl.getAttribute("width") || imgEl.width * 2}"
+      data-height="${imgEl.getAttribute("height") || imgEl.height * 2}"
+      data-caption="${imgEl.getAttribute("caption") || imgEl.alt}"
+      target="_blank">
+      ${imgEl.outerHTML}
+    </a>`;
+    });
+
+    // Init empty gallery array
+    var container = [];
+
+    // Loop over gallery items and push it to the array
+    var linkEls = mainEl.querySelectorAll("a.photo-swipe");
+    linkEls.forEach((link) => {
+      var item = {
+        src: link.getAttribute("href"),
+        w: link.dataset.width,
+        h: link.dataset.height,
+        title: link.dataset.caption || "",
+      };
+      container.push(item);
+    });
+
+    // Define click event on gallery item
+    linkEls.forEach((link, index) => {
+      link.addEventListener("click", (event) => {
+        // Prevent location change
+        event.preventDefault();
+
+        // Define object and gallery options
+        var pswp = document.querySelector(".pswp");
+
+        var zoomLevel = 1;
+
+        // Define object and gallery options
+        var options = {
+          index: index,
+          bgOpacity: 0.85,
+          showHideOpacity: true,
+          closeOnScroll: true,
+          maxSpreadZoom: 1,
+          getDoubleTapZoom: (isMouseClick, item) => {
+            if (item.detail) {
+              zoomLevel += item.detail.origEvent.shiftKey ? -1 : 1;
+              item.detail = undefined;
+            } else {
+              zoomLevel = zoomLevel === 1 ? 2 : 1;
+            }
+            if (zoomLevel <= 1) {
+              zoomLevel = 1;
+              setTimeout(() => pswp.classList.remove("pswp--zoomed-in"), 0);
+            }
+            return item.initialZoomLevel * zoomLevel;
+          },
+        };
+
+        // Initialize PhotoSwipe
+        var gallery = new PhotoSwipe(
+          pswp,
+          PhotoSwipeUI_Default,
+          container,
+          options
+        );
+
+        gallery.init();
+
+        // Custom zoom event
+        gallery.container.addEventListener("pswpTap", (e) => {
+          gallery.currItem.detail = e.detail;
+        });
+      });
+    });
+  }
+
+  window.addEventListener("load", initPhotoSwipe);
+</script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe.
+           It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg"></div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides.
+              PhotoSwipe keeps only 3 of them in the DOM to save memory.
+              Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter"></div>
+        <button
+          class="pswp__button pswp__button--close"
+          title="Close (Esc)"
+        ></button>
+        <button class="pswp__button pswp__button--share" title="Share"></button>
+        <button
+          class="pswp__button pswp__button--fs"
+          title="Toggle fullscreen"
+        ></button>
+        <button
+          class="pswp__button pswp__button--zoom"
+          title="Zoom in/out"
+        ></button>
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip"></div>
+      </div>
+      <button
+        class="pswp__button pswp__button--arrow--left"
+        title="Previous (arrow left)"
+      ></button>
+      <button
+        class="pswp__button pswp__button--arrow--right"
+        title="Next (arrow right)"
+      ></button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/js/callout.js"></script>
+<script src="/assets/js/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.9.0/dist/mermaid.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header ">
+
+  <div class="wrapper">
+    <div class="site-header-inner"><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+              </svg>
+            </span>
+          </label>
+
+          <div class="translate-toggle-container">
+            <label class="translate-switch">
+              <input type="checkbox" onclick="toggleLanguage(this)">
+              <span class="slider round"></span>
+            </label>
+            <span class="switch-label notranslate">KO</span>
+          </div>
+
+          <div class="trigger"><a class="page-link" href="/">HOME</a><a class="page-link" href="/about.html">ABOUT</a><a class="page-link" href="/archives.html">ARCHIVES</a><a class="page-link" href="/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<span class="page-link">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<span class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</span>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'kor',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</span></div>
+        </nav></div>
+  </div>
+</header>
+
+<script>
+function toggleLanguage(toggle) {
+  var switchLabel = document.querySelector(".switch-label");
+
+  if (toggle.checked) {
+    switchLabel.textContent = "EN";
+  } else {
+    switchLabel.textContent = "KO";
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  if (googleCombo) {
+    googleCombo.value = toggle.checked ? "en" : "ko";
+    var event = new Event("change");
+    googleCombo.dispatchEvent(event);
+  }
+}
+
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;
+
+
+      var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+<script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div id="click-to-top" class="click-to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+<script>
+  (function () {
+    const clickToTop = document.getElementById('click-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        clickToTop.classList.add('show')
+      }else {
+        clickToTop.classList.remove('show')
+      }
+    });
+    clickToTop.addEventListener('click', () => {
+      window.smoothScrollTo(0);
+    });
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">Chapter 4-1. CAP 정리와 블록체인</h1>
+  <h2 class="post-subtitle"></h2>
+
+  <p class="post-meta">
+    <time class="dt-published" datetime="2025-07-29T00:00:00+00:00" itemprop="datePublished"><i class="fa fa-calendar"></i> 2025 Jul 29 
+    </time>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 13 mins</span>
+  </p><div class="post-tags"><a class="post-tag" href="/tags.html#Blockchain">#Blockchain</a></div></header>
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <h2 id="초기-분산-네트워크의-등장">초기 분산 네트워크의 등장</h2>
+
+<p>CAP 정리와 같은 분산 시스템 이론이 정립되기 전부터, 중앙 통제 없이 작동하는 네트워크에 대한 아이디어는 여러 형태로 구현됐다.</p>
+
+<ul>
+  <li>
+    <p><strong>ARPANET</strong>: 초기 인터넷의 효시인 ARPANET은 군사적 목적으로, 일부 노드가 파괴되어도 전체 네트워크가 유지되도록 설계됐다. 이는 중앙 서버 없이 데이터를 여러 경로로 전송하는 분산 네트워크 개념의 초기 구현 사례 중 하나다. ARPANET의 설계 철학은 분할 내성(Partition Tolerance)과 가용성(Availability)의 중요성을 보여주며 ==훗날 CAP 정리의 이론적 토대를 마련했다.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>==</p>
+  </li>
+  <li>
+    <p><strong>유즈넷 (Usenet)</strong>: 1980년에 등장한 세계적인 분산 토론 시스템이다. 중앙 서버 없이, 전 세계 서버들이 서로 메시지를 주고받는 ‘플러딩(flooding)’ 방식으로 운영됐다. 각 서버 관리자가 독립적으로 연결할 다른 서버와 수신할 뉴스 그룹을 결정하는 구조로, 매우 ==탈중앙화된 초기 소셜 네트워크로 볼 수 있다.<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>==</p>
+  </li>
+  <li>
+    <p><strong>피도넷 (FidoNet)</strong>: 1980년대에 유행했던 BBS(개인 컴퓨터 통신 서비스)들을 연결하던 네트워크다. 전 세계 수천 개의 독립적인 BBS가 피도넷을 통해 이메일과 파일을 교환했다. ==전화 접속을 통해 데이터를 저장하고 전달하는(store-and-forward) 방식으로 작동하는 자발적 참여 기반의 분산 네트워크였다.<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup>==</p>
+  </li>
+  <li>
+    <p><strong>P2P (Peer-to-Peer) 네트워크</strong>: 90년대 후반부터 등장한 냅스터(Napster), 비트토렌트(BitTorrent) 등은 이 개념을 대중화시킨 대표적인 사례다. 중앙 서버의 개입 없이 개인 컴퓨터(Peer)들이 직접 연결되어 데이터를 공유하는 방식으로, 오늘날까지도 널리 사용된다.</p>
+  </li>
+</ul>
+
+<p>이러한 초기 네트워크들은 중앙 실패 지점(single point of failure)이 없는 견고한 통신 시스템을 만들려는 시도였으며, 현재 블록체인 기술의 사상적 기반이 되었다.</p>
+
+<h2 id="cap-정리의-등장">CAP 정리의 등장</h2>
+
+<p><strong>CAP 정리</strong>는 분산 시스템 설계의 근본적인 트레이드오프를 설명하는 원칙이다.</p>
+
+<p>CAP 정리에 담긴 분산 데이터베이스 설계 시의 트레이드오프는 <strong>1970년대부터 분산 데이터베이스 설계자들에게 알려져 있었다</strong>.
+<strong>2000년 에릭 브루어(Eric Brewer)에 의해 CAP 정리로 명명</strong>되었다. 브루어의 관련 연구는 <strong>1999년</strong>에 처음 발표되기도 했다.
+이후 길버트(Gilbert)와 린치(Lynch)에 의해 <strong>2002년</strong>에 정리로 공식화됐다.</p>
+
+<p>• <strong>의미</strong>: CAP 정리는 분산 시스템이 다음 세 가지 속성 중 최대 두 가지만을 동시에 만족시킬 수 있다는 것을 의미한다.</p>
+<ul>
+  <li><strong>일관성 (Consistency)</strong>: 모든 노드가 동시에 같은 데이터를 보여줘야 한다.</li>
+  <li><strong>가용성 (Availability)</strong>: 모든 요청에 대해 시스템은 항상 응답해야 한다.</li>
+  <li><strong>분할 내성 (Partition Tolerance)</strong>: 네트워크에 문제가 생겨 노드 간 통신이 단절되더라도 시스템은 계속 작동해야 한다.</li>
+</ul>
+
+<p>현실의 분산 시스템에서 네트워크 분할(Partition)은 언제든 발생할 수 있는 피할 수 없는 문제다. 따라서 <strong>분할 내성(P)은 기본적으로 만족시켜야 할 필수 조건</strong>이 되었고, 설계자들은 <strong>일관성(C)과 가용성(A) 사이에서 트레이드오프</strong>를 선택하게 된다.</p>
+
+<h2 id="cap-활용-사례-cp와-ap-시스템">CAP 활용 사례: CP와 AP 시스템</h2>
+
+<h4 id="1-cp-시스템-일관성--분할-내성">1. CP 시스템 (일관성 + 분할 내성)</h4>
+<p>네트워크 분할이 발생했을 때, 데이터의 일관성을 우선시하여 일부 노드의 응답을 중단시키는 시스템이다. 데이터가 틀릴 바에는 차라리 응답하지 않는 것을 선택한다.</p>
+
+<ul>
+  <li><strong>활용 사례</strong>: 은행의 ATM, 금융 거래 시스템
+    <ul>
+      <li><strong>예시</strong>: 두 개의 데이터 센터(A, B)를 운영하는 은행이 있다고 가정해보자. 네트워크 문제로 A와 B의 연결이 끊겼을 때, A 데이터 센터에 연결된 ATM에서 사용자가 돈을 인출하려 한다. 이때 시스템은 B 데이터 센터의 최신 잔액 정보를 확인할 수 없으므로, 데이터 불일치를 막기 위해 거래를 거부(응답 실패)한다. 가용성은 떨어지지만, 계좌 정보의 일관성은 지킬 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="2-ap-시스템-가용성--분할-내성">2. AP 시스템 (가용성 + 분할 내성)</h4>
+<p>네트워크 분할이 발생했을 때, 데이터의 일관성이 다소 깨지더라도 모든 요청에 응답하는 것을 우선시하는 시스템이다.</p>
+
+<ul>
+  <li><strong>활용 사례</strong>: 소셜 미디어 피드, 온라인 쇼핑몰의 장바구니 기능
+    <ul>
+      <li><strong>예시</strong>: 인스타그램이나 페이스북 같은 소셜 미디어는 전 세계에 분산된 서버를 사용한다. 일부 서버에 통신 문제가 생기더라도 사용자는 언제나 피드를 보거나 ‘좋아요’를 누를 수 있어야 한다. ‘좋아요’ 개수가 실시간으로 정확히 일치하지 않더라도 서비스 자체는 중단 없이 제공되는 것이 더 중요하기 때문이다. 데이터는 나중에 동기화(Eventual Consistency)된다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="블록체인과-cap-정리">블록체인과 CAP 정리</h2>
+
+<p>블록체인 역시 분산 원장 기술(DLT)을 기반으로 하는 분산 시스템이므로 CAP 정리의 영향을 받는다. CAP 정리를 제안한 에릭 브루어는 나중에 이 정리가 ‘셋 중 둘’의 문제가 아니라, 네트워크 분할(Partition)이라는 특정 장애 상황에서 어떤 것을 우선할지 선택하는 ‘절충’의 문제라고 명확히 했다.</p>
+
+<ul>
+  <li>
+    <p><strong>블록체인의 선택</strong>: 대부분의 블록체인(비트코인, 이더리움 등)은 네트워크 분할 시, <strong>CP(일관성 + 분할 내성) 시스템</strong>으로 작동하도록 설계되었다. 이는 가용성보다 데이터의 일관성을 우선시한다는 의미다.</p>
+  </li>
+  <li>
+    <p><strong>일관성(C)</strong>: 모든 참여자가 동일한 장부(블록체인)를 공유해야 하며, 거래 기록은 위변조될 수 없고 모두에게 동일하게 보여야 한다. 포크(Fork)가 발생하더라도 결국 하나의 정식 체인(Canonical Chain)만 인정되어 일관성을 유지한다.</p>
+  </li>
+  <li>
+    <p><strong>분할 내성(P)</strong>: 블록체인은 전 세계에 흩어진 수많은 노드로 구성되며, 일부 노드가 네트워크에서 분리되더라도 전체 시스템은 계속해서 블록을 생성하고 작동한다.</p>
+  </li>
+  <li>
+    <p><strong>가용성(A)과의 절충</strong>: 블록체인은 가용성을 완전히 ‘희생’하지 않는다. 대신, 일관성을 보장하기 위해 ‘즉각적인 응답’을 ‘최종적인 응답’으로 지연시킨다. 즉, 시스템은 요청에 응답할 수 있지만(Available), 그 응답이 모든 노드에게 동의를 받은 ‘확정된’ 상태가 되기까지는 시간이 걸린다. 이 지연 시간이 바로 블록체인이 일관성을 위해 가용성과 맞바꾸는 절충점이다.</p>
+  </li>
+</ul>
+
+<h4 id="요약">요약</h4>
+<p>블록체인이 CAP 정리에서 어떤 선택을 하는지 쉽게 풀어쓰면 다음과 같다.</p>
+
+<ul>
+  <li>
+    <p><strong>‘일관성’과 ‘분할 내성’을 우선한다</strong>: 블록체인의 최우선 목표는 ‘모든 참여자가 동일한 정보를 보는 것(일관성)’과 ‘네트워크 일부가 고장 나도 전체는 동작하는 것(분할 내성)’이다.</p>
+  </li>
+  <li>
+    <p><strong>왜 일관성이 중요한가?</strong>: 모든 참여자가 동일한 거래 장부를 공유해야 자산의 신뢰가 보장된다. 특히 비트코인 같은 작업증명(PoW) 방식에서는 합의 과정에서 일시적으로 데이터가 두 갈래(포크)로 나뉠 수 있지만, 결국 모두가 하나의 정답 체인만 인정하고 따라가므로 최종적인 일관성을 유지한다.</p>
+  </li>
+  <li>
+    <p><strong>왜 분할 내성이 중요한가?</strong>: 중앙 서버가 없기 때문에, 전 세계에 흩어진 컴퓨터(노드)들의 연결이 일부 끊어져도 전체 네트워크는 멈추지 않고 계속 작동해야만 탈중앙 시스템으로 존재할 수 있다.</p>
+  </li>
+  <li>
+    <p><strong>가용성(A)은 어떻게 절충되는가?</strong>: 가용성을 완전히 포기하는 것은 아니다. 대신, ‘즉각적인’ 가용성을 ‘최종적인’ 데이터 일관성과 맞바꾼다. 거래가 발생하면 네트워크에 즉시 전파되지만, 이 거래가 모든 노드에게 <strong>‘확정(Finality)’</strong> 된 상태로 인정받기까지는 합의 시간이 필요하다. 예를 들어 비트코인은 6개의 블록이 쌓이는 약 1시간을 기다려야 거래가 사실상 뒤집을 수 없는 <strong>내구성(Durability)</strong> 을 갖는다고 본다. 이 <strong>‘최종 합의까지의 지연 시간(Latency to Finality)’</strong> 이 바로 블록체인이 일관성을 위해 가용성과 절충하는 지점이다.</p>
+  </li>
+</ul>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://www.internetsociety.org/internet/history-internet/brief-history-internet/">Internet Society: Brief History of the Internet</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="https://www.livinginternet.com/u/ui_history.htm">Living Internet: Usenet History</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p><a href="https://arstechnica.com/information-technology/2014/05/fidonet-the-bbs-era-network-thats-still-connecting/">Ars Technica: FidoNet</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+    </div>
+
+</article>
+<div class="post-comments"><div class="post-comments" style="margin-top: 30px;">
+  <script src="https://giscus.app/client.js"
+          data-repo="devJZen/devJZen.github.io"
+          data-repo-id="R_kgDOOhejIQ"
+          data-category="General"
+          data-category-id="DIC_kwDOOhejIc4CtO1v"
+          data-mapping="title"data-strict="0"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="light"
+          data-lang="ko"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div></div></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --><style type="text/css" media="screen">
+.post-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+
+<div class="post-menu">
+  <div class="post-menu-title">Contents</div>
+  <div class="post-menu-content"></div>
+</div>
+
+<script>
+  function generateContent() {
+    var menu = document.querySelector(".post-menu");
+    var menuContent =  menu.querySelector(".post-menu-content");
+    var headings = document.querySelector(".post-content").querySelectorAll("h2, h3, h4, h5, h6");
+
+    // Hide menu when no headings
+    if (headings.length === 0) {
+      return menu.style.display = "none";
+    }
+
+    // Generate post menu
+    var menuHTML = '';
+    for (var i = 0; i < headings.length; i++) {
+      var h = headings[i];
+      menuHTML += (
+        '<li class="h-' + h.tagName.toLowerCase() + '">'
+        + '<a href="#h-' + h.getAttribute('id') + '">' + h.textContent + '</a></li>');
+    }
+
+    menuContent.innerHTML = '<ul>' + menuHTML + '</ul>';
+
+    // The header element
+    var header = document.querySelector('header.site-header');
+
+    function doMenuCollapse(index, over_items) {
+      var items = menuContent.firstChild.children;
+
+      if (over_items == undefined) {
+        over_items = 20;
+      }
+
+      if (items.length < over_items) {
+        return;
+      }
+
+      var activeItem = items[index];
+      var beginItem = activeItem
+      var endItem = activeItem
+      var beginIndex = index;
+      var endIndex = index + 1;
+      while (beginIndex >= 0
+        && !items[beginIndex].classList.contains('h-h2')) {
+        beginIndex -= 1;
+      }
+      while (endIndex < items.length
+        && !items[endIndex].classList.contains('h-h2')) {
+        endIndex += 1;
+      }
+      for (var i = 0; i < beginIndex; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+      for (var i = beginIndex + 1; i < endIndex; i++) {
+        item = items[i]
+        // if (!item.classList.contains('h-h2')) {
+          item.style.display = '';
+        // }
+      }
+      for (var i = endIndex; i < items.length; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+    }
+
+    // Init menu collapsed
+    doMenuCollapse(-1);
+
+    // Active the menu item
+    window.addEventListener('scroll', function (event) {
+      var lastActive = menuContent.querySelector('.active');
+      var changed = true;
+      var activeIndex = -1;
+      for (var i = headings.length - 1; i >= 0; i--) {
+        var h = headings[i];
+        var headingRect = h.getBoundingClientRect();
+        var headerRect = header.getBoundingClientRect();
+        var headerTop = Math.floor(headerRect.top);
+        var headerHeight = Math.floor(headerRect.height);
+        var headerHeight = headerTop + headerHeight + 20;
+        if (headingRect.top <= headerHeight) {
+          var id = 'h-' + h.getAttribute('id');
+          var a = menuContent.querySelector('a[href="#' + id  + '"]');
+          var curActive = a.parentNode;
+          if (curActive) {
+            curActive.classList.add('active');
+            activeIndex = i;
+          }
+          if (lastActive == curActive) {
+            changed = false;
+          }
+          break;
+        }
+      }
+      if (changed) {
+        if (lastActive) {
+          lastActive.classList.remove('active');
+        }
+        doMenuCollapse(activeIndex);
+      }
+      event.preventDefault();
+    });
+  }
+  generateContent();
+</script>
+</section>
+</div>
+
+      </div>
+    </main>
+
+  </body>
+</html>

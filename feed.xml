@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="kor"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://devjzen.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://devjzen.github.io//" rel="alternate" type="text/html" hreflang="kor" /><updated>2026-02-01T14:54:57+00:00</updated><id>https://devjzen.github.io//feed.xml</id><title type="html">devJZen</title><subtitle>Research interests: Byzantine Fault Tolerance, consensus protocols, and low-level systems security.</subtitle><author><name>devJZen</name></author><entry><title type="html">7. dependabot으로 종속성 관리</title><link href="https://devjzen.github.io//study/2026/02/01/Study-7-dependabot.html" rel="alternate" type="text/html" title="7. dependabot으로 종속성 관리" /><published>2026-02-01T00:00:00+00:00</published><updated>2026-02-01T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2026/02/01/Study-7-dependabot</id><content type="html" xml:base="https://devjzen.github.io//study/2026/02/01/Study-7-dependabot.html"><![CDATA[<h2 id="dependabot은-무엇인가">dependabot은 무엇인가?</h2>
+
+<blockquote>
+  <p>Configuring Dependabot security updates</p>
+</blockquote>
+
+<p><a href="https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/secure-your-dependencies/configuring-dependabot-security-updates">공식문서</a>에 따르면 내가 매번 패치노트를 읽지 않아도 알아서 내게 읽어주는 친절한 봇이 있다는 걸 알게 됐다. 이래서 제조사의 공식문서를 자주 읽어봐야하는 것이구나 싶기도 하다.</p>
+
+<h2 id="어떻게-사용할-수-있을까">어떻게 사용할 수 있을까?</h2>
+
+<p><code class="language-plaintext highlighter-rouge">dependabot.yml</code> 을 만들 수 있으나 없어도 된다. Security updates 모드를 사용하면 취약점 발견되면 알아서 PR 요청 올려준다.</p>
+
+<h2 id="저장소에-라벨-생성">저장소에 라벨 생성</h2>
+
+<p>하..나는 깃허브 PR 요청에 익숙하지 않아서 어렵다고 느끼는데 dependabot이 추천해주는 방향으로 태그라벨도 찾아서 추가하고 직접 검토하고 서빙되는 공식문서를 읽으니까 편하다고 느낀다. 어감이 뭔가 다팬다 봇 같아서 ㅋㅋㅋㅋㅋㅋ재밌는 거 같다…요즘 재미찾기가 너무 어려워서(사실 잘생긴 사람들을 보면 재밌음) 이런 것에 재미느낀다 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ</p>]]></content><author><name>devJZen</name></author><category term="study" /><category term="study" /><summary type="html"><![CDATA[dependabot은 무엇인가?]]></summary></entry><entry><title type="html">6. Vim</title><link href="https://devjzen.github.io//study/2026/01/22/Study-6-Vim.html" rel="alternate" type="text/html" title="6. Vim" /><published>2026-01-22T00:00:00+00:00</published><updated>2026-01-22T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2026/01/22/Study-6-Vim</id><content type="html" xml:base="https://devjzen.github.io//study/2026/01/22/Study-6-Vim.html"><![CDATA[<h2 id="vim은-무엇인가">Vim은 무엇인가?</h2>
+
+<blockquote>
+  <p>Vim - the ubiquitous text editor</p>
+</blockquote>
+
+<p><a href="https://www.vim.org/">공식 문서</a>에 따르면 유비쿼터스 텍스트 에디터라고 표현하고 있다. 그렇다면 유비쿼터스란 무엇인가? 대학 시절에 유비쿼터스에 대해서 배울 때 무선 기기에 대해서 배우고, IoT에 대해서 배웠다. 쉽게 접근하고 사용할 수 있어서 유비쿼터스라고 배웠는데 Vim은 내게 너무 힘든 것이다. 그럼 왜 유비쿼터스라고 했는지 알아보자..</p>
+
+<h2 id="ubiquitous는-무엇인가">Ubiquitous는 무엇인가?</h2>
+
+<blockquote>
+  <p>언제 어디서든 접근할 수 있는 것</p>
+</blockquote>
+
+<p>시간과 장소에 구애받지 않고 언제나 네트워크에 접속할 수 있는 통신 환경. 라틴어의 유비쿼터스는 ‘언제나 어디에나 존재한다’는 뜻을 가지고 있으며, 정보 통신 분야에서는 시간, 장소를 초월한 통신 환경을 목표로 한다. 예를 들면, 전화 또는 인터넷으로 가정에 있는 보일러를 켜고 끌 수 있으며, 해외 공장에 있는 기계를 자기 자리에서 원격으로 제어할 수 있다. 유비쿼터스는 이러한 여러 가지 기기나 사물에 컴퓨터를 집어 넣어 사용자와의 커뮤니케이션을 쉽게 해주는 정보 기술(IT) 환경 또는 정보 기술 패러다임을 뜻한다. ⏤ <a href="https://terms.tta.or.kr/dictionary/dictionaryView.do?word_seq=062039-4">정보통신용어사전</a></p>
+
+<h2 id="그럼-왜-vim은-유비쿼터스라고-했을까">그럼 왜 Vim은 유비쿼터스라고 했을까?</h2>
+
+<blockquote>
+  <p>이 미친것은 작성하기 전까지는 md 파일의 문법 지적도 안 해준다.</p>
+</blockquote>
+
+<p>이 미친것…왜 내가 터미널 환경에서만 개발한다고 했을까 스스로 뉘우치고 있지만 지적 허영을 즐겼던 나로서는 사실 이런 고통이 조금 훈장같다.
+한참 러스트로 웹을 구현하고 있는데 터미널로 md 파일 하나 작성하고 나면 problem이 여러개 나타나서 내가 헛공부를 했다는 걸 깨닫게 해준다..
+바이브에 미쳐있었기에 이런 문제를 확인할 수 없었으나 사상누각을 여러번 경험해와서 이제는 더 이상 물러설 수 없다는 심정으로 Vim을 사용해보려고 한다…그렇다면 이렇게나 은은한 스트레스를 선사하는 빔은 왜 스스로 유비쿼터스라고 했을까…?</p>
+
+<p>“Vim is a highly configurable text editor built to make creating and changing any kind of text very efficient. It is included as “vi” with most UNIX systems and with Apple OS X.”</p>
+
+<p>공식 문서에 쓰여있다. 리눅스 환경 뿐만아니라 유닉스를 비롯하여 다양한 OS에서 사용할 수 있기에 유비쿼터스라고 했을까…?
+전세계 개발자들이 구현해내는 디스플레이 혁명을 바라보는 나에게 컴퓨터라는 것과 웹과 앱, OS의 한계는 너무나도 고통스럽다.</p>
+
+<blockquote>
+  <p>[!note] seravo에서도 같은 고민을 했다!<br />
+내가 생각했던 고민의 결과를 <a href="https://linuxnatives.net/2020/vim-the-ubiquitous-text-editor-and-your-new-best-friend">seravo</a>의 포스팅으로 마주할 수 있었다.<br />
+seravo는 핀란드 리눅스 전문가들이 작성하는 블로그라고 한다.<br />
+뉴비에게 힘든 것이 리눅스이지만 익숙해지면 편리하다고 하니 열심히 써봐야겠다.</p>
+</blockquote>]]></content><author><name>devJZen</name></author><category term="study" /><category term="study" /><summary type="html"><![CDATA[Vim은 무엇인가?]]></summary></entry><entry><title type="html">블록체인 개발을 위한 프로젝트 (4)</title><link href="https://devjzen.github.io//web3/2026/01/18/DevPrep-4.html" rel="alternate" type="text/html" title="블록체인 개발을 위한 프로젝트 (4)" /><published>2026-01-18T00:00:00+00:00</published><updated>2026-01-18T00:00:00+00:00</updated><id>https://devjzen.github.io//web3/2026/01/18/DevPrep-4</id><content type="html" xml:base="https://devjzen.github.io//web3/2026/01/18/DevPrep-4.html"><![CDATA[<h2 id="계획-변경">계획 변경</h2>
+
+<p>Rust를 학습해야하는 상황이어서 기존 DevPrep은 추후에 수정하여 학습 증진을 위해 사용해보도록 하려고 한다. 웹 푸시 알림을 추가하여 학습하는 것이 좋지만, 나는 주로 컴퓨터를 내내 켜두고 웹을 사용하므로 방향을 바꿨다.</p>
+
+<h2 id="한국어로-만들어진-솔라나-지침서">한국어로 만들어진 솔라나 지침서</h2>
+
+<p>초기 진입 시에 솔라나를 학습하기에 어려웠기에 누구나 쉽게 읽을 수 있는 솔라나 개발문서를 작성해보려고 한다.</p>]]></content><author><name>devJZen</name></author><category term="web3" /><category term="Solana" /><category term="Vue3.js" /><summary type="html"><![CDATA[계획 변경]]></summary></entry><entry><title type="html">블록체인 개발을 위한 프로젝트 (5)</title><link href="https://devjzen.github.io//web3/2026/01/18/DevPrep-5.html" rel="alternate" type="text/html" title="블록체인 개발을 위한 프로젝트 (5)" /><published>2026-01-18T00:00:00+00:00</published><updated>2026-01-18T00:00:00+00:00</updated><id>https://devjzen.github.io//web3/2026/01/18/DevPrep-5</id><content type="html" xml:base="https://devjzen.github.io//web3/2026/01/18/DevPrep-5.html"><![CDATA[<h2 id="zola">zola</h2>
+
+<blockquote>
+  <p>zola는 종속성이 없고, 데이터 베이스가 필요없는 Sass 기반 정적 페이지 생성 라이브러리다.</p>
+</blockquote>
+
+<p>사용하기 쉽고, 마크다운을 제공하며 단일 실행 파일을 제공해서 zola를 선택했다.</p>]]></content><author><name>devJZen</name></author><category term="web3" /><category term="Solana" /><category term="Rust" /><summary type="html"><![CDATA[zola]]></summary></entry><entry><title type="html">Jekyll</title><link href="https://devjzen.github.io//study/2026/01/05/Jekyll-%EB%AA%85%EB%A0%B9%EC%96%B4.html" rel="alternate" type="text/html" title="Jekyll" /><published>2026-01-05T00:00:00+00:00</published><updated>2026-01-05T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2026/01/05/Jekyll-%EB%AA%85%EB%A0%B9%EC%96%B4</id><content type="html" xml:base="https://devjzen.github.io//study/2026/01/05/Jekyll-%EB%AA%85%EB%A0%B9%EC%96%B4.html"><![CDATA[<h2 id="jekyll-이란">Jekyll 이란?</h2>
+
+<p>정적 웹사이트 프레임워크, <a href="https://jekyllrb.com/">Jekyll</a> 이다.
+html, css, md 관리에 편하다.
+이걸 썼던 이유는 나는 옵시디언을 사용하고 있었고 굳이 다른 프론트에 fast API를 붙여서 관리하고 싶지 않았다. 
+재밌는 지점은 학술 블로그는 전부 Jekyll 테마 또는 html 하나로 유지되고 있는 걸 확인했다. 
+운명같은 프레임워크다.</p>
+
+<h2 id="jekyll-테마">Jekyll 테마</h2>
+
+<p><a href="https://github.com/jeffreytse/jekyll-theme-yat">jekyll-theme-yat</a>을 커스텀해서 사용하고 있다. 시간이 괜찮을 때 테마 생성자에게 소정의 금액을 지원하고 나만의 테마로 바꿀 예정인데 내가 이 테마에서 가장 좋아했던 것은 커스텀 자유도다. 
+테마를 커스텀 한다고 하여도 저장소에 출처를 남기도록 하자.</p>
+
+<h2 id="자주-사용하는-명령어-모음">자주 사용하는 명령어 모음</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#기본 명령어</span>
+
+  <span class="c"># 로컬 개발 서버 실행 (가장 많이 사용)</span>
+  bundle <span class="nb">exec </span>jekyll serve
+
+  <span class="c"># 개발 서버 + 자동 새로고침 + draft 포함</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--livereload</span> <span class="nt">--drafts</span>
+
+  <span class="c"># 특정 포트로 실행</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--port</span> 4001
+
+  <span class="c"># 빌드만 실행 (배포용)</span>
+  bundle <span class="nb">exec </span>jekyll build
+
+  <span class="c"># 빌드 + 상세 로그</span>
+  bundle <span class="nb">exec </span>jekyll build <span class="nt">--verbose</span>
+
+<span class="c">#새 프로젝트/포스트 생성</span>
+
+  <span class="c"># 새 Jekyll 사이트 생성</span>
+  jekyll new my-site
+
+  <span class="c"># 특정 테마로 생성</span>
+  jekyll new my-site <span class="nt">--blank</span>
+
+  <span class="c"># 새 포스트 생성 (플러그인 필요)</span>
+  bundle <span class="nb">exec </span>jekyll post <span class="s2">"My New Post"</span>
+
+  <span class="c"># 새 draft 생성</span>
+  bundle <span class="nb">exec </span>jekyll draft <span class="s2">"My Draft Post"</span>
+
+<span class="c">#개발 시 유용한 옵션</span>
+
+  <span class="c"># 증분 빌드 (변경된 파일만 빌드 - 속도 향상)</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--incremental</span>
+
+  <span class="c"># future 날짜 포스트도 표시</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--future</span>
+
+  <span class="c"># 모든 옵션 조합 (개발 시 추천)</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--livereload</span> <span class="nt">--drafts</span> <span class="nt">--future</span> <span class="nt">--incremental</span>
+
+  <span class="c"># 특정 환경으로 실행</span>
+  <span class="nv">JEKYLL_ENV</span><span class="o">=</span>production bundle <span class="nb">exec </span>jekyll build
+
+<span class="c">#클린/초기화</span>
+
+  <span class="c"># 빌드 캐시 삭제 후 재빌드</span>
+  bundle <span class="nb">exec </span>jekyll clean
+  bundle <span class="nb">exec </span>jekyll build
+
+  <span class="c"># 의존성 설치/업데이트</span>
+  bundle <span class="nb">install
+  </span>bundle update
+
+  <span class="c"># 특정 gem 업데이트</span>
+  bundle update jekyll
+
+<span class="c">#디버깅</span>
+
+  <span class="c"># 상세 로그 출력</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--verbose</span>
+
+  <span class="c"># 추적 모드 (매우 상세한 로그)</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--trace</span>
+
+  <span class="c"># 설정 확인</span>
+  bundle <span class="nb">exec </span>jekyll doctor
+
+  <span class="c"># 버전 확인</span>
+  bundle <span class="nb">exec </span>jekyll <span class="nt">--version</span>
+
+<span class="c">#자주 쓰는 단축 명령어</span>
+
+  <span class="c"># 가장 기본 (개발 시)</span>
+  bundle <span class="nb">exec </span>jekyll s
+
+  <span class="c"># livereload 포함</span>
+  bundle <span class="nb">exec </span>jekyll s <span class="nt">-l</span>
+
+  <span class="c"># 빌드</span>
+  bundle <span class="nb">exec </span>jekyll b
+
+  <span class="c"># 도움말</span>
+  bundle <span class="nb">exec </span>jekyll <span class="nb">help
+  </span>bundle <span class="nb">exec </span>jekyll serve <span class="nt">--help</span>
+
+<span class="c">#실전 팁</span>
+
+  <span class="c"># 1. 일반 개발 시</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--livereload</span>
+
+  <span class="c"># 2. draft 작성 중</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--livereload</span> <span class="nt">--drafts</span>
+
+  <span class="c"># 3. 문제 발생 시 클린 후 재시작</span>
+  bundle <span class="nb">exec </span>jekyll clean <span class="o">&amp;&amp;</span> bundle <span class="nb">exec </span>jekyll serve
+
+  <span class="c"># 4. 프로덕션 빌드 (GitHub Pages 배포 전 확인)</span>
+  <span class="nv">JEKYLL_ENV</span><span class="o">=</span>production bundle <span class="nb">exec </span>jekyll build
+
+  <span class="c"># 5. 빌드 속도 느릴 때</span>
+  bundle <span class="nb">exec </span>jekyll serve <span class="nt">--incremental</span> <span class="nt">--livereload</span>
+</code></pre></div></div>]]></content><author><name>devJZen</name></author><category term="study" /><category term="Jekyll" /><summary type="html"><![CDATA[Jekyll 이란?]]></summary></entry><entry><title type="html">4. SSH? GPG?</title><link href="https://devjzen.github.io//study/2026/01/05/Study-4-Git-GPG.html" rel="alternate" type="text/html" title="4. SSH? GPG?" /><published>2026-01-05T00:00:00+00:00</published><updated>2026-01-05T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2026/01/05/Study-4-Git-GPG</id><content type="html" xml:base="https://devjzen.github.io//study/2026/01/05/Study-4-Git-GPG.html"><![CDATA[<blockquote>
+  <p>커밋에 서명하고 싶다.</p>
+</blockquote>
+
+<p>학습을 하다보니 계정 도용 사례가 있는 걸 보고 커밋에 서명을 직접 해보기로 했다.
+그래서 찾아본 SSH와 GPG의 차이점을 설명해보려고 한다.</p>
+
+<h2 id="ssh란">SSH란?</h2>
+
+<p>SSH (Secure Shell)</p>
+
+<p>용도: 인증 (Authentication) - “나는 이 사람이 맞다”</p>
+
+<ul>
+  <li>Git 원격 저장소 접근 시 사용</li>
+  <li>GitHub/GitLab에 push/pull 할 권한 확인</li>
+  <li>비밀번호 없이 자동 로그인</li>
+</ul>
+
+<p>### SSH 사용 예시
+  git clone git@github.com:username/repo.git
+  git push origin main</p>
+
+<h2 id="gpg란">GPG란?</h2>
+<p>GPG (GNU Privacy Guard)</p>
+
+<p>용도: 서명 (Signing) - “이 커밋은 내가 작성한 게 맞다”</p>
+
+<ul>
+  <li>커밋/태그에 디지털 서명</li>
+  <li>커밋 위조 방지</li>
+  <li>GitHub에서 “Verified” 배지 표시</li>
+</ul>
+
+<p>### GPG 사용 예시
+  git commit -S -m “message”  # 서명된 커밋
+  git tag -s v1.0.0           # 서명된 태그</p>
+
+<p>핵심 차이</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>SSH</th>
+      <th>GPG</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>목적</td>
+      <td>접근 권한 확인</td>
+      <td>작성자 신원 확인</td>
+    </tr>
+    <tr>
+      <td>언제</td>
+      <td>push/pull/clone 시</td>
+      <td>commit/tag 시</td>
+    </tr>
+    <tr>
+      <td>보장</td>
+      <td>“이 사람이 접근 권한 있음”</td>
+      <td>“이 코드를 정말 이 사람이 썼음”</td>
+    </tr>
+    <tr>
+      <td>필수?</td>
+      <td>HTTPS 대신 사용 가능</td>
+      <td>선택사항 (보안 강화용)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>실무 사용</p>
+
+<ul>
+  <li>SSH: 거의 모든 개발자가 사용 (편의성)</li>
+  <li>GPG: 오픈소스 메인테이너, 보안 중요한 프로젝트에서 사용</li>
+</ul>
+
+<p>요약: SSH는 “로그인”, GPG는 “도장/인장”</p>
+
+<h2 id="워크-플로우">워크 플로우</h2>
+
+<blockquote>
+  <p>설치 - generate gpg - github에 등록</p>
+</blockquote>
+
+<ol>
+  <li>설치</li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># mac 기준 brew로 설치</span>
+brew <span class="nb">install </span>gpg
+
+<span class="c"># gpg 키 생성</span>
+gpg <span class="nt">--full-generate-key</span>
+
+<span class="c"># default로 설정 따라가기</span>
+<span class="c"># 만료 날짜 원하는 만큼...나는 최소 3개월에서 최대 1년 갱신한다.</span>
+<span class="c"># 생성 후에 keyid 확인</span>
+gpg <span class="nt">--list-secret-keys</span> <span class="nt">--keyid-format</span><span class="o">=</span>long
+<span class="c"># gpg --list-keys는 가지고 있는 공개키를 다 볼 때 사용한다.</span>
+<span class="c"># pub ed25519 뒤에 오는 id 확인</span>
+
+gpg <span class="nt">--armor</span> <span class="nt">--export</span> &lt;키_ID&gt;
+<span class="c"># Git에서 등록</span>
+</code></pre></div></div>
+
+<h3 id="암호화-서명-차이">암호화 서명 차이</h3>
+
+<ul>
+  <li>RSA : 오래된 시스템에서 사용된다.</li>
+  <li>ECC (타원 곡선 함수)로 권장한다. Git에서도 사용하고 있다.</li>
+</ul>]]></content><author><name>devJZen</name></author><category term="study" /><category term="study" /><summary type="html"><![CDATA[커밋에 서명하고 싶다.]]></summary></entry><entry><title type="html">5. Shell? Bash? Zsh?</title><link href="https://devjzen.github.io//study/2026/01/05/Study-5-Shell.html" rel="alternate" type="text/html" title="5. Shell? Bash? Zsh?" /><published>2026-01-05T00:00:00+00:00</published><updated>2026-01-05T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2026/01/05/Study-5-Shell</id><content type="html" xml:base="https://devjzen.github.io//study/2026/01/05/Study-5-Shell.html"><![CDATA[<p>용어 정리</p>
+
+<ol>
+  <li>
+    <p>Shell (셸) - 일반적인 용어
+    - 명령줄 인터페이스를 제공하는 프로그램 전체를 지칭
+    - bash, zsh, fish 등을 모두 포함하는 개념
+    - “터미널에서 shell을 사용한다”</p>
+  </li>
+  <li>
+    <p>zsh (Z Shell) - 구체적인 shell 종류
+    - 현재 macOS 기본 shell (Catalina 10.15 이후)
+    - bash의 기능 + 추가 편의 기능
+    - “zsh을 사용한다”</p>
+  </li>
+  <li>
+    <p>bash (Bourne Again Shell)
+    - 예전 macOS 기본 shell (Catalina 이전)
+    - Linux에서 가장 많이 사용
+    - “bash를 사용한다”</p>
+  </li>
+  <li>
+    <p>터미널 (Terminal)
+    - shell을 실행하는 GUI 애플리케이션
+    - macOS의 Terminal.app, iTerm2 등</p>
+  </li>
+</ol>
+
+<p>표현 방법</p>
+
+<p># 모두 맞는 표현
+  “터미널에서 명령어 실행했어”
+  “shell에서 jekyll 실행했어”
+  “zsh에서 bundle exec 명령어 쳤어”
+  “커맨드라인에서 작업했어”
+  “CLI에서 실행했어”</p>]]></content><author><name>devJZen</name></author><category term="study" /><category term="study" /><summary type="html"><![CDATA[용어 정리]]></summary></entry><entry><title type="html">내 dApp이 악성이라니</title><link href="https://devjzen.github.io//phantom/2026/01/05/phantom-issue.html" rel="alternate" type="text/html" title="내 dApp이 악성이라니" /><published>2026-01-05T00:00:00+00:00</published><updated>2026-01-05T00:00:00+00:00</updated><id>https://devjzen.github.io//phantom/2026/01/05/phantom%20issue</id><content type="html" xml:base="https://devjzen.github.io//phantom/2026/01/05/phantom-issue.html"><![CDATA[<blockquote>
+  <p>dApp개발 첫 트러블슈팅</p>
+</blockquote>
+
+<h2 id="this-dapp-could-be-malicious">This dApp could be malicious</h2>
+
+<p>Supabase의 개발 정책을 바꿨다가 갑자기 Request blocked 이슈를 경험했다.</p>
+
+<p><a href="https://docs.phantom.com/developer-powertools/domain-and-transaction-warnings#domain-and-transaction-warnings">Domain and transaction warnings</a>을 참고하여 해결하면 된다.</p>
+
+<p>나의 경우에는 거래 시뮬레이션 경고였고, Supabase의 정책으로 해결했다.</p>]]></content><author><name>devJZen</name></author><category term="phantom" /><category term="web3" /><summary type="html"><![CDATA[dApp개발 첫 트러블슈팅]]></summary></entry><entry><title type="html">Git Action 403 문제</title><link href="https://devjzen.github.io//study/2025/12/31/Git-Action-403.html" rel="alternate" type="text/html" title="Git Action 403 문제" /><published>2025-12-31T00:00:00+00:00</published><updated>2025-12-31T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2025/12/31/Git-Action-403</id><content type="html" xml:base="https://devjzen.github.io//study/2025/12/31/Git-Action-403.html"><![CDATA[<h2 id="problems">Problems</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Jremote: Permission to [블로그 주소] denied to github-actions[bot].
+(...생략)
+Update cache key...
+</code></pre></div></div>
+
+<h2 id="solution">Solution</h2>
+
+<blockquote>
+  <p>설정 후에 git push 또는 워크플로우 재실행 필요</p>
+</blockquote>
+
+<p>Workflow 권한 변경</p>
+
+<p>GitHub 저장소 설정에서 workflow 권한을 변경:</p>
+
+<ol>
+  <li>GitHub 저장소로 이동</li>
+  <li>Settings → Actions → General</li>
+  <li>페이지 맨 아래 Workflow permissions 섹션에서</li>
+  <li>“Read and write permissions” 선택</li>
+  <li>Save 클릭</li>
+</ol>]]></content><author><name>devJZen</name></author><category term="study" /><category term="Git" /><summary type="html"><![CDATA[Problems]]></summary></entry><entry><title type="html">Git action의 종속성 업데이트</title><link href="https://devjzen.github.io//study/2025/12/30/Git-action-v1,v2.html" rel="alternate" type="text/html" title="Git action의 종속성 업데이트" /><published>2025-12-30T00:00:00+00:00</published><updated>2025-12-30T00:00:00+00:00</updated><id>https://devjzen.github.io//study/2025/12/30/Git-action-v1,v2</id><content type="html" xml:base="https://devjzen.github.io//study/2025/12/30/Git-action-v1,v2.html"><![CDATA[<h2 id="problem">Problem</h2>
+
+<blockquote>
+  <p>블로그 글이 계속 보이지 않았다.</p>
+</blockquote>
+
+<p>빌드가 실패했는데, 내가 사용하던 actions가 버전이 낮다는 것을 확인함.</p>
+
+<h2 id="solution">Solution</h2>
+
+<p><a href="https://github.blog/changelog/2024-12-05-notice-of-upcoming-releases-and-breaking-changes-for-github-actions/#actions-cache-v1-v2-and-actions-toolkit-cache-package-closing-down">공식문서</a> 참고</p>
+
+<p><strong>actions-cache-v1-v2-and-actions-toolkit-cache-package-closing-down</strong></p>
+
+<p>업데이트: 우분투 20 이미지 지원 종료일이 4월 15일로 변경되었습니다. 아래 게시글은 해당 변경 사항을 반영하여 수정되었습니다.</p>
+
+<p>Ubuntu 최신 버전에서 예정된 주요 변경 사항
+2024년 12월 5일부터 2025년 1월 17일 ubuntu-latest까지 레이블 을 새로운 이미지로 이전할 예정입니다 . 새 이미지는 기존 이미지와 다른 도구 및 패키지 세트를 포함하고 있습니다 . 디스크 공간 확보를 위한 서비스 수준 계약(SLA)을 유지하기 위해 일부 패키지 목록을 삭제했습니다. 삭제된 패키지에 의존하는 워크플로우를 사용하는 경우 문제가 발생할 수 있습니다. 영향을 받는 패키지를 사용하고 있는지 확인하려면 아래 목록을 검토해 주세요.ubuntu 24ubuntu 24ubuntu 22</p>
+
+<p>우분투 20 이미지 서비스가 종료됩니다
+저희는 N-1 OS 지원 정책 에 따라 Ubuntu 20 호스팅 러너 이미지 지원을 단계적으로 종료할 예정입니다 . 이 이미지는 2025년 4월 15일까지 완전히 지원이 중단됩니다. 이후에는 워크플로우를 업데이트하여 ubuntu-22.04또는 를 사용하시기를 권장합니다 ubuntu-24.04.</p>
+
+<p>…</p>]]></content><author><name>devJZen</name></author><category term="study" /><category term="Git" /><summary type="html"><![CDATA[Problem]]></summary></entry></feed>

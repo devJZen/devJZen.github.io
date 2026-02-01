@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="kor"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+  <meta name="google-site-verification" content="9coAqf--ldpIW5wOy4TGR8WIqx2wl3ljvBBqvVubB48" />
+
+  <!-- Security Headers -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  <title>devJZen</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Chapter 1-1. 블록체인 | devJZen</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Chapter 1-1. 블록체인" />
+<meta name="author" content="devJZen" />
+<meta property="og:locale" content="kor" />
+<meta name="description" content="연관 문서" />
+<meta property="og:description" content="연관 문서" />
+<link rel="canonical" href="https://devjzen.github.io//web3/2025/07/19/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8.html" />
+<meta property="og:url" content="https://devjzen.github.io//web3/2025/07/19/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8.html" />
+<meta property="og:site_name" content="devJZen" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-07-19T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Chapter 1-1. 블록체인" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"devJZen"},"dateModified":"2025-07-19T00:00:00+00:00","datePublished":"2025-07-19T00:00:00+00:00","description":"연관 문서","headline":"Chapter 1-1. 블록체인","mainEntityOfPage":{"@type":"WebPage","@id":"https://devjzen.github.io//web3/2025/07/19/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8.html"},"url":"https://devjzen.github.io//web3/2025/07/19/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8.html"}</script>
+<!-- End Jekyll SEO tag -->
+<!-- Open Graph -->
+  
+  
+  <meta property="og:image" content="https://devjzen.github.io//assets/images/post-image.png" />
+  <meta name="twitter:image" content="https://devjzen.github.io//assets/images/post-image.png" />
+  
+  <meta property="og:logo" content="https://devjzen.github.io//assets/images/favicon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://devjzen.github.io//feed.xml" title="devJZen" /><link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8"
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Init highlight js
+document.addEventListener('DOMContentLoaded', function(event) {
+  var els = document.querySelectorAll('pre code')
+
+  function addLangData(block) {
+    var outer = block.parentElement.parentElement.parentElement;
+    var lang = block.getAttribute('data-lang');
+    for (var i = 0; i < outer.classList.length; i++) {
+      var cls = outer.classList[i];
+      if (cls.startsWith('language-')) {
+        lang = cls;
+        break;
+      }
+    }
+    if (!lang) {
+      cls = block.getAttribute('class');
+      lang = cls ? cls.replace('hljs ', '') : '';
+    }
+    if (lang.startsWith('language-')) {
+      lang = lang.substr(9);
+    }
+    block.setAttribute('class', 'hljs ' + lang);
+    block.parentNode.setAttribute('data-lang', lang);
+  }
+
+  function addBadge(block) {
+    var enabled = ('true' || 'true').toLowerCase();
+    if (enabled == 'true') {
+      var pre = block.parentElement;
+      pre.classList.add('badge');
+    }
+  }
+
+  function handle(block) {
+    addLangData(block);
+    addBadge(block)
+    hljs.highlightBlock(block);
+  }
+
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    handle(el);
+  }
+});
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #000;
+    background-color: #f2cb05;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  code > table pre::before {
+    display: none;
+  }
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.css"
+  rel="stylesheet"
+/>
+<style>
+  .pswp .pswp__container .pswp__img {
+    background-color: white;
+  }
+</style>
+
+<script>
+  function initPhotoSwipe() {
+    var mainEl = document.querySelector("section.main");
+
+    var imgEls = mainEl.querySelectorAll("img:not(.emoji)");
+    imgEls.forEach((imgEl) => {
+      imgEl.outerHTML = `
+    <a class="photo-swipe"
+      href="${imgEl.src}"
+      data-width="${imgEl.getAttribute("width") || imgEl.width * 2}"
+      data-height="${imgEl.getAttribute("height") || imgEl.height * 2}"
+      data-caption="${imgEl.getAttribute("caption") || imgEl.alt}"
+      target="_blank">
+      ${imgEl.outerHTML}
+    </a>`;
+    });
+
+    // Init empty gallery array
+    var container = [];
+
+    // Loop over gallery items and push it to the array
+    var linkEls = mainEl.querySelectorAll("a.photo-swipe");
+    linkEls.forEach((link) => {
+      var item = {
+        src: link.getAttribute("href"),
+        w: link.dataset.width,
+        h: link.dataset.height,
+        title: link.dataset.caption || "",
+      };
+      container.push(item);
+    });
+
+    // Define click event on gallery item
+    linkEls.forEach((link, index) => {
+      link.addEventListener("click", (event) => {
+        // Prevent location change
+        event.preventDefault();
+
+        // Define object and gallery options
+        var pswp = document.querySelector(".pswp");
+
+        var zoomLevel = 1;
+
+        // Define object and gallery options
+        var options = {
+          index: index,
+          bgOpacity: 0.85,
+          showHideOpacity: true,
+          closeOnScroll: true,
+          maxSpreadZoom: 1,
+          getDoubleTapZoom: (isMouseClick, item) => {
+            if (item.detail) {
+              zoomLevel += item.detail.origEvent.shiftKey ? -1 : 1;
+              item.detail = undefined;
+            } else {
+              zoomLevel = zoomLevel === 1 ? 2 : 1;
+            }
+            if (zoomLevel <= 1) {
+              zoomLevel = 1;
+              setTimeout(() => pswp.classList.remove("pswp--zoomed-in"), 0);
+            }
+            return item.initialZoomLevel * zoomLevel;
+          },
+        };
+
+        // Initialize PhotoSwipe
+        var gallery = new PhotoSwipe(
+          pswp,
+          PhotoSwipeUI_Default,
+          container,
+          options
+        );
+
+        gallery.init();
+
+        // Custom zoom event
+        gallery.container.addEventListener("pswpTap", (e) => {
+          gallery.currItem.detail = e.detail;
+        });
+      });
+    });
+  }
+
+  window.addEventListener("load", initPhotoSwipe);
+</script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe.
+           It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg"></div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides.
+              PhotoSwipe keeps only 3 of them in the DOM to save memory.
+              Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter"></div>
+        <button
+          class="pswp__button pswp__button--close"
+          title="Close (Esc)"
+        ></button>
+        <button class="pswp__button pswp__button--share" title="Share"></button>
+        <button
+          class="pswp__button pswp__button--fs"
+          title="Toggle fullscreen"
+        ></button>
+        <button
+          class="pswp__button pswp__button--zoom"
+          title="Zoom in/out"
+        ></button>
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip"></div>
+      </div>
+      <button
+        class="pswp__button pswp__button--arrow--left"
+        title="Previous (arrow left)"
+      ></button>
+      <button
+        class="pswp__button pswp__button--arrow--right"
+        title="Next (arrow right)"
+      ></button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/js/callout.js"></script>
+<script src="/assets/js/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.9.0/dist/mermaid.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header ">
+
+  <div class="wrapper">
+    <div class="site-header-inner"><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+              </svg>
+            </span>
+          </label>
+
+          <div class="translate-toggle-container">
+            <label class="translate-switch">
+              <input type="checkbox" onclick="toggleLanguage(this)">
+              <span class="slider round"></span>
+            </label>
+            <span class="switch-label notranslate">KO</span>
+          </div>
+
+          <div class="trigger"><a class="page-link" href="/">HOME</a><a class="page-link" href="/about.html">ABOUT</a><a class="page-link" href="/archives.html">ARCHIVES</a><a class="page-link" href="/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<span class="page-link">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<span class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</span>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'kor',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</span></div>
+        </nav></div>
+  </div>
+</header>
+
+<script>
+function toggleLanguage(toggle) {
+  var switchLabel = document.querySelector(".switch-label");
+
+  if (toggle.checked) {
+    switchLabel.textContent = "EN";
+  } else {
+    switchLabel.textContent = "KO";
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  if (googleCombo) {
+    googleCombo.value = toggle.checked ? "en" : "ko";
+    var event = new Event("change");
+    googleCombo.dispatchEvent(event);
+  }
+}
+
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;
+
+
+      var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+<script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div id="click-to-top" class="click-to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+<script>
+  (function () {
+    const clickToTop = document.getElementById('click-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        clickToTop.classList.add('show')
+      }else {
+        clickToTop.classList.remove('show')
+      }
+    });
+    clickToTop.addEventListener('click', () => {
+      window.smoothScrollTo(0);
+    });
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">Chapter 1-1. 블록체인</h1>
+  <h2 class="post-subtitle"></h2>
+
+  <p class="post-meta">
+    <time class="dt-published" datetime="2025-07-19T00:00:00+00:00" itemprop="datePublished"><i class="fa fa-calendar"></i> 2025 Jul 19 
+    </time>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 41 mins</span>
+  </p><div class="post-tags"><a class="post-tag" href="/tags.html#Blockchain">#Blockchain</a></div></header>
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <h2 id="연관-문서">연관 문서</h2>
+
+<p><a href="https://devjzen.github.io/web3/2025/07/31/%EC%B5%9C%EC%8B%A0-BFT-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C.html#h-1-%EC%B5%9C%EC%8B%A0-bft-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C-%EC%A7%84%ED%99%94-%ED%83%80%EC%9E%84%EB%9D%BC%EC%9D%B8">BFT 발전 타임라인</a></p>
+
+<p><a href="https://devjzen.github.io/web3/2025/07/29/2-%EC%8B%A4%ED%96%89.html">실행 (Execution)</a></p>
+
+<hr />
+
+<blockquote>
+  <p><strong>블록체인</strong>은 <strong>분산 시스템에서 데이터의 무결성과 불변성을 보장하기 위해 설계된 기술적 구현체</strong>이다.</p>
+</blockquote>
+
+<p>블록체인의 역사는 1990년대 물리학자인 스튜어트 하버와 W. 스콧 스토네타<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>가 어떻게 과거를 안전하게 지키고 디지털 정보를 안전하게 보호하고 변조를 방지할 수 있을지에 대한 고민으로 시작됐다.</p>
+
+<p>사토시 나카모토가 2008년에 ‘비트코인: P2P 전자 화폐 시스템’<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>이라는 논문을 발표하며 블록체인 기술이 상용화 되었다. 이 논문은 오늘날 가장 일반적으로 알려진 비트코인을 기술적으로 정의한 논문이다. 그래서 사람들이 비트코인을 블록체인 그 자체라고 오해하는 경우도 있다. 하지만 블록체인은 분산된 정보를 저장하는 기술이다. 2014년, 이더리움이 발표되었으며 이더리움은 EVM을 통해 혁신을 이뤘다.</p>
+
+<p>[블록체인 ≠ 비트코인] 이 가장 중요한 개념이며, 암호화폐는 블록체인 기술로 구현된 것 뿐이다.</p>
+
+<h2 id="1-블록체인">1. 블록체인</h2>
+
+<p>블록(데이터)들을 <strong>P2P 방식(분산 방식)</strong> 으로 체인 형태의 분산 데이터 저장 환경에 저장한 것을 블록체인이라고 부른다. 분산 시스템 모델이라고 봐도 좋다.</p>
+
+<h3 id="블록체인은-데이터의-무결성과-불변성을-보장하기-위해-각-블록에-고유한-해시-값을-저장한다">블록체인은 데이터의 무결성과 불변성을 보장하기 위해 각 블록에 고유한 해시 값을 저장한다.</h3>
+
+<ul>
+  <li>비유하자면, 해시 데이터는 제품의 로트넘버, 인체의 지문과 같은 고유한 값이다.</li>
+  <li>해시 데이터는 동일한 데이터 생성이 매우 어렵도록 설계 되어있고 해시 충돌은 사실상 불가능에 가깝다. 이런 특성으로 인하여 불변성을 가진다.</li>
+  <li>암호학적 연결은 분산 시스템에서 <strong>정보의 신뢰성, 무결성, 가용성을 보장</strong>하는 역할을 한다.</li>
+  <li>이더리움의 세계 상태(world state)는 Merkle patricia 트리를 통해 관리되며, 이 트리의 루트 해시는 모든 내부 데이터에 암호학적으로 의존한다. 이는 상태의 보안 ID 역할을 하며, 불변성을 통해 이전 상태로 쉽게 돌아갈 수 있게 한다.</li>
+</ul>
+
+<blockquote>
+  <p>[!note] 학습을 하다보면 비슷한 내용이 반복된다.<br />
+당장은 이해가 되지 않더라도 다음으로 넘기면서 호기심을 기록해보는 것도 좋을듯 싶다.
+중요한 이론은 계속 등장한다.</p>
+</blockquote>
+
+<h3 id="q-블록체인을-학습할-때-비트코인과-이더리움을-기준으로-설명되는-이유">Q. 블록체인을 학습할 때 비트코인과 이더리움을 기준으로 설명되는 이유</h3>
+
+<p>비트코인은 분산 시스템을 활용한 암호화폐의 패러다임을 제시한 최초의 사례이며, 이더리움은 비트코인의 한계를 개선하고 스마트 컨트랙트를 도입하여 블록체인의 활용 범위를 확장한 체인이다. 학습에 있어 비트코인의 백서와 이더리움 옐로우 페이퍼는 필수적인 참고 자료로 권장된다.</p>
+
+<h3 id="q-블록체인-마다-다른-해시-암호화-기술을-채택하는-이유">Q. 블록체인 마다 다른 해시 암호화 기술을 채택하는 이유</h3>
+
+<p>구현 목적과 설계에 따라서 다른 해시 암호화 기술이 사용되는 경우가 존재한다. 대표적으로 비트코인과 이더리움이 그렇다. 솔라나는 PoH 메커니즘에서 SHA-256을 사용하고 있다.</p>
+
+<ul>
+  <li>비트코인은 SHA-256을 사용하고 이더리움은 Keccak-256을 사용한다.</li>
+  <li>Keccak-256은 SHA-3 암호화 대회 최종 우승 알고리즘이었으며, FIPS 202로 표준화 되었지만 원래의 Keccak-256를 사용한다. 이 둘은 패딩 매개변수에서 미묘한 구현 차이로 인해 다른 해시 값을 생성한다.</li>
+  <li>EVM(이더리움 가상 머신)의 256비트워드 크기와 스택 항목 크기는 Keccack-256 해시 체계와 타원 곡선 연산을 위해 선택되었다.
+    <h3 id="분산-시스템의-개방성openness과-관리적-확장성administrative-scalability">분산 시스템의 개방성(openness)과 관리적 확장성(administrative scalability)</h3>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>참여 및 접근 권한</th>
+      <th>허가 여부(Permission)</th>
+      <th>합의(Consensus)</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>공개 (Public)</td>
+      <td>허가 필요 없음(Permissionless)</td>
+      <td>PoW, PoS</td>
+      <td>비트코인, 이더리움과 같은 공개형 모델들이 해당되며 특정 권한이나 허가 없이 모든 활동이 가능하다.</td>
+    </tr>
+    <tr>
+      <td>비공개 (Private)</td>
+      <td>허가 필요함(Permissioned)</td>
+      <td>PoS, PoA</td>
+      <td>Rinkeby는 블록이 신뢰할 수 있는 서명자에 의해서만 채굴되는 권한 증명 방식을 사용하는데, 신뢰할 수 있는 참여자들만 활동이 가능하다.</td>
+    </tr>
+    <tr>
+      <td>컨소시엄 (Consortium)</td>
+      <td>상황에 따라서 허가 필요함</td>
+      <td>공동의 의사결정 구조</td>
+      <td>컨소시엄 내의 참여 조직들이 공동으로 합의 메커니즘을 운영한다. 공동의 의사결정 구조를 가진다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>블록체인은 공개형으로 시작되었다. 기업과 기관들이 블록체인 기술을 도입하려 하면서 그들의 운영 방식과 거버넌스의 필요성에 따라서 ‘비공개’와 ‘컨소시엄’같은 모델들이 등장하게 되었다.</p>
+
+<p>마스터링 이더리움에서는 “모든 블록체인이 똑같이 생성되지 않았다.” 어떤 블록체인인지 이해하려면 개방형(open), 공개형(public), 전역형(global), 분산형(decentralized), 중립적(neutral), 검열 저항적(censorship-resistant) 같은 개방성과 관리적 확장성의 특성들을 명확히 해야 한다고 했다.</p>
+
+<h2 id="2-블록과-노드-트랜잭션">2. 블록과 노드, 트랜잭션</h2>
+
+<blockquote>
+  <p>데이터의 상태를 변경은 트랜잭션을 통해 이루어지며 노드는 합의 참여자, 트랜잭션을 포함한 데이터의 단위를 블록이라고 한다.</p>
+</blockquote>
+
+<p>이더리움에서의 트랜잭션은 상태 변화를 유발하는 ‘서명된 메시지’다.<br />
+예를 들어서, 한 계정이 다른 계정으로 이더를 전송하는 내용을 담을 수도 있고, 웹으로 생각하면 포스팅의 내용을 포함한다거나, 스마트 컨트랙트를 생성하거나, 스마트 컨트랙트의 함수를 호출하는 행위들이 모두 트랜잭션에 해당한다.</p>
+
+<p>트랜잭션 <code class="language-plaintext highlighter-rouge">T</code>가 현재 상태 <code class="language-plaintext highlighter-rouge">σ</code>에서 실행되면, <strong>새로운 상태 σ′를 생성</strong>한다. 이는 <code class="language-plaintext highlighter-rouge">σ′ = Υ(σ, T)</code>로 형식적으로 정의된다. 여기서 <code class="language-plaintext highlighter-rouge">Υ</code>는 트랜잭션 평가 함수가 된다.<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup></p>
+
+<h3 id="트랜잭션transactions">트랜잭션(Transactions)</h3>
+
+<blockquote>
+  <p>트랜잭션은 <strong>두 상태</strong>의 ‘유효한 전환점’을 말한다.</p>
+</blockquote>
+
+<p>두 상태는 <strong>트랜잭션 시작 전의 상태 (Initial State)</strong> 과 <strong>트랜잭션 완료 후의 상태 (Final State)</strong> 를 의미한다.</p>
+<ol>
+  <li>시작 전의 상태는 데이터베이스 또는 시스템이 가지고 있는 <strong>일관된 상태(good state)</strong> 를 일컫는다.</li>
+  <li>트랜잭션 완료 후의 상태는 트랜잭션이 <strong>모든 작업을 성공적으로 수행한 후</strong> 데이터베이스가 도달하는 <strong>새로운 일관된 상태</strong>를 의미한다.</li>
+</ol>
+
+<ul>
+  <li><strong>ACID</strong>의 속성을 지녔다.</li>
+</ul>
+
+<h4 id="acid">ACID</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>속성</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>원자성(Atomicity)</td>
+      <td>트랜잭션 내에서 수행되는 모든 작업이 <strong>완전히 성공하거나, 아니면 전부 실패하여 아무것도 변경되지 않거나 둘 중 하나여야 한다(all-or-nothing)</strong>는 것을 보장하는 특성</td>
+    </tr>
+    <tr>
+      <td>일관성(Consistency)</td>
+      <td>트랜잭션이 성공적으로 완료되면 데이터베이스가 <strong>일관된 상태(good state)</strong>에 있음을 보장하는 특성</td>
+    </tr>
+    <tr>
+      <td>고립성(Isolation)</td>
+      <td>여러 트랜잭션이 동시에 실행될 때<strong>서로 간섭하지 않도록 보장</strong>하는 특성</td>
+    </tr>
+    <tr>
+      <td>내구성(Durability)</td>
+      <td>한번 커밋된 트랜잭션의 결과가 시스템 오류, 정전 또는 기타 예상치 못한 문제에도 불구하고 영구적으로 유지될 수 있도록 보장하는 특성</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>원자성
+    <ol>
+      <li><strong>일관성 없는 상태 방지</strong> 하는 것을 의미한다.</li>
+      <li>실행 오류로 실패한다면 모든 상태 변경(변수, 잔액 등)은 트랜잭션이 실행되지 않은 것처럼 ‘롤백’된다.</li>
+      <li>실패한 트랜잭션은 시도된 것으로 기록되고 가스 비용은 발신 계정에서 공제되지만 계약이나 계정 상태에는 영향이 없다.</li>
+      <li>분산 데이터베이스 시스템에서 <strong>원자적 커밋(Atomic Commit)</strong> 을 달성하기 위해 <strong>2단계 커밋(Two-Phase Commit, 2PC)</strong> 과 같은 프로토콜이 사용된다. 이 프로토콜은 코디네이터와 참여자 간의 두 단계(준비, 커밋)를 통해 모든 참여자가 트랜잭션을 커밋하거나 모두 중단하도록 보장한다.</li>
+    </ol>
+  </li>
+  <li>일관성
+    <ol>
+      <li>트랜잭션을 통해서 유효한 상태 전환이 발생한다는 것은 일관성을 보장한다.</li>
+      <li>ACID의 일관성은 <strong>데이터베이스 자체의 속성이라기보다는 애플리케이션에 특화된 개념</strong>으로, 데이터에 대한 특정 규칙이나 불변 속성(invariants)이 항상 참이어야 한다는 것을 의미한다. 이는 애플리케이션이 초기값이나 사전에 정의된 규칙을 만족하도록 보장하는 것을 포함한다.</li>
+    </ol>
+  </li>
+  <li>고립성
+    <ol>
+      <li>
+        <p>트랜잭션 실행 실패 시 모든 상태 변경이 롤백되는 것은 트랜잭션이 완료되지 않으면 중간 상태가 영구적으로 반영되지 않도록 하여 어느 정도의 고립성을 보장한다. 이는 데이터베이스의 스냅샷 격리(Snapshot Isolation)와 유사하며, 트랜잭션이 독립적으로 실행되도록 보장한다.</p>
+      </li>
+      <li>
+        <p>_<a href="https://www.microsoft.com/en-us/research/project/cryptlets/">Cryptlets</a>_는 ACID 방식으로 분산 트랜잭션을 지원하여 사적인 진실 해상도를 가능하게 한다. 이는 다른 동시 트랜잭션으로부터의 영향을 제한하는 고립성의 개념을 의미하며, 블록체인 외부의 데이터와 상호작용할 때도 일관성과 신뢰성을 유지할 수 있도록 설계되었다. <a href="https://azure.microsoft.com/en-us/blog/cryptletsdd/#:~:text=Cryptlets%20provide%20a%20common%20and%20approachable%20way,capabilities%20like%20integration%20into%20existing%20systems%2C%20secure">Crptlets 사업 철수로 인한 관련 자료</a></p>
+      </li>
+    </ol>
+  </li>
+  <li>내구성
+    <ol>
+      <li>결함이 있거나 악의적인 노드가 있더라도 트랜잭션은 진행되어야 한다.</li>
+      <li>트랜잭션이 성공적으로 완료되면 해당 변경 사항이 손실되지 않고 안전하게 보존됨(변경 된 상태의 good state)을 보장한다.</li>
+      <li>
+        <p>결함 허용 및 복원력 (Fault Tolerance and Resilience)</p>
+
+        <ul>
+          <li>분산 시스템은 오류를 예측하고 이를 처리할 수 있도록 설계되어야 한다.</li>
+          <li>분산 시스템에서 오류가 발생하더라도 서비스가 올바르게 작동하도록 유지하는 방법을 찾는 것이 중요하다. 그리고 이 유지하는 방법을 ‘합의’ 단계에서 다룬다.</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="이더리움에서의-트랜잭션">이더리움에서의 트랜잭션</h3>
+
+<ul>
+  <li>스마트 컨트랙트의 상태 변경은 블록체인의 고유한 특성(불변성, 합의 알고리즘)과 <strong>가스(Gas)</strong> 메커니즘을 통해 내구성을 확보한다. 가스는 서비스 거부 공격을 방지하고 네트워크의 안정성을 유지하는 데 필수적이며, 이는 간접적으로 트랜잭션의 내구성에도 기여한다.</li>
+  <li>트랜잭션을 실행하려면 Gas가 필요하다.</li>
+  <li>필수 구성 요소: nonce, gasPrice, gasLimit, to, value, data(input), Signature</li>
+  <li>Gas의 주요 역할은 자원 측정 및 제한, DoS 공격 방지, 경제적 인센티브, 우선순위 결정이다.</li>
+  <li>스냅샷 격리(Snapshot Isolation)는 트랜잭션이 데이터베이스의 일관된 스냅샷에서 읽도록 보장하며, 이는 MySQL과 PostgreSQL의 반복 읽기(Repeatable Read) 수준과 유사하다. 이더리움의 트랜잭션 모델은 이러한 격리 수준과 유사한 방식으로 작동하여, 트랜잭션이 독립적으로 실행되도록 보장한다.<sup id="fnref:3:1" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup></li>
+  <li>이더리움은 전체적으로 트랜잭션 기반의 상태 기계로 볼 수 있다. 제네시스 상태에서 시작하여 점진적으로 현재 상태로 변화시킨다. ‘현재’ 상태가 이더리움 세계의 ‘정식’버전으로 간주된다.</li>
+</ul>
+
+<p>트랜잭션의 개념을 먼저 파고 들었는데 합의에 대해서 이해하고 나면 트랜잭션이 더 알기 쉽다.</p>
+
+<ol>
+  <li>합의 알고리즘과 매커니즘</li>
+</ol>
+
+<blockquote>
+  <p>합의 매커니즘이 합의 알고리즘을 포괄하는 개념이다.</p>
+</blockquote>
+
+<p>두 단어가 혼용되는 경우가 많다. 단어의 경계가 유동적이지만 핵심은 여러 노드가 오류가 발생하더라도 어떤 값에 대해 동일하도록 보장하는 것이다. 더 쉽게 얘기하면 합의 알고리즘은 요리법(알리오올리오 레시피)과 같고 매커니즘은 요리 스타일(이탈리안 스타일)과 같다.</p>
+
+<p><strong>합의 알고리즘(Consensus Algorithm)</strong> 은 합의를 달성하기 위한 구체적인 절차와 규칙의 집합을 의미한다. 이는 ‘수학적으로 정의된 단계와 프로토콜’을 포함한다.</p>
+
+<ul>
+  <li>텐더민트(Tendermint, 지금의 CometBFT), 나라왈/불샤크(Narwhal/Bullshark), 핫스터프(HotStuff), 팍소스(Paxos), PBFT(Practical Byzntine Fault Tolerance)가 여기에 해당된다.</li>
+</ul>
+
+<p><strong>합의 매커니즘(Consensus Mechanism)</strong> 은 합의를 달성하기까지 사용되는 광범위한 원칙, 시스템, 또는 접근 방식을 지칭하는 경향이 있다. 알고리즘 뿐만아니라 기본적인 동기 부여, 인센티브, 자원 제어 방법을 포함할 수 있다.</p>
+
+<ul>
+  <li>PoW과 PoS는 블록체인에서 합의를 달성하는 매커니즘으로 설명된다. 이러한 매커니즘을 통해 노드들이 합의에 참여하도록 유도한다.</li>
+  <li>이더리움의 Gas 또한 네트워크의 자원 남용을 방지하여 합의의 안정적인 달성을 지원하는 제어 매커니즘의 역할을 한다.</li>
+</ul>
+
+<h2 id="4-블록체인의-문제점">4. 블록체인의 문제점</h2>
+
+<blockquote>
+  <p>블록체인이 중앙화의 문제를 해결한다면, 블록체인이 지닌 문제는 무엇일까?</p>
+</blockquote>
+
+<p>블록체인이 풀어야할 숙제는 확장성, 탈중앙화(분산성), 보안성을 완벽하게 구현해내는 것이다.<br />
+대부분의 블록체인은 세 가지 요소를 충족시키기 위해 다양한 기술을 구현하고 있다.</p>
+
+<h3 id="블록체인-트릴레마blockchain-trilemma">블록체인 트릴레마(Blockchain Trilemma)</h3>
+
+<div class="mermaid">
+mindmap
+  root((Blockchain Trilemma))
+    분산화
+    확장성
+    보안
+</div>
+
+<p>이더리움 창시자인 비탈릭 부테린(Vitalik Buterin)이 2017년에 처음 제시한 개념으로 알려져 있다.</p>
+
+<p>‘블록체인 트릴레마’는 블록체인 기술이 직면한 근본적인 과제인 <strong>분산성(Decentralization), 확장성(Scalability), 보안성(Security)이라는 세 가지 목표를 동시에 완벽하게 달성하기 어렵다</strong>는 개념을 의미한다.
+이 세 가지 요소 중 두 가지를 최적화하면 나머지를 ‘완벽하게’ 달성하기 어려워진다.
+그럼에도 돌파구는 있다.</p>
+
+<ul>
+  <li><strong>분산성(Decentralization)</strong> : 네트워크 접근 권한의 문제를 평가한다. 서로 다른 노드들이 합의를 통해 네트워크를 운영 및 관리할 수 있는지를 측정한다. 탈중앙성을 높이는 방법은 다양하지만, 일반적으로 네트워크의 검증에 참여하는 노드의 수가 많을수록 탈중앙성이 높다고 이야기합니다. 다양하게 분산된 노드의 수가 많을수록 단일 노드나 그룹의 네트워크에 미치는 영향이 줄어들기 때문입니다.</li>
+  <li><strong>확장성(Scalability)</strong> : 얼마나 많은 트랜잭션을, 얼마나 빠르게 처리할 수 있는지를 평가한다. 네트워크가 성장함에 따라 트랜잭션 또는 사용자 수를 효율적으로 처리할 수 있는 능력을 나타낸다. 높은 트랜잭션 처리량(Transaction Per Second)과 미래의 증가량이 확장성을 평가하는 기준이 됩니다. 높은 트랜잭션 처리량(TPS)은 초당 처리할 수 있는 트랜잭션 양으로, 쉽게 말해 ‘초당 얼마의 거래 건수를 처리할 수 있는지’를 의미한다.</li>
+  <li><strong>보안성(Security)</strong> : 네트워크에 대한 공격으로부터 블록체인에 기록된 정보 및 자산을 안전하게 지킬 수 있는지를 평가한다. 이더리움과 솔라나는 보안 감사팀인 Ackee와 협업하고 있다.</li>
+</ul>
+
+<p>블록체인 네트워크에서 거래를 하기 위해서는 기본적으로 트랜잭션이 발생하고, 네트워크에 있는 노드에 전파한 후 검증하는 과정이 필요하다.</p>
+
+<ol>
+  <li>노드가 많다는 것은, 검증에 참여하는 노드의 수가 많다는 것이고 네트워크 내부의 노드들이 서로 주고 받는 영향력이 낮아 분산성을 보장한다.</li>
+  <li>노드가 많으면 상대적으로 거래를 악의적으로 이용하기 어려워져서 보안성이 높아진다.</li>
+  <li>노드가 많으면 검증에 오랜 시간이 걸려서 확장성은 낮아진다.</li>
+</ol>
+
+<h4 id="트랜잭션-처리-과정">트랜잭션 처리 과정</h4>
+
+<div class="mermaid">
+flowchart TD
+    A[사용자] --&gt; B(거래 발생: 트랜잭션 생성)
+
+    subgraph 트랜잭션 처리 과정
+        B --&gt; C{네트워크 노드에 전파}
+        C --&gt; D[노드1 검증]
+        C --&gt; E[노드2 검증]
+        C --&gt; F[...N 노드 검증]
+        D --&gt; G{검증 완료 및 블록 생성/추가}
+        E --&gt; G
+        F --&gt; G
+    end
+
+    subgraph 노드 수에 따른 영향 분석
+        direction LR
+        ManyNodes[다수의 노드]
+        FewNodes[소수의 노드]
+
+        ManyNodes --&gt; MN1[높은 분산성]
+        ManyNodes --&gt; MN2[높은 보안성: 악의적 이용 어려움]
+        ManyNodes --&gt; MN3{낮은 확장성: 검증 시간 증가}
+
+        FewNodes --&gt; FN1[낮은 분산성]
+        FewNodes --&gt; FN2[낮은 보안성: 악의적 이용 쉬움]
+        FewNodes --&gt; FN3{높은 확장성: 검증 시간 단축}
+    end
+
+    G --&gt; ManyNodes
+    G --&gt; FewNodes
+
+    style A fill:#ADD8E6,stroke:#333,stroke-width:2px,color:#000
+    style B fill:#f9f,stroke:#333,stroke-width:2px,color:#000
+    style G fill:#f9f,stroke:#333,stroke-width:2px,color:#000
+    style ManyNodes fill:#ADD8E6,stroke:#333,stroke-width:2px,color:#000
+    style FewNodes fill:#ADD8E6,stroke:#333,stroke-width:2px,color:#000
+    style MN3 fill:#FF6347,stroke:#333,stroke-width:2px,font-weight:bold
+    style FN3 fill:#90EE90,stroke:#333,stroke-width:2px,font-weight:bold
+
+    linkStyle 10 stroke:#F00,stroke-width:2px,fill:none
+    linkStyle 11 stroke:#008000,stroke-width:2px,fill:none
+</div>
+
+<p>확장성이 높다: 검증 시간이 줄어든다.
+    노드의 수가 적어서 검증 시간이 단축된다. 속도 측면에서 빠르다.
+    분산성과 보안을 보장하기 어렵다.</p>
+
+<p>확장성이 낮다: 검증 시간이 오래 걸린다.
+    노드의 수가 많다.
+    상대적으로 분산성과 보안이 뛰어나다.</p>
+
+<h4 id="비트코인의-트릴레마">비트코인의 트릴레마</h4>
+
+<p><strong>비트코인은 트릴레마의 세 요소 중 확장성을 양보한 네트워크</strong>다.
+비트코인은 시작부터 탈중앙화와 보안에 집중하였기 때문에 보안 측면에서는 최고의 암호화폐라 평가받고 있지만, <strong>사용자 증가에 따라 자연스럽게 트랜잭션을 처리하는 속도가 느려지는 확장성 문제에 직면</strong>하게 되었다. 이를 개선하기 위해 여러 가지 방법을 시도하였는데, 세그윗 업데이트와 라이트닝 네트워크가 한 예시다.</p>
+
+<p><strong>세그윗은 블록에서 서명이 차지하고 있던 자리를 분리하여 블록당 담을 수 있는 트랜잭션 양을 증가시킨 업데이트</strong>다. 블록의 크기는 이전과 같지만, 서명 데이터를 분리해 더 많은 트랜잭션을 담을 수 있어, 한 번에 많은 거래량을 처리할 수 있도록 한 것이다.</p>
+
+<p><strong>라이트닝 네트워크는 비트코인 위에 구축된 오프 체인 거래 방식</strong>이다. 확장성 문제로 비트코인이 실생활에서 결제 수단으로 사용될 수 없는 문제점을 해결하고자 제안됐다. 비트코인이 네트워크에서 발생하는 모든 전송 기록을 블록체인에 저장하는 반면 라이트닝 네트워크는 개별 거래를 별도의 채널에서 처리한 후 그 결괏값만 블록체인에 기록하는 특징을 가지고 있다. 즉, <strong>중요 거래 기록만 블록에 저장하고 그 외 것들은 블록체인 밖에서 처리</strong>하는 것이다. 이를 통해 <strong>전송 속도를 대폭 향상하고 거래 수수료를 절감해 느리고 무거운 비트코인의 소액 결제를 가능</strong>하게 했다.</p>
+
+<p>그럼에도 비트코인은 여전히 결제 수단으로서 확장성은 부족하다고 평가받는다. 다른 체인들의 효율적인 확장성 확보 사례로 인한 상대성 때문이다.</p>
+
+<h4 id="이더리움의-트릴레마">이더리움의 트릴레마</h4>
+
+<p>이더리움은 출시 당시에는 비트코인과 같은 <strong>작업 증명 방식을 채택하여 네트워크를 운영</strong>했다. 또한, <strong>스마트 컨트랙트라는 프로그램을 추가하여, 이를 실행하기 위한 많은 리소스를 지속적으로 사용해야 하는 문제에 직면</strong>했다.</p>
+
+<p>이를 해결하기 위해 <strong>가스비(Gas Fee) 방식의 수수료를 설정</strong>했지만, <strong>네트워크에서 채굴 노드가 많은 수수료를 받을 수 있는 높은 가스비 중심의 트랜잭션을 우선적으로 처리하는 문제가 발생</strong>했다. 노드의 수가 증가할수록 수수료가 증가한다면 이더리움 네트워크가 성장하는 데 큰 문제가 될 수 있기에 합의 방식을 전환했다.</p>
+
+<p><strong>2022년, 지분 증명(PoS) 합의 방식으로 전환</strong>하고, 추후 롤업(Roll up)이라는 새로운 기술을 적용하여 확장성을 크게 개선할 업그레이드를 계획하고 있다.</p>
+
+<h4 id="솔라나의-트릴레마">솔라나의 트릴레마</h4>
+
+<p>솔라나는 역사 증명(Proof of History, PoH)을 핵심 기반으로 삼아 확장성을 최우선으로 확보하면서도 강력한 보안과 점진적인 탈중앙화를 추구한다. 이러한 접근 방식은 높은 처리량과 낮은 거래 비용을 가능하게 하며, 동시에 위임 지분 증명(Delegated Proof of Stake, DPoS) 합의 메커니즘과 커뮤니티 프로그램을 통해 네트워크의 무결성을 보장하고 분산된 검증자 생태계를 육성한다. 솔라나의 주요 혁신으로는 PoH 외에도 <strong>타워 BFT(Tower BFT), 걸프 스트림(Gulf Stream), 시레벨(Sealevel), 터빈(Turbine), 파이프라이닝(Pipelining)</strong> 등이 있으며, 모든 구성 요소는 네트워크 성능을 최적화하기 위해 긴밀하게 협력한다.</p>
+
+<h4 id="이오스의-트릴레마">이오스의 트릴레마</h4>
+
+<p>이오스는 비트코인과는 다르게 <strong>위임 지분 증명(DPoS) 방식의 합의 프로토콜을 선택한 네트워크</strong>다. 위임 지분 증명(DPoS) 방식은 전체 코인 보유자들이 일정 수의 블록 생성자를 선출하고, 그들에게 블록 생성의 권한을 위임하는 방식으로 <strong>비트코인에서 모든 노드가 합의하는 과정을 거치는 것과는 다른 방식</strong>이다.</p>
+
+<p>네트워크의 모든 노드가 아닌  <strong>일부 노드가 블록 생성 과정을 담당하므로 블록 생성 시간이 단축되고, 트랜잭션 처리 속도는 높아졌지만 결국 탈중앙성을 만족시켰다고는 볼 수 없다</strong> . 일부 선택된 노드가 블록체인을 운영하다 보니 그만큼 소수가 네트워크를 독점할 수 있는 위험이 높아지기 때문이다. 또한 소수의 노드를 공격하는 것은 분산된 다수의 노드를 공격하는 것에 비해 쉽기 때문에 보안의 위협도 받게 된다.</p>
+
+<p>이오스는 확장성의 문제를 해결하는 데 초점을 맞춘 네트워크로, 이에 따라 탈중앙성과 보안성 측면을 양보했다고 볼 수 있다. 이로 인한 비판의 시각이 있다.</p>
+
+<h4 id="트릴레마의-돌파구">트릴레마의 돌파구</h4>
+
+<p>블록체인 트릴레마 문제를 해결하기 위한 노력에는 합의 프로토콜 개선, 샤딩, 레이어2 블록체인을 들 수 있습니다.</p>
+
+<ul>
+  <li><strong>합의 프로토콜 개선</strong> : 이더리움은 확장성을 개선하고 보안성을 높이기 위해 합의 프로토콜을 작업 증명(PoW)에서 지분 증명(PoS)으로의 변경을 시도했다. 이를 통해 확장성 개선과 보안성 향상을 목표로 한다.</li>
+  <li><strong>샤딩(sharding)</strong> : 데이터베이스를 여러 조각으로 쪼개 관리하는 방법론으로써 블록체인에서는 흔히 트랜잭션을 더 작은 데이터로 나누어 처리하는 방식으로 확장성 개선을 목표로 하고 있다.</li>
+  <li><strong>레이어 2 블록체인</strong> : 기존 블록체인에 새로운 블록체인을 추가하여 기존 블록체인의 확장성을 개선하기 위한 방법이다.</li>
+</ul>
+
+<p>이외에도 블록체인 트릴레마를 해결하기 위해 다양한 방법이 시도되고 있으며 세 가지 트릴레마 사이에서의 적당한 균형을 찾는 것을 목표로 삼고 있다.</p>
+
+<p>참고: <a href="https://www.codestates.com/blog/content/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%ED%8A%B8%EB%A6%B4%EB%A0%88%EB%A7%88">블록체인 트릴레마 유래 및 기본 개념, 특징과 사례</a>, <a href="https://m.upbitcare.com/academy/advice/379">블록체인 트릴레마</a>, <a href="https://ackee.xyz/solana/book/latest/chapter2/">솔라나 스쿨 핸드북</a></p>
+
+<h2 id="5-블록체인-기술-구현-사례">5. 블록체인 기술 구현 사례</h2>
+
+<ul>
+  <li><strong>비트코인</strong>: 2009년 사토시 나카모토에 의해 최초로 상용화된 블록체인 기반 암호화폐다. 작업 증명(PoW) 방식을 채택하여 탈중앙화와 보안성을 강조했으나, 확장성 문제를 갖고 있다.</li>
+  <li><strong>이더리움</strong>: 2015년 비탈릭 부테린이 출시한 블록체인 플랫폼으로, 스마트 컨트랙트를 도입하여 블록체인의 활용 범위를 확장했다. 초기에는 PoW 방식을 사용했으나, 2022년 지분 증명(PoS) 방식으로 전환했다.</li>
+  <li><strong>코스모스</strong>: 2019년 상용화된 블록체인 네트워크로, 텐더민트(Tendermint) 코어를 기반으로 운영했다. 상호 운용성을 목표로 하며, 블록체인 간 연결을 지원하는 IBC(Inter-Blockchain Communication) 프로토콜을 제공했다.</li>
+  <li><strong>솔라나</strong>: 2020년 상용화된 고성능 블록체인 플랫폼으로, 역사 증명(PoH)과 위임 지분 증명(DPoS)을 결합하여 높은 확장성과 낮은 거래 수수료를 제공.</li>
+  <li><strong>모나드</strong>: 상대적으로 최근 등장한 블록체인으로, 특정 기술적 혁신이나 새로운 합의 메커니즘을 통해 블록체인 트릴레마를 해결하려는 시도를 하고 있음.</li>
+  <li><strong>기타(etc.)</strong>: 폴카닷, 아발란체, 테조스 등 다양한 블록체인 플랫폼이 상용화되어 있으며, 각기 다른 합의 메커니즘과 기술적 특성을 통해 특정 문제를 해결하려고 함.</li>
+</ul>
+
+<blockquote>
+  <p>[!info] Layer 1 blockchain?<br />
+Layer 1은 데이터 계층, 기본 블록체인을 의미한다. 거래를 확인하고 실행하는 블록체인이다. 구현사례에 해당되는 블록체인은 전부 Layer 1에 속한다.<br />
+Layer 2는 Layer 1 블록체인을 사용하거나 이를 위해 작동하는 모든 오픈체인 네트워크, 시스템 또는 기술, 기본 레이어 네트워크의 기능을 의미한다.<br />
+Layer 3는 Layer 1, 2를 바탕으로 DApp에 대한 향상된 확장성, 상호 운용성 및 특수 기능을 제공한다.</p>
+</blockquote>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>Stuart Haber and W. Scott Stornetta, “How to Time-Stamp a Digital Document,” Journal of Cryptology, 1991. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>Satoshi Nakamoto, “Bitcoin: A Peer-to-Peer Electronic Cash System,” 2008. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>Gavin Wood, “Ethereum: A Secure Decentralised Generalised Transaction Ledger,” Ethereum Yellow Paper, 2014. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:3:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
+    </li>
+  </ol>
+</div>
+
+
+    </div>
+
+</article>
+<div class="post-comments"><div class="post-comments" style="margin-top: 30px;">
+  <script src="https://giscus.app/client.js"
+          data-repo="devJZen/devJZen.github.io"
+          data-repo-id="R_kgDOOhejIQ"
+          data-category="General"
+          data-category-id="DIC_kwDOOhejIc4CtO1v"
+          data-mapping="title"data-strict="0"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="light"
+          data-lang="ko"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div></div></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --><style type="text/css" media="screen">
+.post-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+
+<div class="post-menu">
+  <div class="post-menu-title">Contents</div>
+  <div class="post-menu-content"></div>
+</div>
+
+<script>
+  function generateContent() {
+    var menu = document.querySelector(".post-menu");
+    var menuContent =  menu.querySelector(".post-menu-content");
+    var headings = document.querySelector(".post-content").querySelectorAll("h2, h3, h4, h5, h6");
+
+    // Hide menu when no headings
+    if (headings.length === 0) {
+      return menu.style.display = "none";
+    }
+
+    // Generate post menu
+    var menuHTML = '';
+    for (var i = 0; i < headings.length; i++) {
+      var h = headings[i];
+      menuHTML += (
+        '<li class="h-' + h.tagName.toLowerCase() + '">'
+        + '<a href="#h-' + h.getAttribute('id') + '">' + h.textContent + '</a></li>');
+    }
+
+    menuContent.innerHTML = '<ul>' + menuHTML + '</ul>';
+
+    // The header element
+    var header = document.querySelector('header.site-header');
+
+    function doMenuCollapse(index, over_items) {
+      var items = menuContent.firstChild.children;
+
+      if (over_items == undefined) {
+        over_items = 20;
+      }
+
+      if (items.length < over_items) {
+        return;
+      }
+
+      var activeItem = items[index];
+      var beginItem = activeItem
+      var endItem = activeItem
+      var beginIndex = index;
+      var endIndex = index + 1;
+      while (beginIndex >= 0
+        && !items[beginIndex].classList.contains('h-h2')) {
+        beginIndex -= 1;
+      }
+      while (endIndex < items.length
+        && !items[endIndex].classList.contains('h-h2')) {
+        endIndex += 1;
+      }
+      for (var i = 0; i < beginIndex; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+      for (var i = beginIndex + 1; i < endIndex; i++) {
+        item = items[i]
+        // if (!item.classList.contains('h-h2')) {
+          item.style.display = '';
+        // }
+      }
+      for (var i = endIndex; i < items.length; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+    }
+
+    // Init menu collapsed
+    doMenuCollapse(-1);
+
+    // Active the menu item
+    window.addEventListener('scroll', function (event) {
+      var lastActive = menuContent.querySelector('.active');
+      var changed = true;
+      var activeIndex = -1;
+      for (var i = headings.length - 1; i >= 0; i--) {
+        var h = headings[i];
+        var headingRect = h.getBoundingClientRect();
+        var headerRect = header.getBoundingClientRect();
+        var headerTop = Math.floor(headerRect.top);
+        var headerHeight = Math.floor(headerRect.height);
+        var headerHeight = headerTop + headerHeight + 20;
+        if (headingRect.top <= headerHeight) {
+          var id = 'h-' + h.getAttribute('id');
+          var a = menuContent.querySelector('a[href="#' + id  + '"]');
+          var curActive = a.parentNode;
+          if (curActive) {
+            curActive.classList.add('active');
+            activeIndex = i;
+          }
+          if (lastActive == curActive) {
+            changed = false;
+          }
+          break;
+        }
+      }
+      if (changed) {
+        if (lastActive) {
+          lastActive.classList.remove('active');
+        }
+        doMenuCollapse(activeIndex);
+      }
+      event.preventDefault();
+    });
+  }
+  generateContent();
+</script>
+</section>
+</div>
+
+      </div>
+    </main>
+
+  </body>
+</html>

@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="kor"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+  <meta name="google-site-verification" content="9coAqf--ldpIW5wOy4TGR8WIqx2wl3ljvBBqvVubB48" />
+
+  <!-- Security Headers -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  <title>devJZen</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Part 1. 블록체인 코어 개발에 대해서 | devJZen</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Part 1. 블록체인 코어 개발에 대해서" />
+<meta name="author" content="devJZen" />
+<meta property="og:locale" content="kor" />
+<meta name="description" content="목차 Part 1. 블록체인 코어 개발에 대해서 Chapter 1. 블록체인이 해결하는 문제 1-1. 블록체인 Chapter 2. 블록체인 아키텍쳐 2-1. 네트워킹 2-2. 합의 2-3. 데이터 2-4. 실행 2-5. 애플리케이션 Chapter 3. 블록체인 암호학 3-1. 해시함수 3-2. 디지털 서명 3-3. 머클트리 Chapter 4. 블록체인 분산시스템 4-1. CAP정리와 블록체인 4-2. 비잔틴 결함 허용(BFT) Part 2. Cosmos SDK Chapter 1. Cosmos 소개 1-1. CometBFT 1-2. Cosmos SDK 1-3. Cosmos EVM 1-4. IBC Chapter 2. EVM 구현체 Chapter 3. CometBFT Consensus 3-2. CometBFT의 개선점 Part 3. Solana Part 4. Consensus Study Chapter 1. 최신 BFT 프로토콜" />
+<meta property="og:description" content="목차 Part 1. 블록체인 코어 개발에 대해서 Chapter 1. 블록체인이 해결하는 문제 1-1. 블록체인 Chapter 2. 블록체인 아키텍쳐 2-1. 네트워킹 2-2. 합의 2-3. 데이터 2-4. 실행 2-5. 애플리케이션 Chapter 3. 블록체인 암호학 3-1. 해시함수 3-2. 디지털 서명 3-3. 머클트리 Chapter 4. 블록체인 분산시스템 4-1. CAP정리와 블록체인 4-2. 비잔틴 결함 허용(BFT) Part 2. Cosmos SDK Chapter 1. Cosmos 소개 1-1. CometBFT 1-2. Cosmos SDK 1-3. Cosmos EVM 1-4. IBC Chapter 2. EVM 구현체 Chapter 3. CometBFT Consensus 3-2. CometBFT의 개선점 Part 3. Solana Part 4. Consensus Study Chapter 1. 최신 BFT 프로토콜" />
+<link rel="canonical" href="https://devjzen.github.io//web3/2025/07/19/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%EC%BD%94%EC%96%B4-%EA%B0%9C%EB%B0%9C.html" />
+<meta property="og:url" content="https://devjzen.github.io//web3/2025/07/19/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%EC%BD%94%EC%96%B4-%EA%B0%9C%EB%B0%9C.html" />
+<meta property="og:site_name" content="devJZen" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-07-19T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Part 1. 블록체인 코어 개발에 대해서" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"devJZen"},"dateModified":"2025-07-19T00:00:00+00:00","datePublished":"2025-07-19T00:00:00+00:00","description":"목차 Part 1. 블록체인 코어 개발에 대해서 Chapter 1. 블록체인이 해결하는 문제 1-1. 블록체인 Chapter 2. 블록체인 아키텍쳐 2-1. 네트워킹 2-2. 합의 2-3. 데이터 2-4. 실행 2-5. 애플리케이션 Chapter 3. 블록체인 암호학 3-1. 해시함수 3-2. 디지털 서명 3-3. 머클트리 Chapter 4. 블록체인 분산시스템 4-1. CAP정리와 블록체인 4-2. 비잔틴 결함 허용(BFT) Part 2. Cosmos SDK Chapter 1. Cosmos 소개 1-1. CometBFT 1-2. Cosmos SDK 1-3. Cosmos EVM 1-4. IBC Chapter 2. EVM 구현체 Chapter 3. CometBFT Consensus 3-2. CometBFT의 개선점 Part 3. Solana Part 4. Consensus Study Chapter 1. 최신 BFT 프로토콜","headline":"Part 1. 블록체인 코어 개발에 대해서","mainEntityOfPage":{"@type":"WebPage","@id":"https://devjzen.github.io//web3/2025/07/19/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%EC%BD%94%EC%96%B4-%EA%B0%9C%EB%B0%9C.html"},"url":"https://devjzen.github.io//web3/2025/07/19/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%EC%BD%94%EC%96%B4-%EA%B0%9C%EB%B0%9C.html"}</script>
+<!-- End Jekyll SEO tag -->
+<!-- Open Graph -->
+  
+  
+  <meta property="og:image" content="https://devjzen.github.io//assets/images/post-image.png" />
+  <meta name="twitter:image" content="https://devjzen.github.io//assets/images/post-image.png" />
+  
+  <meta property="og:logo" content="https://devjzen.github.io//assets/images/favicon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://devjzen.github.io//feed.xml" title="devJZen" /><link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8"
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Init highlight js
+document.addEventListener('DOMContentLoaded', function(event) {
+  var els = document.querySelectorAll('pre code')
+
+  function addLangData(block) {
+    var outer = block.parentElement.parentElement.parentElement;
+    var lang = block.getAttribute('data-lang');
+    for (var i = 0; i < outer.classList.length; i++) {
+      var cls = outer.classList[i];
+      if (cls.startsWith('language-')) {
+        lang = cls;
+        break;
+      }
+    }
+    if (!lang) {
+      cls = block.getAttribute('class');
+      lang = cls ? cls.replace('hljs ', '') : '';
+    }
+    if (lang.startsWith('language-')) {
+      lang = lang.substr(9);
+    }
+    block.setAttribute('class', 'hljs ' + lang);
+    block.parentNode.setAttribute('data-lang', lang);
+  }
+
+  function addBadge(block) {
+    var enabled = ('true' || 'true').toLowerCase();
+    if (enabled == 'true') {
+      var pre = block.parentElement;
+      pre.classList.add('badge');
+    }
+  }
+
+  function handle(block) {
+    addLangData(block);
+    addBadge(block)
+    hljs.highlightBlock(block);
+  }
+
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    handle(el);
+  }
+});
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #000;
+    background-color: #f2cb05;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  code > table pre::before {
+    display: none;
+  }
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.css"
+  rel="stylesheet"
+/>
+<style>
+  .pswp .pswp__container .pswp__img {
+    background-color: white;
+  }
+</style>
+
+<script>
+  function initPhotoSwipe() {
+    var mainEl = document.querySelector("section.main");
+
+    var imgEls = mainEl.querySelectorAll("img:not(.emoji)");
+    imgEls.forEach((imgEl) => {
+      imgEl.outerHTML = `
+    <a class="photo-swipe"
+      href="${imgEl.src}"
+      data-width="${imgEl.getAttribute("width") || imgEl.width * 2}"
+      data-height="${imgEl.getAttribute("height") || imgEl.height * 2}"
+      data-caption="${imgEl.getAttribute("caption") || imgEl.alt}"
+      target="_blank">
+      ${imgEl.outerHTML}
+    </a>`;
+    });
+
+    // Init empty gallery array
+    var container = [];
+
+    // Loop over gallery items and push it to the array
+    var linkEls = mainEl.querySelectorAll("a.photo-swipe");
+    linkEls.forEach((link) => {
+      var item = {
+        src: link.getAttribute("href"),
+        w: link.dataset.width,
+        h: link.dataset.height,
+        title: link.dataset.caption || "",
+      };
+      container.push(item);
+    });
+
+    // Define click event on gallery item
+    linkEls.forEach((link, index) => {
+      link.addEventListener("click", (event) => {
+        // Prevent location change
+        event.preventDefault();
+
+        // Define object and gallery options
+        var pswp = document.querySelector(".pswp");
+
+        var zoomLevel = 1;
+
+        // Define object and gallery options
+        var options = {
+          index: index,
+          bgOpacity: 0.85,
+          showHideOpacity: true,
+          closeOnScroll: true,
+          maxSpreadZoom: 1,
+          getDoubleTapZoom: (isMouseClick, item) => {
+            if (item.detail) {
+              zoomLevel += item.detail.origEvent.shiftKey ? -1 : 1;
+              item.detail = undefined;
+            } else {
+              zoomLevel = zoomLevel === 1 ? 2 : 1;
+            }
+            if (zoomLevel <= 1) {
+              zoomLevel = 1;
+              setTimeout(() => pswp.classList.remove("pswp--zoomed-in"), 0);
+            }
+            return item.initialZoomLevel * zoomLevel;
+          },
+        };
+
+        // Initialize PhotoSwipe
+        var gallery = new PhotoSwipe(
+          pswp,
+          PhotoSwipeUI_Default,
+          container,
+          options
+        );
+
+        gallery.init();
+
+        // Custom zoom event
+        gallery.container.addEventListener("pswpTap", (e) => {
+          gallery.currItem.detail = e.detail;
+        });
+      });
+    });
+  }
+
+  window.addEventListener("load", initPhotoSwipe);
+</script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe.
+           It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg"></div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides.
+              PhotoSwipe keeps only 3 of them in the DOM to save memory.
+              Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter"></div>
+        <button
+          class="pswp__button pswp__button--close"
+          title="Close (Esc)"
+        ></button>
+        <button class="pswp__button pswp__button--share" title="Share"></button>
+        <button
+          class="pswp__button pswp__button--fs"
+          title="Toggle fullscreen"
+        ></button>
+        <button
+          class="pswp__button pswp__button--zoom"
+          title="Zoom in/out"
+        ></button>
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip"></div>
+      </div>
+      <button
+        class="pswp__button pswp__button--arrow--left"
+        title="Previous (arrow left)"
+      ></button>
+      <button
+        class="pswp__button pswp__button--arrow--right"
+        title="Next (arrow right)"
+      ></button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/js/callout.js"></script>
+<script src="/assets/js/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.9.0/dist/mermaid.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header ">
+
+  <div class="wrapper">
+    <div class="site-header-inner"><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+              </svg>
+            </span>
+          </label>
+
+          <div class="translate-toggle-container">
+            <label class="translate-switch">
+              <input type="checkbox" onclick="toggleLanguage(this)">
+              <span class="slider round"></span>
+            </label>
+            <span class="switch-label notranslate">KO</span>
+          </div>
+
+          <div class="trigger"><a class="page-link" href="/">HOME</a><a class="page-link" href="/about.html">ABOUT</a><a class="page-link" href="/archives.html">ARCHIVES</a><a class="page-link" href="/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<span class="page-link">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<span class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</span>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'kor',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</span></div>
+        </nav></div>
+  </div>
+</header>
+
+<script>
+function toggleLanguage(toggle) {
+  var switchLabel = document.querySelector(".switch-label");
+
+  if (toggle.checked) {
+    switchLabel.textContent = "EN";
+  } else {
+    switchLabel.textContent = "KO";
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  if (googleCombo) {
+    googleCombo.value = toggle.checked ? "en" : "ko";
+    var event = new Event("change");
+    googleCombo.dispatchEvent(event);
+  }
+}
+
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;
+
+
+      var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+<script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div id="click-to-top" class="click-to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+<script>
+  (function () {
+    const clickToTop = document.getElementById('click-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        clickToTop.classList.add('show')
+      }else {
+        clickToTop.classList.remove('show')
+      }
+    });
+    clickToTop.addEventListener('click', () => {
+      window.smoothScrollTo(0);
+    });
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">Part 1. 블록체인 코어 개발에 대해서</h1>
+  <h2 class="post-subtitle"></h2>
+
+  <p class="post-meta">
+    <time class="dt-published" datetime="2025-07-19T00:00:00+00:00" itemprop="datePublished"><i class="fa fa-calendar"></i> 2025 Jul 19 
+    </time>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 13 mins</span>
+  </p><div class="post-tags"><a class="post-tag" href="/tags.html#Blockchain">#Blockchain</a></div></header>
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <div align="left">
+  <h2>목차</h2>
+    <a href="https://devjzen.github.io/web3/2025/07/19/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%EC%BD%94%EC%96%B4-%EA%B0%9C%EB%B0%9C.html">
+      Part 1. 블록체인 코어 개발에 대해서
+    </a><br />
+    <a href="https://devjzen.github.io/web3/2025/07/19/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%EC%BD%94%EC%96%B4-%EA%B0%9C%EB%B0%9C.html#h-chapter-1-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8%EC%9D%B4-%ED%95%B4%EA%B2%B0%ED%95%98%EB%8A%94-%EB%AC%B8%EC%A0%9C">
+      Chapter 1. 블록체인이 해결하는 문제
+    </a><br />
+    <a href="https://devjzen.github.io/web3/2025/07/19/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8.html">
+      1-1. 블록체인
+    </a><br />
+    <a href="https://devjzen.github.io/web3/2025/07/19/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%EC%BD%94%EC%96%B4-%EA%B0%9C%EB%B0%9C.html#h-chapter-2-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%EC%95%84%ED%82%A4%ED%85%8D%EC%B3%90">
+      Chapter 2. 블록체인 아키텍쳐
+    </a><br />
+    <a href="https://devjzen.github.io/web3/2025/07/21/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9.html">2-1. 네트워킹</a><br />
+    <a href="https://devjzen.github.io/web3/2025/07/28/2-%ED%95%A9%EC%9D%98.html">2-2. 합의</a><br />
+    <a href="https://devjzen.github.io/web3/2025/07/29/2-%EB%8D%B0%EC%9D%B4%ED%84%B0.html">2-3. 데이터</a><br />
+    <a href="https://devjzen.github.io/web3/2025/07/29/2-%EC%8B%A4%ED%96%89.html">2-4. 실행</a><br />
+    <a href="https://devjzen.github.io/web3/2025/07/29/2-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98.html">2-5. 애플리케이션</a><br />
+    <a href="https://devjzen.github.io/web3/2025/07/19/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%EC%BD%94%EC%96%B4-%EA%B0%9C%EB%B0%9C.html#h-chapter-3-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%EC%95%94%ED%98%B8%ED%95%99">
+      Chapter 3. 블록체인 암호학
+    </a><br />
+    <a href="https://devjzen.github.io/web3/2025/07/29/3-%ED%95%B4%EC%8B%9C%ED%95%A8%EC%88%98.html">3-1. 해시함수</a><br />
+    <a href="https://devjzen.github.io/web3/2025/07/30/%EB%94%94%EC%A7%80%ED%84%B8-%EC%84%9C%EB%AA%85.html">3-2. 디지털 서명</a><br />
+    <a href="https://devjzen.github.io/web3/2025/07/29/3-%EB%A8%B8%ED%81%B4%ED%8A%B8%EB%A6%AC.html">3-3. 머클트리</a><br />
+    <a href="https://devjzen.github.io/web3/2025/07/19/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%EC%BD%94%EC%96%B4-%EA%B0%9C%EB%B0%9C.html#h-chapter-4-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%EB%B6%84%EC%82%B0-%EC%8B%9C%EC%8A%A4%ED%85%9C">
+      Chapter 4. 블록체인 분산시스템
+    </a><br />
+    <a href="https://devjzen.github.io/web3/2025/07/29/4-CAP%EC%A0%95%EB%A6%AC%EC%99%80-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8.html">4-1. CAP정리와 블록체인</a><br />
+    <a href="https://devjzen.github.io/web3/2025/07/29/4-%EB%B9%84%EC%9E%94%ED%8B%B4-%EA%B2%B0%ED%95%A8-%ED%97%88%EC%9A%A9.html">4-2. 비잔틴 결함 허용(BFT)</a><br />
+  <hr />
+    <a href="https://devjzen.github.io/web3/2025/07/29/5-Cosmos-SDK.html">
+    Part 2. Cosmos SDK
+    </a><br />
+    <a href="https://devjzen.github.io/web3/2025/07/29/5-Cosmos-SDK.html#h-chapter-1-cosmos-%EC%86%8C%EA%B0%9C">
+      Chapter 1. Cosmos 소개
+    </a><br />
+    <a href="#">1-1. CometBFT</a><br />
+    <a href="#">1-2. Cosmos SDK</a><br />
+    <a href="#">1-3. Cosmos EVM</a><br />
+    <a href="https://devjzen.github.io/web3/2025/07/31/IBC.html">1-4. IBC</a><br />
+  <a href="https://devjzen.github.io/web3/2025/07/29/5-Cosmos-SDK.html#h-chapter-2-evm-%EA%B5%AC%ED%98%84%EC%B2%B4">
+      Chapter 2. EVM 구현체
+  </a><br />
+    <a href="https://devjzen.github.io/web3/2025/07/29/5-Cosmos-SDK.html#h-chapter-3-cometbft-consensus">
+      Chapter 3. CometBFT Consensus
+    </a><br />
+    <a href="#">3-2. CometBFT의 개선점</a><br />
+    <hr />
+    <a href="https://devjzen.github.io/web3/2025/12/08/%EC%99%9C-Solana%EC%97%AC%EC%95%BC-%EB%90%A0%EA%B9%8C.html">Part 3. Solana</a><br />
+    <hr />
+    <a href="">Part 4. Consensus Study</a><br />
+    <a href="https://devjzen.github.io/web3/2025/07/31/%EC%B5%9C%EC%8B%A0-BFT-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C.html">Chapter 1. 최신 BFT 프로토콜</a><br />
+  </div>
+
+<h2 id="왜-블록체인-분야에서-많은-인재를-원할까">왜 블록체인 분야에서 많은 인재를 원할까?</h2>
+
+<p>코로나 이후, 개인의 삶이 전보다 복잡해졌습니다. 저성장과 고성장으로 뚜렷한 양극화 현상이 발생하고 보이지 않는 격차를 만들어내고 있습니다. AI의 등장으로 인하여 직업과 노동에 변화가 생겼습니다. 보다 더 나은 보건과 행정이 제공되며 수명이 연장됨에 따라서 생애주기도 달라졌죠. 지구의 자전축이 기울어졌다는 연구결과도 있으며 기후변화가 관측되기도 합니다. 그리고 세상은 암호화폐라는 가치를 직면했습니다.</p>
+
+<p>처음에 사람들은 암호화폐를 인정하고 싶지 않았을 겁니다. 기존의 시스템에 저항하는 형태의 가치가 등장한 것과 같으니까요. 그런데 생각해보면 화폐는 곡식과 천, 금덩이, 소금 다양한 형태로 존재했고 편의에 따라서 꾸준히 발전해왔습니다. 이미 등장한 가치에 대해서 많은 사람들이 인정하고 사용하고 있어서, 인정하고 싶지 않던 사람도 이제는 어떻게 사용할 것인가에 대하여 고민하게 될 것입니다. 그리고 블록체인은 지금처럼 복잡해진 세상에서 신뢰의 문제를 해결해줄 기술로 자리잡게 될 것입니다.</p>
+
+<p>암호화폐는 블록체인이라는 기술로 등장했습니다. ‘은행을 믿을 수 없다면 뭘 믿어야 할까? 그리고 어떻게 믿어야 할까?’ 의 관점에서 등장한 기술은 단순히 화폐의 가치를 넘어서서 ‘권한’과 ‘소유’의 개념에 대해서 다시 정의하려고 합니다. 왜냐면, 분산 시스템으로 블록체인 기술이 구현되었거든요!</p>
+
+<p>탈중앙화, 비트코인, 거래소, 해킹까지. 언론을 뒤덮은 암호화폐와 관련된 키워드는 긍정적인 이미지가 아닙니다. 흔히 알고 있는 주식보다 해롭다는 것처럼 언론의 소재거리로 사용되기도 하죠. 그래서 기술이 가지고 있는 가치는 외면 받았습니다. 그리고 이 지점에서 ‘블록체인 분야에서 사람을 원하는 이유’가 발생합니다. 언론이 다루는 블록체인은 ‘부정적’이고 ‘상품가치’로써 사용되는데 이 기술은 위치 정보 서비스처럼 정확도와 정밀성이 필요한 작업에 이용되기도 하고, 보안적인 측면에서의 우수성을 보이기도 합니다. 다루는 사람에 따라서 상품이 될 수도 있지만, 미래에 대한 투자가 될 수 있기에 블록체인 분야에서는 더 많은 사람들에게 정보를 공유하려고 합니다.</p>
+
+<p>기술이 뛰어나다고 해도, 사용하지 않으면 발전할 수 없으니까요. 그리고 지금과 같은 초기 시장에는 다양한 아이디어가 필요하기도 합니다. 더 나아가 인문학적인 소양을 기본으로하는 인재들을 양성하려고 하죠.</p>
+
+<p>그러니 블록체인 분야에서 무엇이든 시작하려는 분들은 의심없이 접근했으면 합니다.</p>
+
+<p>처음 접하는 분야에 대한 막연함으로 고민하는 누군가에게 이 글이 도움이 되었으면 합니다.</p>
+
+<hr />
+
+<h2 id="chapter-1-블록체인이-해결하는-문제">Chapter 1. <a href="https://devjzen.github.io/web3/2025/07/19/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8.html">블록체인</a>이 해결하는 문제</h2>
+
+<ul>
+  <li>중앙화된 서버의 한계</li>
+  <li>분산 시스템의 필요성</li>
+  <li>신뢰 없는 환경에서의 합의</li>
+</ul>
+
+<h3 id="11-웹2-vs-웹3-아키텍쳐">1.1. 웹2 vs 웹3 아키텍쳐</h3>
+
+<div class="mermaid">
+flowchart TD
+
+subgraph Web1.0
+  Client1 &lt;--&gt; Server1
+end
+
+subgraph Web2.0
+  Client2 &lt;--&gt; Server2
+  Server2 &lt;--&gt; Database2
+end
+
+subgraph Web3.0
+  Client3 &lt;--&gt; Node
+  Node &lt;--&gt; Blockchain
+  Blockchain &lt;--&gt; DistributedState
+end
+</div>
+
+<p><strong>Web</strong>은 <strong>World Wide Web</strong>을 뜻하며 인터넷에 연결된 사용자들이 서로의 정보를 공유할 수 있는 공간을 의미한다. Web 1.0 - Web 2.0 - Web 3.0 으로 발전해왔다.</p>
+
+<p>웹1.0은 웹2.0 이전의 웹사이트에 해당한다. 웹 1.0의 기본 개념은 <strong>디렉터리 검색</strong>이다. 모든 자료는 체계적으로 분류되어 있으며, 사용자들은 카테고리를 통해 자료를 검색하게 된다. 대표적인 예시로 1990년대 ‘야후’가 있다.</p>
+
+<p>웹2.0는 <strong>개방, 참여, 공유</strong>의 정신을 바탕으로 사용자가 직접 정보를 생산하여 쌍방향으로 소통하는 웹 기술을 말한다. 참여형 웹, 소셜 웹으로 불린다. 웹1이 일방적으로 정보를 보여줬다면 웹2는 사용자가 직접 콘텐츠를 생산하여 쌍방향으로 소통할 수 있다. 대표적인 예시로 ‘페이스북’이 있다.</p>
+
+<p><strong>웹3.0는 초기에 시맨틱 웹을 의미했으나 지금은 탈중앙화에 초점을 맞춰 성장하고 있으며 ‘탈중앙화’라는 기술은 블록체인으로 구현되고 있다.</strong></p>
+
+<blockquote>
+  <p>[!info] 웹1, 웹2, 웹3?<br />
+웹1은 읽기 전용이고<br />
+웹2는 읽기-쓰기가 가능하며<br />
+웹3는 읽기-쓰기-소유가 가능하다.</p>
+</blockquote>
+
+<h3 id="12-블록체인-코어-개발은-무엇인가">1.2. 블록체인 코어 개발은 무엇인가?</h3>
+
+<p>블록체인 코어 개발자는 블록체인을 개발하며 블록체인 시스템의 아키텍처를 개발하고 유지 관리한다. 프로토콜을 설계하고 보안 패턴을 개발하며, 네트워크를 감독한다.</p>
+
+<h3 id="13-블록체인-코어-개발이-왜-필요한-것인가">1.3. 블록체인 코어 개발이 왜 필요한 것인가?</h3>
+
+<p>비트코인이라는 디지털 화폐로서 블록체인이 개발되었지만 그 후로 이더리움, 솔라나, 모나드 등의 새로운 블록체인이 등장한 것처럼 기존의 성능을 개선시키거나 특화된 용도로 사용하는 등의 발전을 이룰 수 있기에 블록체인 개발은 필요하며 그로 인해 블록체인 코어 개발자에 대한 수요가 항상 존재한다.</p>
+
+<p>단순히 디지털 화폐라는 가치에서 벗어나서 Filecoin, Chainlink, Helium 과 같은 블록체인을 개발할 수도 있으며 기술 혁신으로 새로운 합의 알고리즘을 개발한다던가, ZK 증명, 레이어2, 샤딩, 병렬 처리를 적용시킬 수도 있다. 서로 다른 요구사항과 문제를 해결하는 다양한 체인들이 존재하게 되었으며 특히나 Cosmos는 서로 다른 블록체인들을 연결시켜주는 역할을 한다.</p>
+
+<hr />
+
+<h2 id="chapter-2-블록체인-아키텍쳐">Chapter 2. 블록체인 아키텍쳐</h2>
+
+<ul>
+  <li><a href="https://devjzen.github.io/web3/2025/07/21/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9.html">네트워킹</a></li>
+  <li><a href="https://devjzen.github.io/web3/2025/07/28/2-%ED%95%A9%EC%9D%98.html">합의</a></li>
+  <li><a href="https://devjzen.github.io/web3/2025/07/29/2-%EB%8D%B0%EC%9D%B4%ED%84%B0.html">데이터</a></li>
+  <li><a href="https://devjzen.github.io/web3/2025/07/29/2-%EC%8B%A4%ED%96%89.html">실행</a></li>
+  <li><a href="https://devjzen.github.io/web3/2025/07/29/2-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98.html">애플리케이션</a></li>
+</ul>
+
+<p>블록체인 아키텍처 구조는 생성된 네트워크와 설계 방식에 따라 다양하게 달라질 수 있습니다. 학습 목적으로 ‘블록체인 아키텍쳐’로 통용하여 네트워킹, 합의, 데이터, 실행, 애플리케이션의 다섯 가지 주요 모듈로 나누어 설명한다.</p>
+
+<blockquote>
+  <p>How to use Blockchain?</p>
+</blockquote>
+
+<ol>
+  <li>어떻게 데이터를 공유할 것인가? - 전파</li>
+  <li>어떻게 모두가 동의할 것인가? - 순서 정하기</li>
+  <li>결과를 어떻게 저장하고 관리할 것인가?</li>
+  <li>무엇을 할 것인가? - 비즈니스 로직</li>
+  <li>Use-Case - Defi, Dapp, 검증자 생태계</li>
+</ol>
+
+<hr />
+
+<h3 id="chapter-3-블록체인-암호학">Chapter 3. 블록체인 암호학</h3>
+
+<ul>
+  <li><a href="https://devjzen.github.io/web3/2025/07/29/3-%ED%95%B4%EC%8B%9C%ED%95%A8%EC%88%98.html">해시 함수</a></li>
+  <li><a href="https://devjzen.github.io/web3/2025/07/30/%EB%94%94%EC%A7%80%ED%84%B8-%EC%84%9C%EB%AA%85.html">디지털 서명</a></li>
+  <li><a href="https://devjzen.github.io/web3/2025/07/29/3-%EB%A8%B8%ED%81%B4%ED%8A%B8%EB%A6%AC.html">머클 트리</a></li>
+</ul>
+
+<hr />
+
+<h3 id="chapter-4-블록체인-분산-시스템">Chapter 4. 블록체인 분산 시스템</h3>
+
+<ul>
+  <li><a href="https://devjzen.github.io/web3/2025/07/29/4-CAP%EC%A0%95%EB%A6%AC%EC%99%80-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8.html">CAP 정리와 블록체인</a></li>
+  <li><a href="https://devjzen.github.io/web3/2025/07/29/4-%EB%B9%84%EC%9E%94%ED%8B%B4-%EA%B2%B0%ED%95%A8-%ED%97%88%EC%9A%A9.html">비잔틴 결함 허용 (BFT)</a></li>
+</ul>
+
+<hr />
+
+<p>참고 문서: <a href="https://ethereum.org/ko/web3/">What is Web3?</a>, <a href="https://ko.wikipedia.org/wiki/%EC%9B%B93">웹3 WiKi</a>, <a href="https://docs.soliditylang.org/en/v0.8.12/introduction-to-smart-contracts.html">Solidity</a>, <a href="https://ko.wikipedia.org/wiki/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8">블록체인 wiki</a>, <a href="https://learn.metamask.io/ko/overview">Learn Web3</a>, <a href="https://www.coinbase.com/learn/crypto-glossary/what-are-layer-3-blockchains-and-what-is-the-difference-with-layer-2-blockchains">CoinBase</a>, <a href="https://github.com/bittorrent">BitTorrent</a></p>
+
+<p>참고 문헌: Andrew S. Tanenbaum - Computer Networks, distributed-system, Peer to Peer-Harnessing the Power of Disruptive Technologies, mastering-ethereum, bitcoin-nakamoto, Daniel Drescher-blockchain-basic, ethereum yellow paper, Designing data intensive applications</p>
+
+<p>참고 강의: Coursera, Ackee - Solana School</p>
+
+
+    </div>
+
+</article>
+<div class="post-comments"><div class="post-comments" style="margin-top: 30px;">
+  <script src="https://giscus.app/client.js"
+          data-repo="devJZen/devJZen.github.io"
+          data-repo-id="R_kgDOOhejIQ"
+          data-category="General"
+          data-category-id="DIC_kwDOOhejIc4CtO1v"
+          data-mapping="title"data-strict="0"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="light"
+          data-lang="ko"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div></div></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --><style type="text/css" media="screen">
+.post-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+
+<div class="post-menu">
+  <div class="post-menu-title">Contents</div>
+  <div class="post-menu-content"></div>
+</div>
+
+<script>
+  function generateContent() {
+    var menu = document.querySelector(".post-menu");
+    var menuContent =  menu.querySelector(".post-menu-content");
+    var headings = document.querySelector(".post-content").querySelectorAll("h2, h3, h4, h5, h6");
+
+    // Hide menu when no headings
+    if (headings.length === 0) {
+      return menu.style.display = "none";
+    }
+
+    // Generate post menu
+    var menuHTML = '';
+    for (var i = 0; i < headings.length; i++) {
+      var h = headings[i];
+      menuHTML += (
+        '<li class="h-' + h.tagName.toLowerCase() + '">'
+        + '<a href="#h-' + h.getAttribute('id') + '">' + h.textContent + '</a></li>');
+    }
+
+    menuContent.innerHTML = '<ul>' + menuHTML + '</ul>';
+
+    // The header element
+    var header = document.querySelector('header.site-header');
+
+    function doMenuCollapse(index, over_items) {
+      var items = menuContent.firstChild.children;
+
+      if (over_items == undefined) {
+        over_items = 20;
+      }
+
+      if (items.length < over_items) {
+        return;
+      }
+
+      var activeItem = items[index];
+      var beginItem = activeItem
+      var endItem = activeItem
+      var beginIndex = index;
+      var endIndex = index + 1;
+      while (beginIndex >= 0
+        && !items[beginIndex].classList.contains('h-h2')) {
+        beginIndex -= 1;
+      }
+      while (endIndex < items.length
+        && !items[endIndex].classList.contains('h-h2')) {
+        endIndex += 1;
+      }
+      for (var i = 0; i < beginIndex; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+      for (var i = beginIndex + 1; i < endIndex; i++) {
+        item = items[i]
+        // if (!item.classList.contains('h-h2')) {
+          item.style.display = '';
+        // }
+      }
+      for (var i = endIndex; i < items.length; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+    }
+
+    // Init menu collapsed
+    doMenuCollapse(-1);
+
+    // Active the menu item
+    window.addEventListener('scroll', function (event) {
+      var lastActive = menuContent.querySelector('.active');
+      var changed = true;
+      var activeIndex = -1;
+      for (var i = headings.length - 1; i >= 0; i--) {
+        var h = headings[i];
+        var headingRect = h.getBoundingClientRect();
+        var headerRect = header.getBoundingClientRect();
+        var headerTop = Math.floor(headerRect.top);
+        var headerHeight = Math.floor(headerRect.height);
+        var headerHeight = headerTop + headerHeight + 20;
+        if (headingRect.top <= headerHeight) {
+          var id = 'h-' + h.getAttribute('id');
+          var a = menuContent.querySelector('a[href="#' + id  + '"]');
+          var curActive = a.parentNode;
+          if (curActive) {
+            curActive.classList.add('active');
+            activeIndex = i;
+          }
+          if (lastActive == curActive) {
+            changed = false;
+          }
+          break;
+        }
+      }
+      if (changed) {
+        if (lastActive) {
+          lastActive.classList.remove('active');
+        }
+        doMenuCollapse(activeIndex);
+      }
+      event.preventDefault();
+    });
+  }
+  generateContent();
+</script>
+</section>
+</div>
+
+      </div>
+    </main>
+
+  </body>
+</html>
